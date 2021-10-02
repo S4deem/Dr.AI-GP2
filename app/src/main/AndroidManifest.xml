@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.dr.ai.drai_2">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.DrAI2">
+        <activity
+            android:name=".patientReminder"
+            android:exported="true" />
+        <activity
+            android:name=".inPersonAppointments"
+            android:exported="true" />
+        <activity
+            android:name=".paymentPage"
+            android:exported="true" />
+        <activity
+            android:name=".onlineAppointments"
+            android:exported="true" />
+        <activity
+            android:name=".patientAppointments"
+            android:exported="true" />
+        <activity
+            android:name=".checkUpAppointments"
+            android:exported="true" />
+        <activity
+            android:name=".diagnosis"
+            android:exported="true" />
+        <activity
+            android:name=".healthRecordComing"
+            android:exported="true" />
+        <activity
+            android:name=".healthRecordPrevious"
+            android:exported="true" />
+        <activity
+            android:name=".healthRecord"
+            android:exported="true" />
+        <activity
+            android:name=".patientAppointmentSummary"
+            android:exported="true" />
+        <activity
+            android:name=".patient"
+            android:exported="true" />
+        <activity
+            android:name=".profile"
+            android:exported="true" />
+        <activity
+            android:name=".checkUpAppointmentsDoctor"
+            android:exported="true" />
+        <activity
+            android:name=".prescription"
+            android:exported="true" />
+        <activity
+            android:name=".previousAppointments"
+            android:exported="true" />
+        <activity
+            android:name=".comingAppointments"
+            android:exported="true" />
+        <activity
+            android:name=".healthRecords"
+            android:exported="true" />
+        <activity
+            android:name=".patientsHealthRecords"
+            android:exported="true" />
+        <activity
+            android:name=".patientTracking1"
+            android:exported="true" />
+        <activity
+            android:name=".patientTracking"
+            android:exported="true" />
+        <activity
+            android:name=".doctorsPatientScreen"
+            android:exported="true" />
+        <activity
+            android:name=".doctorsProfile"
+            android:exported="true" />
+        <activity
+            android:name=".doctorsAppointments1"
+            android:exported="true" />
+        <activity
+            android:name=".doctorsAppointments"
+            android:exported="true" />
+        <activity
+            android:name=".patientScreen"
+            android:exported="true" />
+        <activity
+            android:name=".doctorsScreen"
+            android:exported="true" />
+        <activity
+            android:name=".retrievePassword"
+            android:exported="true" />
+        <activity
+            android:name=".patientsAccountManagment"
+            android:exported="true" />
+        <activity
+            android:name=".doctorsAccountManagement1"
+            android:exported="true" />
+        <activity
+            android:name=".doctorsAccountManagement"
+            android:exported="true" />
+        <activity
+            android:name=".adminScreen"
+            android:exported="true" />
+        <activity
+            android:name=".contactUs"
+            android:exported="true" />
+        <activity
+            android:name=".aboutUs"
+            android:exported="true" />
+        <activity
+            android:name=".security"
+            android:exported="true" />
+        <activity
+            android:name=".signInAdmin"
+            android:exported="true" />
+        <activity
+            android:name=".signInDoctor"
+            android:exported="true" />
+        <activity
+            android:name=".signInPage"
+            android:exported="true" />
+        <activity
+            android:name=".signUpDoctor"
+            android:exported="true" />
+        <activity
+            android:name=".signUpPage"
+            android:exported="true" />
+        <activity
+            android:name=".virtualTherapist"
+            android:exported="true" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

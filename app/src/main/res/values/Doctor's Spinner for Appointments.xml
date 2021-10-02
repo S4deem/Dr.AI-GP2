@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="Doctors_Id">
+
+    <item>
+        Doctor 1
+    </item>
+
+        <item>
+        Doctor 2
+    </item>
+
+        <item>
+        Doctor 3
+    </item>
+
+    </string-array>
+
+</resources>

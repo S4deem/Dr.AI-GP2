@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="Patient_Id">
+
+        <item>
+            Patient 1
+        </item>
+
+        <item>
+            Patient 2
+        </item>
+
+        <item>
+            Patient 3
+        </item>
+
+    </string-array>
+</resources>
