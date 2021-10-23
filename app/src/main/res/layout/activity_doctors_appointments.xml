@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:id="@+id/drawer_layout"
     android:layout_height="match_parent"
+    android:id="@+id/drawer_layout"
     tools:context=".doctorsAppointments">
 
 
@@ -12,104 +12,139 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:id="@+id/lenear"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="0dp"
-        android:orientation="horizontal">
-
-
-        <Button
-            android:id="@+id/menuButton"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/ic_baseline_menu_24" />
-
-
-    </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_marginTop="50dp"
-        android:background="@color/black"/>
-    <TextView
-        android:id="@+id/textWelcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_row="0"
-        android:layout_column="0"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_gravity="center"
-        android:layout_marginStart="339dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="8dp"
-        android:text="Dr.AI"
-        android:textColorLink="@color/black"
-        android:textSize="25sp" />
-
         <LinearLayout
-            android:id="@+id/theLinear"
-            android:layout_width="360dp"
-            android:layout_height="372dp"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_below="@+id/TEXTtext"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="30dp"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:id="@+id/lenear"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="0dp"
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/textPatientsId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="30dp"
-                android:text="Patien's ID" />
 
-            <Spinner
-                android:id="@+id/doctorSpinner"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_margin="10dp"
+            <Button
+                android:id="@+id/menuButton"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="40dp" />
+                android:background="@drawable/ic_baseline_menu_24" />
 
 
         </LinearLayout>
-
-    <TextView
-        android:id="@+id/TEXTtext"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="80dp"
-        android:gravity="center"
-        android:text="You can view your appointments here"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/doctorsAppointmentsButton"
-            android:layout_width="250dp"
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="50dp"
+            android:background="@color/black"/>
+        <TextView
+            android:id="@+id/textWelcome"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/lenear"
+            android:layout_row="0"
+            android:layout_column="0"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="75dp"
-            android:layout_marginTop="470dp"
-            android:layout_marginEnd="86dp"
-            android:layout_marginBottom="1dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="339dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="8dp"
+            android:text="Dr.AI"
+            android:textColorLink="@color/black"
+            android:textSize="25sp" />
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_below="@+id/oText"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="188dp">
+
+            <GridLayout
+
+                android:layout_width="406dp"
+                android:layout_height="529dp"
+                android:alignmentMode="alignMargins"
+                android:columnOrderPreserved="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="211dp">
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_row="0"
+                    android:layout_column="0"
+                    android:layout_marginBottom="172dp"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                    android:layout_width="351dp"
+                    android:layout_height="410dp"
+                    android:layout_row="0"
+                    android:layout_column="0"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="30dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/textPatientId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_marginTop="-150dp"
+                        android:text="Patient ID:"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <Spinner
+                        android:id="@+id/patientSpinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_margin="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="40dp" />
+
+
+                </LinearLayout>
+
+            </GridLayout>
+        </ScrollView>
+
+        <TextView
+            android:id="@+id/oText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="80dp"
+            android:gravity="center"
+            android:text="Appointments"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/doctorAppointments"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="450dp"
+            android:layout_marginEnd="81dp"
+            android:layout_marginBottom="4dp"
             android:background="@drawable/edittext"
             android:gravity="center"
             android:text="Appointments"
@@ -136,5 +171,6 @@
         android:layout_gravity="start"
         app:menu="@menu/navigation_menu"
         app:headerLayout="@layout/navigation_header"/>
+
 
 </androidx.drawerlayout.widget.DrawerLayout>
