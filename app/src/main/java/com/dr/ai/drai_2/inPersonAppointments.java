@@ -171,7 +171,7 @@ public class inPersonAppointments extends AppCompatActivity {
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerTextSize.setAdapter(adapter);
         spinnerTextSize2.setAdapter(adapter2);
-        paymentButton = (Button) findViewById(R.id.inPersonPayment);
+        paymentButton = findViewById(R.id.inPersonPayment);
         paymentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

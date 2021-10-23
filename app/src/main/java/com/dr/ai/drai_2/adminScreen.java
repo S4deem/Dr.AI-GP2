@@ -144,7 +144,7 @@ public class adminScreen extends AppCompatActivity {
                 return false;
             }
         });
-        doctorsManagementButton = (Button) findViewById(R.id.doctorsManagementButton);
+        doctorsManagementButton = findViewById(R.id.doctorsManagementButton);
         doctorsManagementButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -152,7 +152,7 @@ public class adminScreen extends AppCompatActivity {
             }
         });
 
-        patientsManagementButton = (Button) findViewById(R.id.patientsManagementButton);
+        patientsManagementButton = findViewById(R.id.patientsManagementButton);
         patientsManagementButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -145,7 +145,7 @@ public class patientAppointments extends AppCompatActivity {
             }
         });
 
-        onlineButton = (Button) findViewById(R.id.onlineButton);
+        onlineButton = findViewById(R.id.onlineButton);
         onlineButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -154,7 +154,7 @@ public class patientAppointments extends AppCompatActivity {
             }
         });
 
-        inPersonButton = (Button) findViewById(R.id.inPersonButton);
+        inPersonButton = findViewById(R.id.inPersonButton);
         inPersonButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

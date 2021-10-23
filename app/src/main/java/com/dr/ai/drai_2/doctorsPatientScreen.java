@@ -142,7 +142,7 @@ public class doctorsPatientScreen extends AppCompatActivity {
                 return false;
             }
         });
-        trackPatientButton = (Button) findViewById(R.id.trackPatientButton);
+        trackPatientButton = findViewById(R.id.trackPatientButton);
         trackPatientButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -150,7 +150,7 @@ public class doctorsPatientScreen extends AppCompatActivity {
             }
         });
 
-        healthRecordBtn = (Button) findViewById(R.id.healthRecordBtn);
+        healthRecordBtn = findViewById(R.id.healthRecordBtn);
         healthRecordBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -158,7 +158,7 @@ public class doctorsPatientScreen extends AppCompatActivity {
             }
         });
 
-        checkUpBtn = (Button) findViewById(R.id.checkUpBtn);
+        checkUpBtn = findViewById(R.id.checkUpBtn);
         checkUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -53,114 +53,39 @@
         android:textColorLink="@color/black"
         android:textSize="25sp" />
 
-    <LinearLayout
-        android:id="@+id/theLinear"
-        android:layout_width="360dp"
-        android:layout_height="372dp"
-        android:layout_row="0"
-        android:layout_column="0"
-        android:layout_below="@+id/TEXTtext"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="30dp"
-        android:background="@drawable/edittext"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="16dp">
-
-        <TextView
-            android:id="@+id/textPatientsId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="30dp"
-            android:text="Patien's ID" />
-
-        <Spinner
-            android:id="@+id/doctorSpinner"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_margin="10dp"
+        <LinearLayout
+            android:id="@+id/theLinear"
+            android:layout_width="360dp"
+            android:layout_height="372dp"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_below="@+id/TEXTtext"
+            android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="40dp" />
+            android:layout_marginRight="30dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/textPatientsId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="30dp"
+                android:text="Patien's ID" />
+
+            <Spinner
+                android:id="@+id/doctorSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="40dp" />
 
 
-        <TextView
-            android:id="@+id/TextDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="5dp"
-            android:text="Date"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/buttonDate"
-            style="?android:spinnerStyle"
-            android:layout_width="293dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:background="@drawable/edittext"
-            android:onClick="openDatePicker"
-            android:text="Jan 01 2022"
-            android:textAlignment="center" />
-
-        <TextView
-            android:id="@+id/TextTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5sp"
-            android:text="Time"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/buttonTime"
-            android:layout_width="293dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/edittext"
-            android:onClick="popTimePicker"
-            android:text="00:00" />
-
-        <TextView
-            android:id="@+id/TextSession"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5sp"
-            android:text="Type od Session"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
-        <RadioButton
-            android:id="@+id/radioPhoneCall"
-            android:layout_width="wrap_content"
-            android:layout_height="21dp"
-            android:layout_gravity="center"
-            android:onClick="@+id/save"
-            android:text="In-Person" />
-
-        <RadioButton
-            android:id="@+id/radioVideo"
-            android:layout_width="80dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:checked="true"
-            android:text="online" />
-
-
-    </LinearLayout>
+        </LinearLayout>
 
     <TextView
         android:id="@+id/TEXTtext"

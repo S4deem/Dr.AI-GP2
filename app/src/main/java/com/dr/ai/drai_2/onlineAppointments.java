@@ -172,7 +172,7 @@ public class onlineAppointments extends AppCompatActivity {
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerTextSize.setAdapter(adapter);
         spinnerTextSize2.setAdapter(adapter2);
-        paymentButton = (Button) findViewById(R.id.paymentButton);
+        paymentButton = findViewById(R.id.paymentButton);
         paymentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

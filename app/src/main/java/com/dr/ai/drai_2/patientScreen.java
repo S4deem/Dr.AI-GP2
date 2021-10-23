@@ -148,7 +148,7 @@ public class patientScreen extends AppCompatActivity {
                 return false;
             }
         });
-        patientButton = (Button) findViewById(R.id.patientButton);
+        patientButton = findViewById(R.id.patientButton);
         patientButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -156,7 +156,7 @@ public class patientScreen extends AppCompatActivity {
                 openSignInPage();
             }
         });
-        virtualTButton = (Button) findViewById(R.id.virtualTButton);
+        virtualTButton = findViewById(R.id.virtualTButton);
         virtualTButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -165,7 +165,7 @@ public class patientScreen extends AppCompatActivity {
             }
         });
 
-        patientButton = (Button) findViewById(R.id.patientButton);
+        patientButton = findViewById(R.id.patientButton);
         patientButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -173,7 +173,7 @@ public class patientScreen extends AppCompatActivity {
                 openSignInPage();
             }
         });
-        profileButton = (Button) findViewById(R.id.profileButton);
+        profileButton = findViewById(R.id.profileButton);
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -182,7 +182,7 @@ public class patientScreen extends AppCompatActivity {
             }
         });
 
-        appointmentButton = (Button) findViewById(R.id.appointmentButton);
+        appointmentButton = findViewById(R.id.appointmentButton);
         appointmentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -191,7 +191,7 @@ public class patientScreen extends AppCompatActivity {
             }
         });
 
-        goBackButton = (Button) findViewById(R.id.goBackButton);
+        goBackButton = findViewById(R.id.goBackButton);
         goBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -200,7 +200,7 @@ public class patientScreen extends AppCompatActivity {
             }
         });
 
-        reminderButton = (Button) findViewById(R.id.reminderButton);
+        reminderButton = findViewById(R.id.reminderButton);
         reminderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

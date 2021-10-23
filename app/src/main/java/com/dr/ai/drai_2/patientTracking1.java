@@ -11,6 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -19,8 +21,11 @@ public class patientTracking1 extends AppCompatActivity {
     private NavigationView mainNavView;
     private Menu mainNavMenu;
     private MenuItem menuItem;
+    EditText editAnalysis1;
     private Button menuButton;
     private DrawerLayout drawer_layout;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -139,6 +144,7 @@ public class patientTracking1 extends AppCompatActivity {
                 return false;
             }
         });
+
     }
     private void menuButton() {
 

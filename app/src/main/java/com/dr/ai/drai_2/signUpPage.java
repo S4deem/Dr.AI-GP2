@@ -148,7 +148,7 @@ public class signUpPage extends AppCompatActivity {
         btn.setOnClickListener((view) -> {
             startActivity(new Intent(signUpPage.this, signInAdmin.class));
         });
-        signUpP = (Button) findViewById(R.id.signUpP);
+        signUpP = findViewById(R.id.signUpP);
         signUpP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

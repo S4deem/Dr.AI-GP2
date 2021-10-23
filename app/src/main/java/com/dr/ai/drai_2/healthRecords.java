@@ -145,21 +145,21 @@ public class healthRecords extends AppCompatActivity {
             }
         });
 
-        patientComingButton = (Button) findViewById(R.id.patientComingButton);
+        patientComingButton = findViewById(R.id.patientComingButton);
         patientComingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openPatientComingPage();
             }
         });
-        patientPreviousButton = (Button) findViewById(R.id.patientPreviousButton);
+        patientPreviousButton = findViewById(R.id.patientPreviousButton);
         patientPreviousButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openPatientPreviousPage();
             }
         });
-        patientPrescriptionButton = (Button) findViewById(R.id.patientPrescriptionButton);
+        patientPrescriptionButton = findViewById(R.id.patientPrescriptionButton);
         patientPrescriptionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

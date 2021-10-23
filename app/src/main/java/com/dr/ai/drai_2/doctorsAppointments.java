@@ -165,7 +165,7 @@ public class doctorsAppointments extends AppCompatActivity {
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, textSizes);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerTextSize.setAdapter(adapter);
-        doctorsAppointmentsButton = (Button) findViewById(R.id.doctorsAppointmentsButton);
+        doctorsAppointmentsButton = findViewById(R.id.doctorsAppointmentsButton);
         doctorsAppointmentsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

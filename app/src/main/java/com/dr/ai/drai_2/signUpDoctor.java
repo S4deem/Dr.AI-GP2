@@ -15,11 +15,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 public class signUpDoctor extends AppCompatActivity {
+
     private Button signUpDoctors;
     Button btn;
     ImageView imageView;
@@ -30,6 +32,7 @@ public class signUpDoctor extends AppCompatActivity {
     private MenuItem menuItem;
     private Button menuButton;
     private DrawerLayout drawer_layout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -161,11 +164,12 @@ public class signUpDoctor extends AppCompatActivity {
 
             }
         });
-        signUpDoctors = (Button) findViewById(R.id.signUpDoctors);
+        signUpDoctors = findViewById(R.id.signUpDoctors);
         signUpDoctors.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 checkCredentials();
+                       //database
 
             }
         });

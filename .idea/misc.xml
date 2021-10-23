@@ -33,8 +33,8 @@
         <entry key="..\:/Users/tefan/AndroidStudioProjects/DrAI22/app/src/main/res/layout/activity_diagnosis.xml" value="0.1" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/DrAI22/app/src/main/res/layout/activity_doctors_account_management.xml" value="0.1" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/DrAI22/app/src/main/res/layout/activity_doctors_account_management1.xml" value="0.1" />
-        <entry key="..\:/Users/tefan/AndroidStudioProjects/DrAI22/app/src/main/res/layout/activity_doctors_appointments.xml" value="0.16" />
-        <entry key="..\:/Users/tefan/AndroidStudioProjects/DrAI22/app/src/main/res/layout/activity_doctors_appointments1.xml" value="0.1" />
+        <entry key="..\:/Users/tefan/AndroidStudioProjects/DrAI22/app/src/main/res/layout/activity_doctors_appointments.xml" value="0.2" />
+        <entry key="..\:/Users/tefan/AndroidStudioProjects/DrAI22/app/src/main/res/layout/activity_doctors_appointments1.xml" value="0.2" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/DrAI22/app/src/main/res/layout/activity_doctors_patient_screen.xml" value="0.176" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/DrAI22/app/src/main/res/layout/activity_doctors_profile.xml" value="0.2" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/DrAI22/app/src/main/res/layout/activity_doctors_screen.xml" value="0.176" />
@@ -50,8 +50,9 @@
         <entry key="..\:/Users/tefan/AndroidStudioProjects/DrAI22/app/src/main/res/layout/activity_patient_appointments.xml" value="0.2" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/DrAI22/app/src/main/res/layout/activity_patient_reminder.xml" value="0.6" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/DrAI22/app/src/main/res/layout/activity_patient_screen.xml" value="0.264" />
-        <entry key="..\:/Users/tefan/AndroidStudioProjects/DrAI22/app/src/main/res/layout/activity_patient_tracking.xml" value="0.1" />
-        <entry key="..\:/Users/tefan/AndroidStudioProjects/DrAI22/app/src/main/res/layout/activity_patient_tracking1.xml" value="0.1" />
+        <entry key="..\:/Users/tefan/AndroidStudioProjects/DrAI22/app/src/main/res/layout/activity_patient_summary_page.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/tefan/AndroidStudioProjects/DrAI22/app/src/main/res/layout/activity_patient_tracking.xml" value="0.264" />
+        <entry key="..\:/Users/tefan/AndroidStudioProjects/DrAI22/app/src/main/res/layout/activity_patient_tracking1.xml" value="0.264" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/DrAI22/app/src/main/res/layout/activity_patients_account_managment.xml" value="0.1" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/DrAI22/app/src/main/res/layout/activity_patients_health_records.xml" value="0.176" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/DrAI22/app/src/main/res/layout/activity_payment_page.xml" value="0.2" />
@@ -63,7 +64,7 @@
         <entry key="..\:/Users/tefan/AndroidStudioProjects/DrAI22/app/src/main/res/layout/activity_sign_in_admin.xml" value="0.264" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/DrAI22/app/src/main/res/layout/activity_sign_in_doctor.xml" value="0.264" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/DrAI22/app/src/main/res/layout/activity_sign_in_page.xml" value="0.264" />
-        <entry key="..\:/Users/tefan/AndroidStudioProjects/DrAI22/app/src/main/res/layout/activity_sign_up_doctor.xml" value="0.1" />
+        <entry key="..\:/Users/tefan/AndroidStudioProjects/DrAI22/app/src/main/res/layout/activity_sign_up_doctor.xml" value="0.2" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/DrAI22/app/src/main/res/layout/activity_sign_up_page.xml" value="0.264" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/DrAI22/app/src/main/res/layout/activity_virtual_therapist.xml" value="0.2" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/DrAI22/app/src/main/res/layout/navigation_header.xml" value="0.1" />

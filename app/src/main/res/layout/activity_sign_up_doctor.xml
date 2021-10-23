@@ -314,7 +314,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:inputType="textAutoComplete"
-                        android:text="What's your gender?"
+                        android:hint="What's your gender?"
                         android:textColor="@android:color/darker_gray"
                         android:textSize="15dp" />
 
@@ -363,7 +363,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:inputType="textAutoComplete"
-                        android:text="Where do you live?"
+                        android:hint="Where do you live?"
                         android:textColor="@android:color/darker_gray"
                         android:textSize="15dp" />
 

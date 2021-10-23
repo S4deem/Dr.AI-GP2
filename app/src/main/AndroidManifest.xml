@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DrAI2">
         <activity
+            android:name=".patientSummaryPage"
+            android:exported="true" />
+        <activity
             android:name=".patientReminder"
             android:exported="true" />
         <activity

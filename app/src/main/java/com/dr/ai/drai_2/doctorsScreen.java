@@ -144,14 +144,14 @@ public class doctorsScreen extends AppCompatActivity {
             }
         });
 
-        patientDoctorButton = (Button) findViewById(R.id.patientDoctorButton);
+        patientDoctorButton = findViewById(R.id.patientDoctorButton);
         patientDoctorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openpatientDoctorPage();
             }
         });
-        doctorProfileButton = (Button) findViewById(R.id.doctorProfileButton);
+        doctorProfileButton = findViewById(R.id.doctorProfileButton);
         doctorProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -159,7 +159,7 @@ public class doctorsScreen extends AppCompatActivity {
                 opendoctorProfilePage();
             }
         });
-        doctorAppointmentBtn = (Button) findViewById(R.id.doctorAppointmentBtn);
+        doctorAppointmentBtn = findViewById(R.id.doctorAppointmentBtn);
         doctorAppointmentBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

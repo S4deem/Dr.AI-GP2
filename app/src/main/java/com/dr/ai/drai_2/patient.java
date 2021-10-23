@@ -145,7 +145,7 @@ public class patient extends AppCompatActivity {
                 return false;
             }
         });
-        appointmentSummaryButton = (Button) findViewById(R.id.appointmentSummaryButton);
+        appointmentSummaryButton = findViewById(R.id.appointmentSummaryButton);
         appointmentSummaryButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -155,7 +155,7 @@ public class patient extends AppCompatActivity {
             }
         });
 
-        healthRecordButton = (Button) findViewById(R.id.healthRecordButton);
+        healthRecordButton = findViewById(R.id.healthRecordButton);
         healthRecordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -164,7 +164,7 @@ public class patient extends AppCompatActivity {
             }
         });
 
-        checkUpButton = (Button) findViewById(R.id.checkUpButton);
+        checkUpButton = findViewById(R.id.checkUpButton);
         checkUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -173,7 +173,7 @@ public class patient extends AppCompatActivity {
             }
         });
 
-        goBackButton = (Button) findViewById(R.id.goBackButton);
+        goBackButton = findViewById(R.id.goBackButton);
         goBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -142,7 +142,7 @@ public class doctorsAccountManagement extends AppCompatActivity {
             }
         });
 
-        doctorsForm = (Button) findViewById(R.id.doctorsForm);
+        doctorsForm = findViewById(R.id.doctorsForm);
         doctorsForm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -150,7 +150,7 @@ public class doctorsAccountManagement extends AppCompatActivity {
                 openDoctorPage();
             }
         });
-        doctorsForm1 = (Button) findViewById(R.id.doctorsForm1);
+        doctorsForm1 = findViewById(R.id.doctorsForm1);
         doctorsForm1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

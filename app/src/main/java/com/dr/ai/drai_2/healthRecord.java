@@ -147,7 +147,7 @@ public class healthRecord extends AppCompatActivity {
             }
         });
 
-        previousButton = (Button) findViewById(R.id.previousButton);
+        previousButton = findViewById(R.id.previousButton);
         previousButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -156,7 +156,7 @@ public class healthRecord extends AppCompatActivity {
             }
         });
 
-        comingButton = (Button) findViewById(R.id.comingButton);
+        comingButton = findViewById(R.id.comingButton);
         comingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -165,7 +165,7 @@ public class healthRecord extends AppCompatActivity {
             }
         });
 
-        diagnosisButton = (Button) findViewById(R.id.diagnosisButton);
+        diagnosisButton = findViewById(R.id.diagnosisButton);
         diagnosisButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -174,7 +174,7 @@ public class healthRecord extends AppCompatActivity {
             }
         });
 
-        prescriptionButton = (Button) findViewById(R.id.prescriptionButton);
+        prescriptionButton = findViewById(R.id.prescriptionButton);
         prescriptionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

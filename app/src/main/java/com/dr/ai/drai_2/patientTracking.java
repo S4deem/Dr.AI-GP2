@@ -150,7 +150,7 @@ public class patientTracking extends AppCompatActivity {
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, textSizes);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerTextSize.setAdapter(adapter);
-        analysisButton = (Button) findViewById(R.id.analysisButton);
+        analysisButton = findViewById(R.id.analysisButton);
         analysisButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

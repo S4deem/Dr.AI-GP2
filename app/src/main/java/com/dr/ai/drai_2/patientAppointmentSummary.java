@@ -37,11 +37,19 @@ public class patientAppointmentSummary extends AppCompatActivity {
     private MenuItem menuItem;
     private Button menuButton;
     private DrawerLayout drawer_layout;
+    private Button patientButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_appointment_summary);
+        patientButton = findViewById(R.id.summaryButton);
+        patientButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openSummaryPage();
+            }
+        });
         BottomNavigationView bottomNavigationView = findViewById(R.id.footer);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -269,5 +277,9 @@ public class patientAppointmentSummary extends AppCompatActivity {
 
         drawer_layout.openDrawer(GravityCompat.START);
 
+    }
+    public void openSummaryPage(){
+        Intent intent = new Intent(this, patientSummaryPage.class);
+        startActivity(intent);
     }
 }

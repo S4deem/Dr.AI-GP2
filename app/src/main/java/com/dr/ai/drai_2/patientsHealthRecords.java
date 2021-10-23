@@ -149,7 +149,7 @@ public class patientsHealthRecords extends AppCompatActivity {
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, textSizes);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerTextSize.setAdapter(adapter);
-        patientHealthRButton = (Button) findViewById(R.id.patientHealthRButton);
+        patientHealthRButton = findViewById(R.id.patientHealthRButton);
         patientHealthRButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
