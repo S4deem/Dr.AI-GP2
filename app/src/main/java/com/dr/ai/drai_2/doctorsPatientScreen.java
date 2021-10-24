@@ -17,8 +17,6 @@ import com.google.android.material.navigation.NavigationView;
 
 public class doctorsPatientScreen extends AppCompatActivity {
     private Button trackPatientButton;
-    private Button healthRecordBtn;
-    private Button checkUpBtn;
     private NavigationView mainNavView;
     private Menu mainNavMenu;
     private MenuItem menuItem;
@@ -95,53 +93,6 @@ public class doctorsPatientScreen extends AppCompatActivity {
             }
         });
 
-        menuItem = mainNavMenu.findItem(R.id.SignUp);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(doctorsPatientScreen.this, signUpDoctor.class);
-                startActivity(intent);
-                return false;
-            }
-        });
-        menuItem = mainNavMenu.findItem(R.id.SignIn);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(doctorsPatientScreen.this, signInDoctor.class);
-                startActivity(intent);
-                return false;
-            }
-        });
-        menuItem = mainNavMenu.findItem(R.id.SignInP);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(doctorsPatientScreen.this, signInPage.class);
-                startActivity(intent);
-                return false;
-            }
-        });
-
-        menuItem = mainNavMenu.findItem(R.id.SignUpP);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(doctorsPatientScreen.this, signUpPage.class);
-                startActivity(intent);
-                return false;
-            }
-        });
-
-        menuItem = mainNavMenu.findItem(R.id.SignInA);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(doctorsPatientScreen.this, signInAdmin.class);
-                startActivity(intent);
-                return false;
-            }
-        });
         trackPatientButton = findViewById(R.id.trackPatientButton);
         trackPatientButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,21 +101,6 @@ public class doctorsPatientScreen extends AppCompatActivity {
             }
         });
 
-        healthRecordBtn = findViewById(R.id.healthRecordBtn);
-        healthRecordBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openHealthRecordPage();
-            }
-        });
-
-        checkUpBtn = findViewById(R.id.checkUpBtn);
-        checkUpBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openCheckUpPage();
-            }
-        });
     }
     public void openTrackPatienPage(){
         Intent intent = new Intent(this, patientTracking.class);

@@ -96,54 +96,6 @@ public class adminScreen extends AppCompatActivity {
                 return false;
             }
         });
-
-        menuItem = mainNavMenu.findItem(R.id.SignUp);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(adminScreen.this, signUpDoctor.class);
-                startActivity(intent);
-                return false;
-            }
-        });
-        menuItem = mainNavMenu.findItem(R.id.SignIn);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(adminScreen.this, signInDoctor.class);
-                startActivity(intent);
-                return false;
-            }
-        });
-        menuItem = mainNavMenu.findItem(R.id.SignInP);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(adminScreen.this, signInPage.class);
-                startActivity(intent);
-                return false;
-            }
-        });
-
-        menuItem = mainNavMenu.findItem(R.id.SignUpP);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(adminScreen.this, signUpPage.class);
-                startActivity(intent);
-                return false;
-            }
-        });
-
-        menuItem = mainNavMenu.findItem(R.id.SignInA);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(adminScreen.this, signInAdmin.class);
-                startActivity(intent);
-                return false;
-            }
-        });
         doctorsManagementButton = findViewById(R.id.doctorsManagementButton);
         doctorsManagementButton.setOnClickListener(new View.OnClickListener() {
             @Override

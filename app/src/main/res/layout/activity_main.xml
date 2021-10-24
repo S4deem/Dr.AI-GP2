@@ -35,6 +35,7 @@
             android:layout_height="0.5dp"
             android:layout_marginTop="52dp"
             android:background="@color/black"/>
+
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="214dp"
@@ -46,7 +47,7 @@
             android:layout_marginTop="66dp"
             android:layout_marginEnd="100dp"
             android:background="@drawable/bg"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop" />
 
         <TextView
             android:id="@+id/textWelcome"
@@ -65,6 +66,32 @@
             android:text="Dr.AI"
             android:textColorLink="@color/black"
             android:textSize="30sp"/>
+
+        <Button
+            android:id="@+id/signIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="177dp"
+            android:layout_marginEnd="80dp"
+            android:background="@drawable/edittext"
+            android:text="Sign In" />
+
+        <Button
+            android:id="@+id/signUp"
+            android:layout_below="@+id/signIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="80dp"
+            android:layout_marginEnd="80dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edittext"
+            android:text="Sign Up" />
 
     </RelativeLayout>
 

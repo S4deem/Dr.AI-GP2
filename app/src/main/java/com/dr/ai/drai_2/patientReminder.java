@@ -105,53 +105,7 @@ public class patientReminder extends AppCompatActivity {
             }
         });
 
-        menuItem = mainNavMenu.findItem(R.id.SignUp);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(patientReminder.this, signUpDoctor.class);
-                startActivity(intent);
-                return false;
-            }
-        });
-        menuItem = mainNavMenu.findItem(R.id.SignIn);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(patientReminder.this, signInDoctor.class);
-                startActivity(intent);
-                return false;
-            }
-        });
-        menuItem = mainNavMenu.findItem(R.id.SignInP);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(patientReminder.this, signInPage.class);
-                startActivity(intent);
-                return false;
-            }
-        });
 
-        menuItem = mainNavMenu.findItem(R.id.SignUpP);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(patientReminder.this, signUpPage.class);
-                startActivity(intent);
-                return false;
-            }
-        });
-
-        menuItem = mainNavMenu.findItem(R.id.SignInA);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(patientReminder.this, signInAdmin.class);
-                startActivity(intent);
-                return false;
-            }
-        });
         initDatePicker();
         dateButton = findViewById(R.id.buttonDate);
         dateButton.setText(getTodaysDate());

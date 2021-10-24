@@ -12,37 +12,6 @@
     <item android:id="@+id/ContactUs"
         android:title="Contact Us">
     </item>
-    <item android:id="@+id/doctorsMenu"
-        android:title="Doctors">
-        <menu>
-    <item android:id="@+id/SignUp"
-        android:title="Sign Up">
-    </item>
-            <item android:id="@+id/SignIn"
-                android:title="Sign In">
-            </item>
-        </menu>
-    </item>
 
-    <item android:id="@+id/patientsMenu"
-        android:title="Patients">
-        <menu>
-            <item android:id="@+id/SignUpP"
-                android:title="Sign Up">
-            </item>
-            <item android:id="@+id/SignInP"
-                android:title="Sign In">
-            </item>
-        </menu>
-    </item>
-
-        <item android:id="@+id/adminMenu"
-            android:title="Admin">
-            <menu>
-                <item android:id="@+id/SignInA"
-                    android:title="Sign In">
-                </item>
-            </menu>
-        </item>
 
 </menu>

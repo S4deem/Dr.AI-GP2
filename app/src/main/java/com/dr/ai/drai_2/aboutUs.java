@@ -75,53 +75,7 @@ public class aboutUs extends AppCompatActivity {
             }
         });
 
-        menuItem = mainNavMenu.findItem(R.id.SignUp);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(aboutUs.this, signUpDoctor.class);
-                startActivity(intent);
-                return false;
-            }
-        });
-        menuItem = mainNavMenu.findItem(R.id.SignIn);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(aboutUs.this, signInDoctor.class);
-                startActivity(intent);
-                return false;
-            }
-        });
-        menuItem = mainNavMenu.findItem(R.id.SignInP);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(aboutUs.this, signInPage.class);
-                startActivity(intent);
-                return false;
-            }
-        });
 
-        menuItem = mainNavMenu.findItem(R.id.SignUpP);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(aboutUs.this, signUpPage.class);
-                startActivity(intent);
-                return false;
-            }
-        });
-
-        menuItem = mainNavMenu.findItem(R.id.SignInA);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(aboutUs.this, signInAdmin.class);
-                startActivity(intent);
-                return false;
-            }
-        });
 
     }
 

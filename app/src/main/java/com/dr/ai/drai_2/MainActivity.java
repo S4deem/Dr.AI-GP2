@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
     private MenuItem menuItem;
     private Button menuButton;
     private DrawerLayout drawer_layout;
+    private Button signIn;
+    private Button signUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,51 +79,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        menuItem = mainNavMenu.findItem(R.id.SignUp);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+
+        signIn = findViewById(R.id.signIn);
+        signIn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(MainActivity.this, signUpDoctor.class);
-                startActivity(intent);
-                return false;
-            }
-        });
-        menuItem = mainNavMenu.findItem(R.id.SignIn);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(MainActivity.this, signInDoctor.class);
-                startActivity(intent);
-                return false;
-            }
-        });
-        menuItem = mainNavMenu.findItem(R.id.SignInP);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(MainActivity.this, signInPage.class);
-                startActivity(intent);
-                return false;
+            public void onClick(View view) {
+                openSignIn();
             }
         });
 
-        menuItem = mainNavMenu.findItem(R.id.SignUpP);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+        signUp = findViewById(R.id.signUp);
+        signUp.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(MainActivity.this, signUpPage.class);
-                startActivity(intent);
-                return false;
-            }
-        });
-
-        menuItem = mainNavMenu.findItem(R.id.SignInA);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(MainActivity.this, signInAdmin.class);
-                startActivity(intent);
-                return false;
+            public void onClick(View view) {
+                openSignUp();
             }
         });
 
@@ -130,4 +101,16 @@ public class MainActivity extends AppCompatActivity {
 
         drawer_layout.openDrawer(GravityCompat.START);
 
-    }}
+    }
+    private void openSignIn() {
+
+        Intent intent = new Intent(this, signInPage.class);
+        startActivity(intent);
+    }
+
+    private void openSignUp() {
+
+        Intent intent = new Intent(this, signUpPage.class);
+        startActivity(intent);
+    }
+}

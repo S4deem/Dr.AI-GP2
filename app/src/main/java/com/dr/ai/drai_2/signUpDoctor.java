@@ -5,28 +5,79 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-
+import java.util.regex.Pattern;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class signUpDoctor extends AppCompatActivity {
 
-    private Button signUpDoctors;
-    Button btn;
     ImageView imageView;
     int SELECT_IMAGE_CODE=1;
-    EditText bName, bEmail, bPassword, besPassword, bCity, bGender, bId, bPhone, bIban, breIban;
+    Button btnImage;
+
+    public static final Pattern PASSWORD_PATTERN =
+            Pattern.compile("^" +
+                    //"(?=.*[0-9])" +         //at least 1 digit
+                    //"(?=.*[a-z])" +         //at least 1 lower case letter
+                    //"(?=.*[A-Z])" +         //at least 1 upper case letter
+                    "(?=.*[a-zA-Z])" +      //any letter
+                    "(?=.*[@#$%^&+=])" +    //at least 1 special character
+                    "(?=\\S+$)" +           //no white spaces
+                    ".{4,}" +               //at least 4 characters
+                    "$");
+
+    public static final Pattern PHONE_PATTERN =
+            Pattern.compile("[6-9][0-9]{11}");
+
+    public static final Pattern ID_PATTERN =
+            Pattern.compile("[0-9]{10}");
+
+    public static final Pattern NAME_PATTERN =
+            Pattern.compile("[a-zA-Z]");
+
+    public static final Pattern IBAN_PATTERN =
+            Pattern.compile("([S][A][0-9]{22})");
+
+    private TextInputLayout textInputEmail;
+    private TextInputLayout textInputPassword;
+    private TextInputLayout textInputCPassword;
+    private TextInputLayout textInputPhone;
+    private TextInputLayout textInputID;
+    private TextInputLayout textInputName;
+    private TextInputLayout textInputCity;
+    private TextInputLayout textInputIban;
+    private RadioGroup radioGroupA;
+    private RadioButton pRadioButton;
+    private RadioButton dRadioButton;
+    private Button next;
+
+
+
+
+
+
+
+    TextView btn;
+
+    private RadioGroup radioGroup;
+    private RadioButton radioButton;
+
     private NavigationView mainNavView;
     private Menu mainNavMenu;
     private MenuItem menuItem;
@@ -37,19 +88,41 @@ public class signUpDoctor extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_doctor);
-        BottomNavigationView bottomNavigationView = findViewById(R.id.footer);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        btnImage = findViewById(R.id.btnImage);
+        imageView = findViewById(R.id.imageView2);
+        btnImage.setOnClickListener(new View.OnClickListener() {
+
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.home:
-                    case R.id.goBack:
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        return true;
-                }
-                return false;
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Title"), SELECT_IMAGE_CODE);
+
+
             }
         });
+
+
+
+        radioGroupA=(RadioGroup)findViewById(R.id.radioGroupA);
+        pRadioButton=(RadioButton)findViewById(R.id.pRadioBtn);
+        dRadioButton=(RadioButton)findViewById(R.id.dRadioBtn);
+        next=(Button)findViewById(R.id.next);
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(pRadioButton.isChecked()){
+                    Intent intent = new Intent(signUpDoctor.this, signUpPage.class);
+                    startActivity(intent);
+                }
+                else if(dRadioButton.isChecked()){
+                    Intent intent = new Intent(signUpDoctor.this, signUpDoctor.class);
+                    startActivity(intent);
+                }
+            }
+        });
+
         drawer_layout = findViewById(R.id.drawer_layout);
         mainNavView = findViewById(R.id.main_nav_view);
         mainNavView.setItemIconTintList(null);
@@ -102,141 +175,179 @@ public class signUpDoctor extends AppCompatActivity {
             }
         });
 
-        menuItem = mainNavMenu.findItem(R.id.SignUp);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(signUpDoctor.this, signUpDoctor.class);
-                startActivity(intent);
-                return false;
-            }
-        });
-        menuItem = mainNavMenu.findItem(R.id.SignIn);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(signUpDoctor.this, signInDoctor.class);
-                startActivity(intent);
-                return false;
-            }
-        });
-        menuItem = mainNavMenu.findItem(R.id.SignInP);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(signUpDoctor.this, signInPage.class);
-                startActivity(intent);
-                return false;
-            }
-        });
-
-        menuItem = mainNavMenu.findItem(R.id.SignUpP);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(signUpDoctor.this, signUpPage.class);
-                startActivity(intent);
-                return false;
-            }
-        });
-
-        menuItem = mainNavMenu.findItem(R.id.SignInA);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(signUpDoctor.this, signInAdmin.class);
-                startActivity(intent);
-                return false;
-            }
-        });
-
-        btn = findViewById(R.id.btnImage);
-        imageView = findViewById(R.id.imageView2);
-        btn.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Title"), SELECT_IMAGE_CODE);
 
 
-            }
-        });
-        signUpDoctors = findViewById(R.id.signUpDoctors);
-        signUpDoctors.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                checkCredentials();
-                       //database
+        textInputEmail = findViewById(R.id.textInputLayoutEmail);
+        textInputPassword = findViewById(R.id.textInputLayoutPassword);
+        textInputCPassword = findViewById(R.id.textInputLayoutCPassword);
+        textInputPhone = findViewById(R.id.textInputLayoutPhoneNo);
+        textInputID = findViewById(R.id.textInputLayoutID);
+        textInputName = findViewById(R.id.textInputLayoutName);
+        textInputCity = findViewById(R.id.textInputLayoutCity);
+        textInputIban = findViewById(R.id.textInputLayoutIban);
 
-            }
-        });
-        bName = findViewById(R.id.dName);
-        bEmail = findViewById(R.id.dEmail);
-        bPassword = findViewById(R.id.dPassword);
-        besPassword = findViewById(R.id.rePasswordd);
-        bGender = findViewById(R.id.dGender);
-        bPhone = findViewById(R.id.dPhone);
-        bId = findViewById(R.id.dId);
-        bCity = findViewById(R.id.dCity);
-        bIban = findViewById(R.id.dIban);
-        breIban= findViewById(R.id.reIban);
+
+
+
+
 
 
     }
-    public void checkCredentials() {
-        String dName = bName.getText().toString();
-        String dPassword = bPassword.getText().toString();
-        String dEmail = bEmail.getText().toString();
-        String rePasswordd = besPassword.getText().toString();
-        String dGender = bGender.getText().toString();
-        String dCity = bCity.getText().toString();
-        String dPhone = bPhone.getText().toString();
-        String dId = bId.getText().toString();
-        String dIban = bIban.getText().toString();
-        String reIban = breIban.getText().toString();
+    private boolean validateEmail() {
+        String emailInput = textInputEmail.getEditText().getText().toString().trim();
+        if (emailInput.isEmpty()) {
+            textInputEmail.setError("Field can't be empty");
+            return false;
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
+            textInputEmail.setError("Please enter a valid email address");
+            return false;
 
+        } else {
+            textInputEmail.setError(null);
+            textInputEmail.setErrorEnabled(false);
+            return true;
+        }
+    }
 
-
-        if (dName.isEmpty()){
-            showError(bName, "Enter an Name!");
-
+    private boolean validatePassword() {
+        String passwordInput = textInputPassword.getEditText().getText().toString().trim();
+        if (passwordInput.isEmpty()) {
+            textInputPassword.setError("Field can't be empty");
+            return false;
         }
-        else if  (!dEmail.contains("@")) {
-
-            showError(bEmail, "Enter a valid email!");
+        else if (!PASSWORD_PATTERN.matcher(passwordInput).matches()){
+            textInputPassword.setError("Password is weak");
+            return false;
         }
-        else if (dEmail.isEmpty()){
-            showError(bEmail, "Enter an email!");
-
-        }
-        else if (dId.isEmpty()){
-            showError(bId, "Enter an Id");
-        }
-        else if (dGender.isEmpty() || dGender.equals("Female") || dGender.equals("Male")){
-            showError(bGender, "Enter 'Female' or 'Male'");
-        }
-        else if (dCity.isEmpty()){
-            showError(bCity, "Enter a city");
-        }
-
-        else if (dPhone.isEmpty()){
-            showError(bPhone, "Enter a phone number");
-        }
-        else if  (dPassword.isEmpty() || dPassword.length()<8){
-            showError(bPassword,"Password must be 8 characters ");
-        }
-        else if  (rePasswordd.isEmpty() || !rePasswordd.equals(dPassword)){
-            showError(besPassword,"Password does no match");
-        }
-
         else{
-            Intent intent = new Intent(this , doctorsScreen.class);
-            startActivity(intent);        }
+            textInputPassword.setError(null);
+            textInputPassword.setErrorEnabled(false);
+            return true;
+        }
     }
 
+    private boolean validateCPassword() {
+        String passwordInput = textInputPassword.getEditText().getText().toString().trim();
+        String passwordCInput = textInputCPassword.getEditText().getText().toString().trim();
+        if (passwordCInput == passwordInput) {
+            textInputCPassword.setError("Field can't be empty");
+            return false;
+        }
+        else if (!PASSWORD_PATTERN.matcher(passwordCInput).matches()){
+            textInputCPassword.setError("Password is weak");
+            return false;
+        }
+        else{
+            textInputCPassword.setError(null);
+            textInputCPassword.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private boolean validatePhone() {
+        String phoneInput = textInputPhone.getEditText().getText().toString().trim();
+        if (phoneInput.isEmpty()) {
+            textInputPhone.setError("Field can't be empty");
+            return false;
+        }
+        else if (!PHONE_PATTERN.matcher(phoneInput).matches()){
+            textInputPhone.setError("Make sure you entered the correct number");
+            return false;
+        }
+        else{
+            textInputPhone.setError(null);
+            textInputPhone.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private boolean validateID() {
+        String idInput = textInputID.getEditText().getText().toString().trim();
+        if (idInput.isEmpty()) {
+            textInputID.setError("Field can't be empty");
+            return false;
+        }
+        else if (!ID_PATTERN.matcher(idInput).matches()){
+            textInputID.setError("Make sure you entered the correct number");
+            return false;
+        }
+        else{
+            textInputID.setError(null);
+            textInputID.setErrorEnabled(false);
+            return true;
+        }
+
+    }
+
+    private boolean validateName() {
+        String nameInput = textInputName.getEditText().getText().toString().trim();
+        if (nameInput.isEmpty()) {
+            textInputName.setError("Field can't be empty");
+            return false;
+        }
+        else if (!NAME_PATTERN.matcher(nameInput).matches()){
+            textInputName.setError("Make sure you entered the correct name");
+            return false;
+        }
+        else{
+            textInputName.setError(null);
+            textInputName.setErrorEnabled(false);
+            return true;
+        }
+
+    }
+
+    private boolean validateCity() {
+        String cityInput = textInputCity.getEditText().getText().toString().trim();
+        if (cityInput.isEmpty()) {
+            textInputCity.setError("Field can't be empty");
+            return false;
+        }
+        else if (!NAME_PATTERN.matcher(cityInput).matches()){
+            textInputCity.setError("Make sure you entered the correct name");
+            return false;
+        }
+        else{
+            textInputCity.setError(null);
+            textInputCity.setErrorEnabled(false);
+            return true;
+        }
+
+    }
+
+    private boolean validateIban() {
+        String ibanInput = textInputIban.getEditText().getText().toString().trim();
+        if (ibanInput.isEmpty()) {
+            textInputIban.setError("Field can't be empty");
+            return false;
+        }
+        else if (!IBAN_PATTERN.matcher(ibanInput).matches()){
+            textInputIban.setError("Make the Iban starts with 'SA'");
+            return false;
+        }
+        else{
+            textInputIban.setError(null);
+            textInputIban.setErrorEnabled(false);
+            return true;
+        }
+
+    }
+
+
+
+
+
+    public void confirmInput (View v) {
+        if (!validateEmail() | !validatePassword() | validateCPassword() | validatePhone() | validateID() | validateName() | validateCity() | validateIban())  {
+            return;
+        }
+    }
+
+    private void menuButton() {
+
+        drawer_layout.openDrawer(GravityCompat.START);
+
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -248,14 +359,5 @@ public class signUpDoctor extends AppCompatActivity {
 
 
         }
-    }
-    private void showError(EditText e, String s) {
-        e.setError(s);
-        e.requestFocus();
-    }
-    private void menuButton() {
-
-        drawer_layout.openDrawer(GravityCompat.START);
-
     }
 }

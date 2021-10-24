@@ -53,6 +53,7 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/passwordLayout"
             android:layout_width="match_parent"
             android:layout_height="633dp"
             android:layout_alignParentBottom="true"
@@ -65,60 +66,50 @@
             app:layout_constraintStart_toStartOf="parent">
 
 
-            <TextView
-                android:id="@+id/textEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="100dp"
-                android:text="Email"
-                app:layout_constraintStart_toStartOf="@+id/Email"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <EditText
-                android:id="@+id/Email"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="25dp"
-                android:background="@drawable/edittext"
-                android:hint="What's your email?"
-                android:inputType="textEmailAddress"
-                android:padding="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textEmail" />
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="200dp"
+                android:layout_marginRight="30dp"
+                android:hint="@string/password"
+                app:errorEnabled="true"
+                app:layout_constraintTop_toBottomOf="@+id/textSignIn"
+                app:passwordToggleEnabled="true"
+                tools:layout_editor_absoluteX="0dp">
 
-            <TextView
-                android:id="@+id/textPassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="32dp"
-                android:text="Password"
-                app:layout_constraintStart_toStartOf="@+id/Password"
-                app:layout_constraintTop_toBottomOf="@+id/Email" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:drawableStart="@drawable/ic_lock"
+                    android:fontFamily="sans-serif-light"
+                    android:inputType="textPassword"
+                    tools:targetApi="jelly_bean" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <EditText
-                android:id="@+id/Password"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="-24dp"
-                android:layout_marginEnd="25dp"
-                android:layout_marginBottom="1dp"
-                android:background="@drawable/edittext"
-                android:hint="What's your password?"
-                android:inputType="textPassword"
-                android:padding="15dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textPassword"
-                app:layout_constraintVertical_bias="0.18" />
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="120dp"
+                android:layout_marginRight="30dp"
+                android:hint="@string/email"
+                app:errorEnabled="true"
+                app:layout_constraintTop_toBottomOf="@+id/textSignIn">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:drawableStart="@drawable/ic_email"
+                    android:fontFamily="sans-serif-light"
+                    android:inputType="textEmailAddress"
+                    tools:targetApi="jelly_bean" />
+            </com.google.android.material.textfield.TextInputLayout>
+
 
             <TextView
                 android:id="@+id/textForgotPassword"
@@ -126,12 +117,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5sp"
                 android:layout_marginBottom="152dp"
+                android:fontFamily="sans-serif-light"
                 android:text="Forgot Password?"
+                android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.946"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Password"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPassword"
                 app:layout_constraintVertical_bias="0.077" />
 
             <TextView
@@ -139,20 +132,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="48dp"
+                android:fontFamily="sans-serif-light"
                 android:gravity="center"
                 android:text="Sign In"
-                android:textSize="20dp"
+                android:textColor="@color/black"
+                android:textSize="40dp"
+                android:textAllCaps="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:textColor="@color/black"
-                android:textStyle="bold"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textCreateAnAccount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
+                android:fontFamily="sans-serif-light"
                 android:gravity="center"
                 android:text="Create an account"
                 android:textAlignment="center"
@@ -163,22 +158,22 @@
 
             <Button
                 android:id="@+id/signInBtnPatient"
-                android:layout_width="250dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="80dp"
                 android:layout_marginEnd="80dp"
                 android:layout_marginBottom="72dp"
                 android:background="@drawable/edittext"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:gravity="center"
-                android:text="Sign In"
-                android:textAllCaps="false"
+                android:fontFamily="sans-serif-light"                android:gravity="center"
+                android:onClick="confirmInput"
+                android:text="@string/sign_in"
                 android:textColor="@android:color/black"
                 android:textSize="17sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textForgotPassword" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

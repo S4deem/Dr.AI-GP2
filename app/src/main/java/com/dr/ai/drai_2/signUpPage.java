@@ -4,24 +4,68 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-
+import java.util.regex.Pattern;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class signUpPage extends AppCompatActivity {
-    private Button signUpP;
+    public static final Pattern PASSWORD_PATTERN =
+            Pattern.compile("^" +
+                    //"(?=.*[0-9])" +         //at least 1 digit
+                    //"(?=.*[a-z])" +         //at least 1 lower case letter
+                    //"(?=.*[A-Z])" +         //at least 1 upper case letter
+                    "(?=.*[a-zA-Z])" +      //any letter
+                    "(?=.*[@#$%^&+=])" +    //at least 1 special character
+                    "(?=\\S+$)" +           //no white spaces
+                    ".{4,}" +               //at least 4 characters
+                    "$");
+
+    public static final Pattern PHONE_PATTERN =
+            Pattern.compile("[6-9][0-9]{11}");
+
+    public static final Pattern ID_PATTERN =
+            Pattern.compile("[0-9]{10}");
+
+    public static final Pattern NAME_PATTERN =
+            Pattern.compile("[a-zA-Z]");
+
+    private TextInputLayout textInputEmail;
+    private TextInputLayout textInputPassword;
+    private TextInputLayout textInputCPassword;
+    private TextInputLayout textInputPhone;
+    private TextInputLayout textInputID;
+    private TextInputLayout textInputName;
+    private TextInputLayout textInputCity;
+    private RadioGroup radioGroupA;
+    private RadioButton pRadioButton;
+    private RadioButton dRadioButton;
+    private Button next;
+
+
+
+
+
+
+
     TextView btn;
-    EditText sName, sEmail, sPassword, resPassword, sCity, sGender, sId, sPhone;
+
+    private RadioGroup radioGroup;
+    private RadioButton radioButton;
+
     private NavigationView mainNavView;
     private Menu mainNavMenu;
     private MenuItem menuItem;
@@ -32,19 +76,24 @@ public class signUpPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_page);
-        BottomNavigationView bottomNavigationView = findViewById(R.id.footer);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        radioGroupA=(RadioGroup)findViewById(R.id.radioGroupA);
+        pRadioButton=(RadioButton)findViewById(R.id.pRadioBtn);
+        dRadioButton=(RadioButton)findViewById(R.id.dRadioBtn);
+        next=(Button)findViewById(R.id.next);
+        next.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.home:
-                    case R.id.goBack:
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        return true;
+            public void onClick(View v) {
+                if(pRadioButton.isChecked()){
+                    Intent intent = new Intent(signUpPage.this, signUpPage.class);
+                    startActivity(intent);
                 }
-                return false;
+                else if(dRadioButton.isChecked()){
+                    Intent intent = new Intent(signUpPage.this, signUpDoctor.class);
+                    startActivity(intent);
+                }
             }
         });
+
         drawer_layout = findViewById(R.id.drawer_layout);
         mainNavView = findViewById(R.id.main_nav_view);
         mainNavView.setItemIconTintList(null);
@@ -97,127 +146,148 @@ public class signUpPage extends AppCompatActivity {
             }
         });
 
-        menuItem = mainNavMenu.findItem(R.id.SignUp);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(signUpPage.this, signInDoctor.class);
-                startActivity(intent);
-                return false;
-            }
-        });
-        menuItem = mainNavMenu.findItem(R.id.SignIn);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(signUpPage.this, signInPage.class);
-                startActivity(intent);
-                return false;
-            }
-        });
-        menuItem = mainNavMenu.findItem(R.id.SignInP);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(signUpPage.this, signInPage.class);
-                startActivity(intent);
-                return false;
-            }
-        });
+        textInputEmail = findViewById(R.id.textInputLayoutEmail);
+        textInputPassword = findViewById(R.id.textInputLayoutPassword);
+        textInputCPassword = findViewById(R.id.textInputLayoutCPassword);
+        textInputPhone = findViewById(R.id.textInputLayoutPhoneNo);
+        textInputID = findViewById(R.id.textInputLayoutID);
+        textInputName = findViewById(R.id.textInputLayoutName);
+        textInputCity = findViewById(R.id.textInputLayoutCity);
 
-        menuItem = mainNavMenu.findItem(R.id.SignUpP);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(signUpPage.this, signUpPage.class);
-                startActivity(intent);
-                return false;
-            }
-        });
 
-        menuItem = mainNavMenu.findItem(R.id.SignInA);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(signUpPage.this, signInPage.class);
-                startActivity(intent);
-                return false;
-            }
-        });
-        btn = findViewById(R.id.textAlready);
-        btn.setOnClickListener((view) -> {
-            startActivity(new Intent(signUpPage.this, signInAdmin.class));
-        });
-        signUpP = findViewById(R.id.signUpP);
-        signUpP.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                checkCredentials();
 
-            }
-        });
-        sName = findViewById(R.id.pName);
-        sEmail = findViewById(R.id.pEmail);
-        sPassword = findViewById(R.id.pPassword);
-        resPassword = findViewById(R.id.rePassword);
-        sGender = findViewById(R.id.pGender);
-        sPhone = findViewById(R.id.pPhone);
-        sId = findViewById(R.id.pId);
-        sCity = findViewById(R.id.pCity);
 
 
     }
-    public void checkCredentials() {
-        String pName = sName.getText().toString();
-        String pPassword = sPassword.getText().toString();
-        String pEmail = sEmail.getText().toString();
-        String rePassword = resPassword.getText().toString();
-        String pGender = sGender.getText().toString();
-        String pCity = sCity.getText().toString();
-        String pPhone = sPhone.getText().toString();
-        String pId = sId.getText().toString();
+    private boolean validateEmail() {
+        String emailInput = textInputEmail.getEditText().getText().toString().trim();
+        if (emailInput.isEmpty()) {
+            textInputEmail.setError("Field can't be empty");
+            return false;
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
+            textInputEmail.setError("Please enter a valid email address");
+            return false;
 
+        } else {
+            textInputEmail.setError(null);
+            textInputEmail.setErrorEnabled(false);
+            return true;
+        }
+    }
 
-        if (pName.isEmpty()){
-            showError(sName, "Enter an Name!");
-
+    private boolean validatePassword() {
+        String passwordInput = textInputPassword.getEditText().getText().toString().trim();
+        if (passwordInput.isEmpty()) {
+            textInputPassword.setError("Field can't be empty");
+            return false;
         }
-        else if  (!pEmail.contains("@")) {
-
-            showError(sEmail, "Enter a valid email!");
+        else if (!PASSWORD_PATTERN.matcher(passwordInput).matches()){
+            textInputPassword.setError("Password is weak");
+            return false;
         }
-        else if (pEmail.isEmpty()){
-            showError(sEmail, "Enter an email!");
-
-        }
-        else if (pId.isEmpty()){
-            showError(sId, "Enter an Id");
-        }
-        else if (pGender.isEmpty() || pGender.equals("Female") || pGender.equals("Male")){
-            showError(sGender, "Enter 'Female' or 'Male'");
-        }
-        else if (pCity.isEmpty()){
-            showError(sCity, "Enter a city");
-        }
-
-        else if (pPhone.isEmpty()){
-            showError(sPhone, "Enter a phone number");
-        }
-        else if  (pPassword.isEmpty() || pPassword.length()<8){
-            showError(sPassword,"Password must be 8 characters ");
-        }
-        else if  (rePassword.isEmpty() || !rePassword.equals(pPassword)){
-            showError(resPassword,"Password does no match");
-        }
-
         else{
-            Toast.makeText(this, "Something went wrong!", Toast.LENGTH_SHORT).show();
+            textInputPassword.setError(null);
+            textInputPassword.setErrorEnabled(false);
+            return true;
         }
     }
-    private void showError(EditText e, String s) {
-        e.setError(s);
-        e.requestFocus();
+
+    private boolean validateCPassword() {
+        String passwordInput = textInputPassword.getEditText().getText().toString().trim();
+        String passwordCInput = textInputCPassword.getEditText().getText().toString().trim();
+        if (passwordCInput == passwordInput) {
+            textInputCPassword.setError("Field can't be empty");
+            return false;
+        }
+        else if (!PASSWORD_PATTERN.matcher(passwordCInput).matches()){
+            textInputCPassword.setError("Password is weak");
+            return false;
+        }
+        else{
+            textInputCPassword.setError(null);
+            textInputCPassword.setErrorEnabled(false);
+            return true;
+        }
     }
+
+    private boolean validatePhone() {
+        String phoneInput = textInputPhone.getEditText().getText().toString().trim();
+        if (phoneInput.isEmpty()) {
+            textInputPhone.setError("Field can't be empty");
+            return false;
+        }
+        else if (!PHONE_PATTERN.matcher(phoneInput).matches()){
+            textInputPhone.setError("Make sure you entered the correct number");
+            return false;
+        }
+        else{
+            textInputPhone.setError(null);
+            textInputPhone.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private boolean validateID() {
+        String idInput = textInputID.getEditText().getText().toString().trim();
+        if (idInput.isEmpty()) {
+            textInputID.setError("Field can't be empty");
+            return false;
+        }
+        else if (!ID_PATTERN.matcher(idInput).matches()){
+            textInputID.setError("Make sure you entered the correct number");
+            return false;
+        }
+        else{
+            textInputID.setError(null);
+            textInputID.setErrorEnabled(false);
+            return true;
+        }
+
+    }
+
+    private boolean validateName() {
+        String nameInput = textInputName.getEditText().getText().toString().trim();
+        if (nameInput.isEmpty()) {
+            textInputName.setError("Field can't be empty");
+            return false;
+        }
+        else if (!NAME_PATTERN.matcher(nameInput).matches()){
+            textInputName.setError("Make sure you entered the correct name");
+            return false;
+        }
+        else{
+            textInputName.setError(null);
+            textInputName.setErrorEnabled(false);
+            return true;
+        }
+
+    }
+
+    private boolean validateCity() {
+        String cityInput = textInputCity.getEditText().getText().toString().trim();
+        if (cityInput.isEmpty()) {
+            textInputCity.setError("Field can't be empty");
+            return false;
+        }
+        else if (!NAME_PATTERN.matcher(cityInput).matches()){
+            textInputCity.setError("Make sure you entered the correct name");
+            return false;
+        }
+        else{
+            textInputCity.setError(null);
+            textInputCity.setErrorEnabled(false);
+            return true;
+        }
+
+    }
+
+
+    public void confirmInput (View v) {
+        if (!validateEmail() | !validatePassword() | validateCPassword() | validatePhone() | validateID() | validateName() | validateCity() )  {
+            return;
+        }
+    }
+
     private void menuButton() {
 
         drawer_layout.openDrawer(GravityCompat.START);

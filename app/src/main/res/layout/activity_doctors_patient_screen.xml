@@ -55,6 +55,7 @@
 
 
     <TextView
+        android:id="@+id/patientInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="You can find patients info here"
@@ -65,17 +66,12 @@
         android:layout_marginTop="80dp"/>
 
 
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="match_parent"
-        android:layout_height="464dp"
-        android:layout_marginTop="122dp"
-        android:layout_marginBottom="0dp">
-
         <GridLayout
 
-            android:layout_width="406dp"
-            android:layout_height="529dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/patientInfo"
+            android:layout_marginTop="143dp"
             android:alignmentMode="alignMargins"
             android:columnOrderPreserved="false"
             app:layout_constraintEnd_toEndOf="parent"
@@ -146,75 +142,6 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <LinearLayout
-                android:layout_width="156dp"
-                android:layout_height="138dp"
-                android:layout_row="2"
-                android:layout_column="2"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginBottom="30dp"
-                android:background="@drawable/edittext"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_row="0"
-                    android:layout_column="1"
-                    android:src="@drawable/check"
-                    tools:layout_editor_absoluteX="35dp"
-                    tools:layout_editor_absoluteY="45dp" />
-
-                <TextView
-                    android:id="@+id/textAppointment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Check-Up"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    tools:layout_editor_absoluteX="16dp"
-                    tools:layout_editor_absoluteY="133dp" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="156dp"
-                android:layout_height="138dp"
-                android:layout_row="2"
-                android:layout_column="0"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginBottom="30dp"
-                android:background="@drawable/edittext"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/healthcalendar"
-                    tools:layout_editor_absoluteX="35dp"
-                    tools:layout_editor_absoluteY="45dp" />
-
-                <TextView
-                    android:id="@+id/textProfile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Health Records"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    tools:layout_editor_absoluteX="16dp"
-                    tools:layout_editor_absoluteY="133dp" />
-
-
-            </LinearLayout>
 
             <Button
                 android:id="@+id/trackPatientButton"
@@ -230,37 +157,10 @@
                 android:gravity="center"
                 android:orientation="vertical"
                 android:padding="16dp" />
-            <Button
-                android:id="@+id/healthRecordBtn"
-                android:layout_width="156dp"
-                android:layout_height="138dp"
-                android:layout_row="2"
-                android:layout_column="0"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginBottom="30dp"
-                android:background="@drawable/edittext"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="16dp" />
-            <Button
-                android:id="@+id/checkUpBtn"
-                android:layout_width="156dp"
-                android:layout_height="138dp"
-                android:layout_row="2"
-                android:layout_column="2"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginBottom="30dp"
-                android:background="@drawable/edittext"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="16dp"/>
+
 
         </GridLayout>
-    </ScrollView>
+
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
