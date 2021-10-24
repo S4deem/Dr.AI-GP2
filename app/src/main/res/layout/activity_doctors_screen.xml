@@ -112,7 +112,7 @@
                     android:id="@+id/textPatient"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Patient"
+                    android:text="Analysis"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     tools:layout_editor_absoluteX="16dp"

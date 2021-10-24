@@ -116,24 +116,6 @@ public class patient extends AppCompatActivity {
                 openHealthRecordPage();
             }
         });
-
-        checkUpButton = findViewById(R.id.checkUpButton);
-        checkUpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                openCheckUpPage();
-            }
-        });
-
-        goBackButton = findViewById(R.id.goBackButton);
-        goBackButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                goBack();
-            }
-        });
     }
     public void openAppointmentSummaryPage() {
         Intent intent = new Intent(this, patientAppointmentSummary.class);
@@ -144,15 +126,7 @@ public class patient extends AppCompatActivity {
         Intent intent = new Intent(this, healthRecord.class);
         startActivity(intent);
     }
-    public void openCheckUpPage() {
-        Intent intent = new Intent(this, checkUpAppointments.class);
-        startActivity(intent);
-    }
 
-    public void goBack() {
-        Intent intent = new Intent(this, patientScreen.class);
-        startActivity(intent);
-    }
     private void menuButton() {
 
         drawer_layout.openDrawer(GravityCompat.START);

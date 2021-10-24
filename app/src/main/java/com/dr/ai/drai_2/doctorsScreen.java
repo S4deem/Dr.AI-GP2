@@ -121,7 +121,7 @@ public class doctorsScreen extends AppCompatActivity {
         });
     }
     public void openpatientDoctorPage(){
-        Intent intent = new Intent(this, doctorsPatientScreen.class);
+        Intent intent = new Intent(this, patientTracking.class);
         startActivity(intent);
     }
     public void opendoctorProfilePage(){

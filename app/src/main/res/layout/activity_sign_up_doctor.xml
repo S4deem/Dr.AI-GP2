@@ -51,28 +51,22 @@
             android:textColorLink="@color/black"
             android:textSize="25sp" />
 
-        <com.google.android.material.textfield.TextInputLayout
+        <TextView
             android:id="@+id/textInputLayoutName"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/textInputLayoutRadio"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="30dp"
+            android:drawableStart="@drawable/ic_baseline_person_outline_24"
+            android:fontFamily="sans-serif-light"
             android:hint="@string/name"
-            app:errorEnabled="true"
-            android:layout_below="@+id/textInputLayoutRadio">
+            android:textColor="@color/black"
+            app:errorEnabled="true" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:drawableStart="@drawable/ic_baseline_person_outline_24"
-                android:fontFamily="sans-serif-light"
-                android:inputType="textEmailAddress"
-                tools:targetApi="jelly_bean" />
-        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
+        <TextView
             android:id="@+id/textInputLayoutEmail"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
@@ -85,17 +79,8 @@
             android:layout_marginRight="30dp"
             android:layout_toEndOf="@+id/textInputLayoutName"
             android:hint="@string/email"
-            app:errorEnabled="true">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_email"
-                android:fontFamily="sans-serif-light"
-                android:inputType="textEmailAddress"
-                android:textColor="@color/black"
-                tools:targetApi="jelly_bean" />
-        </com.google.android.material.textfield.TextInputLayout>
+            android:drawableStart="@drawable/ic_email"
+            android:fontFamily="sans-serif-light"/>
 
 
         <com.google.android.material.textfield.TextInputLayout

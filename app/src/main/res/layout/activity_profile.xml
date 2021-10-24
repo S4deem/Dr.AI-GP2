@@ -11,9 +11,9 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
+            android:id="@+id/lenear"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:id="@+id/lenear"
             android:layout_alignParentTop="true"
             android:layout_marginTop="0dp"
             android:orientation="horizontal">
@@ -29,11 +29,13 @@
 
 
         </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_marginTop="50dp"
-            android:background="@color/black"/>
+            android:background="@color/black" />
+
         <TextView
             android:id="@+id/textWelcome"
             android:layout_width="wrap_content"
@@ -51,481 +53,151 @@
             android:textColorLink="@color/black"
             android:textSize="25sp" />
 
-
-        <ScrollView
-            android:id="@+id/scrollView"
-            android:layout_width="match_parent"
-            android:layout_height="145dp"
-            android:layout_below="@+id/profileLayout"
-            android:layout_marginTop="21dp"
-            android:layout_marginBottom="151dp">
-
-            <GridLayout
-
-                android:layout_width="406dp"
-                android:layout_height="529dp"
-                android:alignmentMode="alignMargins"
-                android:columnOrderPreserved="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="211dp">
+        <TextView
+            android:id="@+id/textInputLayoutName"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/textProfile"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginRight="30dp"
+            android:drawableStart="@drawable/ic_baseline_person_outline_24"
+            android:fontFamily="sans-serif-light"
+            android:hint="@string/name"
+            android:textColor="@color/black"
+            app:errorEnabled="true" />
 
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_row="0"
-                    android:layout_column="0"
-                    android:layout_marginBottom="172dp"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent">
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                <LinearLayout
-                    android:id="@+id/emailLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_row="0"
-                    android:layout_column="0"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="30dp"
-                    android:background="@drawable/edittext"
-                    android:gravity="left"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:text="Name:"
-                        android:textColor="@color/black"
-                        android:textSize="18dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="Patient's Name"
-                        android:textColor="@android:color/darker_gray"
-                        android:textSize="15dp" />
-
-                </LinearLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_row="0"
-                    android:layout_column="0"
-                    android:layout_marginBottom="172dp"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent">
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                <LinearLayout
-                    android:id="@+id/nameLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_row="2"
-                    android:layout_column="0"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="-77dp"
-                    android:layout_marginRight="30dp"
-                    android:background="@drawable/edittext"
-                    android:gravity="left"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:text="Email:"
-                        android:textColor="@color/black"
-                        android:textSize="18dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="Patient'sEmail"
-                        android:textColor="@android:color/darker_gray"
-                        android:textSize="15dp" />
-
-                </LinearLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_row="0"
-                    android:layout_column="0"
-                    android:layout_marginBottom="172dp"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent">
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                <LinearLayout
-                    android:id="@+id/idLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_row="3"
-                    android:layout_column="0"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="30dp"
-                    android:background="@drawable/edittext"
-                    android:gravity="left"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:text="ID:"
-                        android:textColor="@color/black"
-                        android:textSize="18dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="Patient's ID"
-                        android:textColor="@android:color/darker_gray"
-                        android:textSize="15dp" />
-
-                </LinearLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_row="0"
-                    android:layout_column="0"
-                    android:layout_marginBottom="172dp"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent">
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <LinearLayout
-                    android:id="@+id/fileNoLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_row="4"
-                    android:layout_column="0"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="30dp"
-                    android:background="@drawable/edittext"
-                    android:gravity="left"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:text="File No.:"
-                        android:textColor="@color/black"
-                        android:textSize="18dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="Patient's file No."
-                        android:textColor="@android:color/darker_gray"
-                        android:textSize="15dp" />
-
-                </LinearLayout>
-
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_row="0"
-                    android:layout_column="0"
-                    android:layout_marginBottom="172dp"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent">
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <LinearLayout
-                    android:id="@+id/genderLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_row="5"
-                    android:layout_column="0"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="30dp"
-                    android:background="@drawable/edittext"
-                    android:gravity="left"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:text="Gender:"
-                        android:textColor="@color/black"
-                        android:textSize="18dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="Patient's gender"
-                        android:textColor="@android:color/darker_gray"
-                        android:textSize="15dp" />
-
-                </LinearLayout>
-
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_row="0"
-                    android:layout_column="0"
-                    android:layout_marginBottom="172dp"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent">
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <LinearLayout
-                    android:id="@+id/cityLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_row="6"
-                    android:layout_column="0"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="30dp"
-                    android:background="@drawable/edittext"
-                    android:gravity="left"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:text="City:"
-                        android:textColor="@color/black"
-                        android:textSize="18dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="@string/patient_s_city"
-                        android:textColor="@android:color/darker_gray"
-                        android:textSize="15dp" />
-
-                </LinearLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_row="0"
-                    android:layout_column="0"
-                    android:layout_marginBottom="172dp"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent">
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <LinearLayout
-                    android:id="@+id/phoneNoLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_row="7"
-                    android:layout_column="0"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="30dp"
-                    android:background="@drawable/edittext"
-                    android:gravity="left"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:text="@string/phone_no"
-                        android:textColor="@color/black"
-                        android:textSize="18dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="@string/patient_s_phone_no"
-                        android:textColor="@android:color/darker_gray"
-                        android:textSize="15dp" />
-
-                </LinearLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_row="0"
-                    android:layout_column="0"
-                    android:layout_marginBottom="172dp"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent">
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <LinearLayout
-                    android:id="@+id/passwordLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_row="8"
-                    android:layout_column="0"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="30dp"
-                    android:background="@drawable/edittext"
-                    android:gravity="left"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:text="@string/password"
-                        android:textColor="@color/black"
-                        android:textSize="18dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="@string/patient_s_password"
-                        android:textColor="@android:color/darker_gray"
-                        android:textSize="15dp" />
-
-                </LinearLayout>
-            </GridLayout>
-        </ScrollView>
-
-        <LinearLayout
-            android:id="@+id/profileLayout"
-            android:layout_width="match_parent"
-            android:layout_height="204dp"
-            android:layout_below="@id/lenear"
-            android:layout_marginTop="0dp"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:paddingTop="15dp">
-
-            <com.mikhaellopez.circularimageview.CircularImageView
-                android:layout_width="110dp"
-                android:layout_height="110dp"
-                android:layout_gravity="center"
-                android:src="@drawable/person1" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/patient_s_name"
-                android:textSize="20dp"
-                android:textStyle="normal" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/black" />
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/buttonSet"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_alignParentStart="true"
+        <TextView
+            android:id="@+id/textInputLayoutEmail"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/textProfile"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="80dp"
-            android:layout_below="@+id/lenear"
-            android:layout_marginTop="440dp"
-            android:layout_marginEnd="81dp"
-            android:background="@drawable/edittext"
-            android:drawableLeft="@drawable/ic_lock"
-            android:gravity="center"
-            android:text="@string/change_password"
-            android:textAllCaps="false"
-            android:textColor="@android:color/black"
-            android:textSize="17sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"/>
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="30dp"
+            android:layout_toEndOf="@+id/textInputLayoutName"
+            android:drawableStart="@drawable/ic_email"
+            android:fontFamily="sans-serif-light"
+            android:hint="@string/email"
+            android:textColor="@color/black"
+            app:errorEnabled="true" />
 
-        <Button
-            android:id="@+id/buttonDate"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_below="@id/lenear"
+
+        <TextView
+            android:id="@+id/textInputLayoutPassword"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/textInputLayoutEmail"
             android:layout_alignParentStart="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="30dp"
+            android:drawableStart="@drawable/ic_lock"
+            android:fontFamily="sans-serif-light"
+            android:hint="@string/password"
+            android:textColor="@color/black"
+            tools:layout_editor_absoluteX="0dp" />
+
+
+        <TextView
+            android:id="@+id/textInputLayoutCity1"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/textInputLayoutEmail"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="500dp"
-            android:layout_marginEnd="81dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/edittext"
-            android:drawableLeft="@drawable/ic_edit"
-            android:gravity="center"
-            android:text="Edit Profile"
-            android:textAllCaps="false"
-            android:textColor="@android:color/black"
-            android:textSize="17sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496" />
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:layout_width="match_parent"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="30dp"
+            android:layout_toEndOf="@+id/textInputLayoutPassword"
+            android:drawableStart="@drawable/ic_city"
+            android:fontFamily="sans-serif-light"
+            android:hint="City"
+            android:textColor="@color/black"
+            app:errorEnabled="true"
+            app:passwordToggleEnabled="true"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <TextView
+            android:id="@+id/textInputLayoutID"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/textInputLayoutPassword"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="30dp"
+            android:drawableStart="@drawable/ic_id"
+            android:fontFamily="sans-serif-light"
+            android:hint="ID"
+            android:textColor="@color/black"
+            app:errorEnabled="true"
+            tools:layout_editor_absoluteX="0dp" />
+
+
+        <TextView
+            android:id="@+id/textInputLayoutGender"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/textInputLayoutCity1"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="30dp"
+            android:layout_toEndOf="@+id/textInputLayoutID"
+            android:drawableStart="@drawable/ic_gender"
+            android:fontFamily="sans-serif-light"
+            android:hint="Gender"
+            android:textColor="@color/black"
+            app:errorEnabled="true"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <TextView
+            android:id="@+id/textInputLayoutPhoneNo"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/textInputLayoutID"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="30dp"
+            android:drawableStart="@drawable/ic_phone"
+            android:fontFamily="sans-serif-light"
+            android:hint="Phone No."
+            android:textColor="@color/black"
+            app:errorEnabled="true"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <TextView
+            android:id="@+id/textProfile"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/footer"
-            app:menu="@menu/generalfooter"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/edittext"/>
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"
+            android:text="Profile"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
     </RelativeLayout>
 

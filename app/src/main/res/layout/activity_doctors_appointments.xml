@@ -53,75 +53,31 @@
             android:textColorLink="@color/black"
             android:textSize="25sp" />
 
-        <ScrollView
-            android:id="@+id/scrollView"
+        <TextView
+            android:id="@+id/TextDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tText"
+            android:layout_gravity="left"
+            android:fontFamily="sans-serif-light"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="5dp"
+            android:text="Date"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/buttonDate"
+            style="?android:spinnerStyle"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:layout_below="@+id/oText"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="188dp">
-
-            <GridLayout
-
-                android:layout_width="406dp"
-                android:layout_height="529dp"
-                android:alignmentMode="alignMargins"
-                android:columnOrderPreserved="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="211dp">
-
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_row="0"
-                    android:layout_column="0"
-                    android:layout_marginBottom="172dp"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent">
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <LinearLayout
-                    android:layout_width="351dp"
-                    android:layout_height="410dp"
-                    android:layout_row="0"
-                    android:layout_column="0"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="30dp"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-
-                    <TextView
-                        android:id="@+id/textPatientId"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left"
-                        android:layout_marginTop="-150dp"
-                        android:text="Patient ID:"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <Spinner
-                        android:id="@+id/patientSpinner"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_margin="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="40dp" />
-
-
-                </LinearLayout>
-
-            </GridLayout>
-        </ScrollView>
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/TextDate"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edittext"
+            android:onClick="openDatePicker"
+            android:text="Jan 01 2022"
+            android:textAlignment="center" />
 
         <TextView
             android:id="@+id/oText"
@@ -130,10 +86,24 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="80dp"
             android:gravity="center"
+            android:fontFamily="sans-serif-light"
             android:text="Appointments"
             android:textColor="@color/black"
             android:textSize="20dp"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/oText"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="50dp"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"
+            android:text="Pick a date to view appointments "
+            android:textColor="@color/black"
+            android:textSize="20dp" />
 
         <Button
             android:id="@+id/doctorAppointments"
@@ -146,6 +116,7 @@
             android:layout_marginEnd="81dp"
             android:layout_marginBottom="4dp"
             android:background="@drawable/edittext"
+            android:fontFamily="sans-serif-light"
             android:gravity="center"
             android:text="Appointments"
             android:textAllCaps="false"
