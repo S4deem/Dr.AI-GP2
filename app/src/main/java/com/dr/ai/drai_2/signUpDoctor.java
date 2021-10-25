@@ -1,6 +1,5 @@
 package com.dr.ai.drai_2;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -14,14 +13,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -66,18 +62,6 @@ public class signUpDoctor extends AppCompatActivity {
     private RadioButton pRadioButton;
     private RadioButton dRadioButton;
     private Button next;
-
-
-
-
-
-
-
-    TextView btn;
-
-    private RadioGroup radioGroup;
-    private RadioButton radioButton;
-
     private NavigationView mainNavView;
     private Menu mainNavMenu;
     private MenuItem menuItem;

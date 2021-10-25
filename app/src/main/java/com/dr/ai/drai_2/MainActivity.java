@@ -11,10 +11,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.dr.ai.drai_2.databinding.ActivityMainBinding;
 import com.google.android.material.navigation.NavigationView;
 
 
 public class MainActivity extends AppCompatActivity {
+    ActivityMainBinding binding;
+
     private NavigationView mainNavView;
     private Menu mainNavMenu;
     private MenuItem menuItem;
@@ -27,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+
         drawer_layout = findViewById(R.id.drawer_layout);
         mainNavView = findViewById(R.id.main_nav_view);
         mainNavView.setItemIconTintList(null);
@@ -53,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(MainActivity.this, aboutUs.class);
+                Intent intent = new Intent(MainActivity.this, doctorsScreen.class);
                 startActivity(intent);
                 return false;
             }
@@ -74,6 +79,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 Intent intent = new Intent(MainActivity.this, contactUs.class);
+                startActivity(intent);
+                return false;
+            }
+        });
+
+        menuItem = mainNavMenu.findItem(R.id.LogOut);
+        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Intent intent = new Intent(MainActivity.this, MainActivity.class);
                 startActivity(intent);
                 return false;
             }

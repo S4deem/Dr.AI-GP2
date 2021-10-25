@@ -12,6 +12,10 @@
     <item android:id="@+id/ContactUs"
         android:title="Contact Us">
     </item>
+    <item android:id="@+id/LogOut"
+        android:title="Logout">
+    </item>
+
 
 
 </menu>
