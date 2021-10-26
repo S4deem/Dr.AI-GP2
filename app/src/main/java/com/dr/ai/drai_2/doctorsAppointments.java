@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -51,22 +52,6 @@ public class doctorsAppointments extends AppCompatActivity {
         dateButton = findViewById(R.id.buttonDate);
         dateButton.setText(getTodaysDate());
         timeButton = findViewById(R.id.buttonTime);
-
-        BottomNavigationView bottomNavigationView = findViewById(R.id.footer);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.home:
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        return true;
-                    case R.id.goBack:
-                        startActivity(new Intent(getApplicationContext(), patientAppointments.class));
-                        return true;
-                }
-                return false;
-            }
-        });
         drawer_layout = findViewById(R.id.drawer_layout);
         mainNavView = findViewById(R.id.main_nav_view);
         mainNavView.setItemIconTintList(null);
@@ -134,12 +119,9 @@ public class doctorsAppointments extends AppCompatActivity {
     Boolean isDateChanged = false;
     public void openDoctorsAppointments(){
 
-        if (datePickerDialog.getDatePicker() == null)
-        {
-            // Do what you have to do
+        if (!validateDate()) {
+            return;
         }
-        Intent intent = new Intent(this, doctorsAppointments1.class);
-        startActivity(intent);
     }
     private void menuButton() {
 
@@ -249,5 +231,17 @@ public class doctorsAppointments extends AppCompatActivity {
 
     }
 
+    private boolean validateDate() {
+    //    String dateInput = dateButton.getInputType();
+        if (dateButton != null) {
+            Intent intent = new Intent(doctorsAppointments.this, doctorsAppointments1.class);
+            startActivity(intent);
+            return false;
+        }
+        else {
 
+            Toast.makeText(this, "You must enter a date", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+    }
 }

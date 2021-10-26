@@ -56,8 +56,8 @@
             android:id="@+id/conversation"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/lenear"
-            android:layout_above="@+id/patientInput" />
+            android:layout_above="@+id/patientInput"
+            android:layout_below="@+id/lenear" />
         <EditText
             android:id="@+id/patientInput"
             android:layout_width="match_parent"
