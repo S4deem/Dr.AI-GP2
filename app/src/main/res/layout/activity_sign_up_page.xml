@@ -35,6 +35,7 @@
             android:layout_height="0.5dp"
             android:layout_marginTop="50dp"
             android:background="@color/black"/>
+
         <TextView
             android:id="@+id/textWelcome"
             android:layout_width="wrap_content"
@@ -263,14 +264,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:buttonTint="@color/teal_700"
-                    android:checked="false"
+                    android:checked="true"
                     android:text="Male" />
 
                 <RadioButton
                     android:id="@+id/femaleRadioBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/purple_200"
+                    android:buttonTint="@color/teal_700"
                     android:checked="false"
                     android:text="Female" />
             </RadioGroup>
@@ -330,14 +331,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:buttonTint="@color/teal_700"
-                    android:checked="false"
+                    android:checked="true"
                     android:text="Patient" />
 
                 <RadioButton
                     android:id="@+id/dRadioBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/purple_200"
+                    android:buttonTint="@color/teal_700"
                     android:checked="false"
                     android:text="Doctor" />
             </RadioGroup>
@@ -376,7 +377,6 @@
             android:background="@drawable/edittext"
             android:fontFamily="sans-serif-light"
             android:gravity="center"
-            android:onClick="confirmInput"
             android:text="@string/sign_up"
             android:textColor="@android:color/black"
             android:textSize="17sp"

@@ -16,6 +16,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dr.ai.drai_2.db.DatabaseHandler;
+import com.dr.ai.drai_2.model.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputLayout;
@@ -39,16 +41,20 @@ public class signInPage extends AppCompatActivity {
     private NavigationView mainNavView;
     private Menu mainNavMenu;
     private MenuItem menuItem;
-    private Button menuButton;
+    private Button menuButton, signInBtnPatient;
     private DrawerLayout drawer_layout;
 
     private TextInputLayout textInputEmail;
     private TextInputLayout textInputPassword;
+    String emailInput, passwordInput;
+    DatabaseHandler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in_page);
+        handler = new DatabaseHandler(this);
+        signInBtnPatient = findViewById(R.id.signInBtnPatient);
         BottomNavigationView bottomNavigationView = findViewById(R.id.footer);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -126,10 +132,18 @@ public class signInPage extends AppCompatActivity {
 
         textInputEmail = findViewById(R.id.textInputLayoutEmail);
         textInputPassword = findViewById(R.id.textInputLayoutPassword);
+
+        signInBtnPatient.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                confirmInput();
+            }
+        });
+
     }
 
     private boolean validateEmail() {
-        String emailInput = textInputEmail.getEditText().getText().toString().trim();
+        emailInput = textInputEmail.getEditText().getText().toString().trim();
         if (emailInput.isEmpty()) {
             textInputEmail.setError("Field can't be empty");
             return false;
@@ -145,7 +159,7 @@ public class signInPage extends AppCompatActivity {
     }
 
     private boolean validatePassword() {
-        String passwordInput = textInputPassword.getEditText().getText().toString().trim();
+        passwordInput = textInputPassword.getEditText().getText().toString().trim();
         if (passwordInput.isEmpty()) {
             textInputPassword.setError("Field can't be empty");
             return false;
@@ -162,17 +176,22 @@ public class signInPage extends AppCompatActivity {
     }
 
 
-    public void confirmInput(View v) {
+    private void confirmInput() {
         if (!validateEmail() | !validatePassword()) {
             return;
         }
 
         String inputs;
-        inputs = "Email:" + textInputEmail.getEditText().getText().toString();
+        inputs = "Email:" + emailInput;
         inputs += "\n";
-        inputs += "Password:" + textInputPassword.getEditText().getText().toString();
+        inputs += "Password:" + passwordInput;
 
-        Toast.makeText(this, inputs, Toast.LENGTH_SHORT).show();
+        User user = handler.login(emailInput, passwordInput);
+        if (user != null) {
+            Toast.makeText(this, user.getEmail(), Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void menuButton() {

@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.dr.ai.drai_2.db.DatabaseHandler;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -47,7 +48,7 @@ public class signUpPage extends AppCompatActivity {
     private TextInputLayout textInputID;
     private TextInputLayout textInputName;
     private TextInputLayout textInputCity;
-    private RadioGroup radioGroupA;
+    private RadioGroup userTypeRG, genderRG;
     private RadioButton pRadioButton;
     private RadioButton dRadioButton;
     private Button next;
@@ -56,25 +57,29 @@ public class signUpPage extends AppCompatActivity {
     private NavigationView mainNavView;
     private Menu mainNavMenu;
     private MenuItem menuItem;
-    private Button menuButton;
+    private Button menuButton, signUpBtn;
     private DrawerLayout drawer_layout;
+    DatabaseHandler handler;
+    String nameInput, cityInput, idInput, phoneInput, passwordInput, emailInput, selectedUsertype = "Patient", selectedGender = "Male";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_page);
-        radioGroupA=(RadioGroup)findViewById(R.id.radioGroupA);
-        pRadioButton=(RadioButton)findViewById(R.id.pRadioBtn);
-        dRadioButton=(RadioButton)findViewById(R.id.dRadioBtn);
-        next=(Button)findViewById(R.id.next);
+        userTypeRG = (RadioGroup) findViewById(R.id.radioGroupA);
+        genderRG = (RadioGroup) findViewById(R.id.radioGroup);
+        pRadioButton = (RadioButton) findViewById(R.id.pRadioBtn);
+        dRadioButton = (RadioButton) findViewById(R.id.dRadioBtn);
+        next = (Button) findViewById(R.id.next);
+        signUpBtn = (Button) findViewById(R.id.signUp);
+        handler = new DatabaseHandler(this);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(pRadioButton.isChecked()){
+                if (pRadioButton.isChecked()) {
                     Intent intent = new Intent(signUpPage.this, signUpPage.class);
                     startActivity(intent);
-                }
-                else if(dRadioButton.isChecked()){
+                } else if (dRadioButton.isChecked()) {
                     Intent intent = new Intent(signUpPage.this, signUpDoctor.class);
                     startActivity(intent);
                 }
@@ -142,12 +147,39 @@ public class signUpPage extends AppCompatActivity {
         textInputCity = findViewById(R.id.textInputLayoutCity);
 
 
+        signUpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                confirmInput();
+            }
+        });
 
+        userTypeRG.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if (radioGroup.getCheckedRadioButtonId() == findViewById(R.id.pRadioBtn).getId()) {
+                    selectedUsertype = "Patient";
+                } else {
+                    selectedUsertype = "Doctor";
+                }
+            }
+        });
 
+        genderRG.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if (radioGroup.getCheckedRadioButtonId() == findViewById(R.id.maleRadioBtn).getId()) {
+                    selectedUsertype = "Male";
+                } else {
+                    selectedUsertype = "Female";
+                }
+            }
+        });
 
     }
+
     private boolean validateEmail() {
-        String emailInput = textInputEmail.getEditText().getText().toString().trim();
+        emailInput = textInputEmail.getEditText().getText().toString().trim();
         if (emailInput.isEmpty()) {
             textInputEmail.setError("Field can't be empty");
             return false;
@@ -163,16 +195,14 @@ public class signUpPage extends AppCompatActivity {
     }
 
     private boolean validatePassword() {
-        String passwordInput = textInputPassword.getEditText().getText().toString().trim();
+        passwordInput = textInputPassword.getEditText().getText().toString().trim();
         if (passwordInput.isEmpty()) {
             textInputPassword.setError("Field can't be empty");
             return false;
-        }
-        else if (!PASSWORD_PATTERN.matcher(passwordInput).matches()){
+        } else if (!PASSWORD_PATTERN.matcher(passwordInput).matches()) {
             textInputPassword.setError("Password is weak");
             return false;
-        }
-        else{
+        } else {
             textInputPassword.setError(null);
             textInputPassword.setErrorEnabled(false);
             return true;
@@ -185,12 +215,10 @@ public class signUpPage extends AppCompatActivity {
         if (passwordCInput == passwordInput) {
             textInputCPassword.setError("Field can't be empty");
             return false;
-        }
-        else if (!PASSWORD_PATTERN.matcher(passwordCInput).matches()){
+        } else if (!PASSWORD_PATTERN.matcher(passwordCInput).matches()) {
             textInputCPassword.setError("Password is weak");
             return false;
-        }
-        else{
+        } else {
             textInputCPassword.setError(null);
             textInputCPassword.setErrorEnabled(false);
             return true;
@@ -198,16 +226,14 @@ public class signUpPage extends AppCompatActivity {
     }
 
     private boolean validatePhone() {
-        String phoneInput = textInputPhone.getEditText().getText().toString().trim();
+        phoneInput = textInputPhone.getEditText().getText().toString().trim();
         if (phoneInput.isEmpty()) {
             textInputPhone.setError("Field can't be empty");
             return false;
-        }
-        else if (!PHONE_PATTERN.matcher(phoneInput).matches()){
+        } else if (!PHONE_PATTERN.matcher(phoneInput).matches()) {
             textInputPhone.setError("Make sure you entered the correct number");
             return false;
-        }
-        else{
+        } else {
             textInputPhone.setError(null);
             textInputPhone.setErrorEnabled(false);
             return true;
@@ -215,16 +241,14 @@ public class signUpPage extends AppCompatActivity {
     }
 
     private boolean validateID() {
-        String idInput = textInputID.getEditText().getText().toString().trim();
+        idInput = textInputID.getEditText().getText().toString().trim();
         if (idInput.isEmpty()) {
             textInputID.setError("Field can't be empty");
             return false;
-        }
-        else if (!ID_PATTERN.matcher(idInput).matches()){
+        } else if (!ID_PATTERN.matcher(idInput).matches()) {
             textInputID.setError("Make sure you entered the correct number");
             return false;
-        }
-        else{
+        } else {
             textInputID.setError(null);
             textInputID.setErrorEnabled(false);
             return true;
@@ -233,16 +257,14 @@ public class signUpPage extends AppCompatActivity {
     }
 
     private boolean validateName() {
-        String nameInput = textInputName.getEditText().getText().toString().trim();
+        nameInput = textInputName.getEditText().getText().toString().trim();
         if (nameInput.isEmpty()) {
             textInputName.setError("Field can't be empty");
             return false;
-        }
-        else if (!NAME_PATTERN.matcher(nameInput).matches()){
+        } else if (!NAME_PATTERN.matcher(nameInput).matches()) {
             textInputName.setError("Make sure you entered the correct name");
             return false;
-        }
-        else{
+        } else {
             textInputName.setError(null);
             textInputName.setErrorEnabled(false);
             return true;
@@ -251,16 +273,14 @@ public class signUpPage extends AppCompatActivity {
     }
 
     private boolean validateCity() {
-        String cityInput = textInputCity.getEditText().getText().toString().trim();
+        cityInput = textInputCity.getEditText().getText().toString().trim();
         if (cityInput.isEmpty()) {
             textInputCity.setError("Field can't be empty");
             return false;
-        }
-        else if (!NAME_PATTERN.matcher(cityInput).matches()){
+        } else if (!NAME_PATTERN.matcher(cityInput).matches()) {
             textInputCity.setError("Make sure you entered the correct name");
             return false;
-        }
-        else{
+        } else {
             textInputCity.setError(null);
             textInputCity.setErrorEnabled(false);
             return true;
@@ -268,10 +288,15 @@ public class signUpPage extends AppCompatActivity {
 
     }
 
-
-    public void confirmInput (View v) {
-        if (!validateEmail() | !validatePassword() | validateCPassword() | validatePhone() | validateID() | validateName() | validateCity() )  {
+    private void confirmInput() {
+        if (!validateEmail() | !validatePassword() | !validateCPassword() | !validatePhone() | !validateID() | !validateName() | !validateCity()) {
             return;
+        } else {
+            if (selectedUsertype.equals("Doctor")) {
+//                handler.patientRegister(nameInput, emailInput, idInput, selectedGender, cityInput, phoneInput, passwordInput);
+            } else {
+                handler.patientRegister(nameInput, emailInput, idInput, selectedGender, cityInput, phoneInput, passwordInput);
+            }
         }
     }
 
