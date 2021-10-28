@@ -1,10 +1,5 @@
 package com.dr.ai.drai_2;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import java.util.regex.Pattern;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -12,15 +7,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputLayout;
+
+import java.util.regex.Pattern;
 
 public class signUpPage extends AppCompatActivity {
     public static final Pattern PASSWORD_PATTERN =
@@ -55,16 +52,6 @@ public class signUpPage extends AppCompatActivity {
     private RadioButton dRadioButton;
     private Button next;
 
-
-
-
-
-
-
-    TextView btn;
-
-    private RadioGroup radioGroup;
-    private RadioButton radioButton;
 
     private NavigationView mainNavView;
     private Menu mainNavMenu;

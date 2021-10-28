@@ -7,8 +7,8 @@ android {
 
     defaultConfig {
         applicationId "com.dr.ai.drai_2"
-        minSdk 22
-        targetSdk 31
+        minSdk 26
+        targetSdk 29
         versionCode 1
         versionName "1.0"
 

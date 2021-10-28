@@ -52,300 +52,84 @@
         android:textColorLink="@color/black"
         android:textSize="25sp" />
 
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="match_parent"
-        android:layout_height="530dp"
-        android:layout_below="@+id/textTt"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="92dp">
 
-        <GridLayout
-
-            android:layout_width="406dp"
-            android:layout_height="529dp"
-            android:alignmentMode="alignMargins"
-            android:columnOrderPreserved="false"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="211dp">
-
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_row="0"
-                android:layout_column="0"
-                android:layout_marginBottom="172dp"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent">
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <LinearLayout
-                android:layout_width="341dp"
-                android:layout_height="336dp"
-                android:layout_row="1"
-                android:layout_column="0"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginRight="30dp"
-                android:background="@drawable/edittext"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <TextView
-                    android:id="@+id/textDoctorsName.1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="-50dp"
-                    android:text="Doctor's name"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/Email.1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="5sp"
-                    android:text="Email:"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/TextDate.1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:layout_marginBottom="10dp"
-                    android:text="ID:"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-
-                <TextView
-                    android:id="@+id/TextTime.1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="5sp"
-                    android:text="Phone Number:"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/textGender.1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="5sp"
-                    android:text="Gender:"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/textCity.1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="5sp"
-                    android:text="City:"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/textCertificate.1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="5sp"
-                    android:text="Certificate:"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-
-            </LinearLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_row="2"
-                android:layout_column="0"
-                android:layout_marginBottom="172dp"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent">
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <LinearLayout
-                android:layout_width="341dp"
-                android:layout_height="336dp"
-                android:layout_row="0"
-                android:layout_column="0"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginRight="30dp"
-                android:background="@drawable/edittext"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <TextView
-                    android:id="@+id/textDoctorsName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="-50dp"
-                    android:text="Doctor's name"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/Email"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="5sp"
-                    android:text="Email:"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/TextDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:layout_marginBottom="10dp"
-                    android:text="ID:"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-
-                <TextView
-                    android:id="@+id/TextTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="5sp"
-                    android:text="Phone Number:"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/textGender"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="5sp"
-                    android:text="Gender:"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/textCity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="5sp"
-                    android:text="City:"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/textCertificate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="5sp"
-                    android:text="Certificate:"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/doctorsForm"
-                android:layout_width="341dp"
-                android:layout_height="336dp"
-                android:layout_row="0"
-                android:layout_column="0"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginRight="30dp"
-                android:background="@drawable/edittext"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="16dp" />
-
-            <Button
-                android:id="@+id/doctorsForm1"
-                android:layout_width="341dp"
-                android:layout_height="336dp"
-                android:layout_row="1"
-                android:layout_column="0"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginRight="30dp"
-                android:background="@drawable/edittext"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="16dp" />
-
-        </GridLayout>
-    </ScrollView>
-
-
-    <TextView
-        android:id="@+id/textTt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="80dp"
-        android:gravity="center"
-        android:text="Registered Doctors"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        android:textStyle="bold" />
-        <com.google.android.material.bottomnavigation.BottomNavigationView
+        <TextView
+            android:id="@+id/textTt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/footer"
-            app:menu="@menu/generalfooter"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/edittext"/>
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:text="Registered Doctors"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutRadio"
+            android:layout_width="wrap_content"
+            android:layout_height="81dp"
+            android:layout_below="@+id/textTt"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="30dp"
+            android:hint="Are you patient or a doctor?"
+            app:errorEnabled="true"
+            tools:layout_editor_absoluteX="0dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-30dp"
+                android:text="Choose the record you want to view "
+                android:textAlignment="center" />
+
+            <RadioGroup
+                android:id="@+id/radioGroupD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/pRadioBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/teal_700"
+                    android:checked="false"
+                    android:text="Pending" />
+
+                <RadioButton
+                    android:id="@+id/rRadioBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/red"
+                    android:checked="false"
+                    android:text="Rejected" />
+                <RadioButton
+                    android:id="@+id/aRadioBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/purple_200"
+                    android:checked="false"
+                    android:text="Accepted" />
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/nextD"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="300dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="-30dp"
+                android:background="@drawable/ic_check" />
+        </com.google.android.material.textfield.TextInputLayout>
+
 
     </RelativeLayout>
 

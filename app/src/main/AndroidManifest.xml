@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DrAI2">
         <activity
+            android:name=".rejectedAccounts"
+            android:exported="true" />
+        <activity
+            android:name=".acceptedAccounts"
+            android:exported="true" />
+        <activity
+            android:name=".pendingAccounts"
+            android:exported="true" />
+        <activity
             android:name=".patientSummaryPage"
             android:exported="true" />
         <activity

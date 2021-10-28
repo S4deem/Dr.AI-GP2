@@ -75,6 +75,8 @@
     <string name="doctor_s_name1">Doctor\'s Name</string>
     <string name="prescription1">• Prescription</string>
     <string name="reminder">Reminder</string>
+    <string name="back"><![CDATA[<-]]></string>
+    <string name="forward"><![CDATA[->]]></string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="change_password">Change Password</string>
     <string name="patient_s_name">Patient\'s Name</string>
