@@ -6,9 +6,13 @@ import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -20,7 +24,9 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.regex.Pattern;
 
-public class signUpPage extends AppCompatActivity {
+public class signUpPage extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    String[] options;
+    Spinner spinner;
     public static final Pattern PASSWORD_PATTERN =
             Pattern.compile("^" +
                     //"(?=.*[0-9])" +         //at least 1 digit
@@ -39,7 +45,7 @@ public class signUpPage extends AppCompatActivity {
             Pattern.compile("[0-9]{10}");
 
     public static final Pattern NAME_PATTERN =
-            Pattern.compile("[a-zA-Z]");
+            Pattern.compile("^[A-Za-z]+$");
 
     private TextInputLayout textInputEmail;
     private TextInputLayout textInputPassword;
@@ -66,6 +72,20 @@ public class signUpPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_page);
+
+        spinner = (Spinner) findViewById(R.id.spinner);
+        // Creating ArrayAdapter using the string array and default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.cities, android.R.layout.simple_spinner_item);
+        // Specify layout to be used when list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Applying the adapter to our spinner
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
+
+        options = signUpPage.this.getResources().getStringArray(R.array.cities);
+
+
         userTypeRG = (RadioGroup) findViewById(R.id.radioGroupA);
         genderRG = (RadioGroup) findViewById(R.id.radioGroup);
         pRadioButton = (RadioButton) findViewById(R.id.pRadioBtn);
@@ -144,15 +164,7 @@ public class signUpPage extends AppCompatActivity {
         textInputPhone = findViewById(R.id.textInputLayoutPhoneNo);
         textInputID = findViewById(R.id.textInputLayoutID);
         textInputName = findViewById(R.id.textInputLayoutName);
-        textInputCity = findViewById(R.id.textInputLayoutCity);
-
-
-        signUpBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                confirmInput();
-            }
-        });
+       // textInputCity = findViewById(R.id.textInputLayoutCity);
 
         userTypeRG.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -272,7 +284,7 @@ public class signUpPage extends AppCompatActivity {
 
     }
 
-    private boolean validateCity() {
+    /*private boolean validateCity() {
         cityInput = textInputCity.getEditText().getText().toString().trim();
         if (cityInput.isEmpty()) {
             textInputCity.setError("Field can't be empty");
@@ -286,6 +298,17 @@ public class signUpPage extends AppCompatActivity {
             return true;
         }
 
+    }*/
+
+    private boolean validateCity(){
+        String spinnerValidate= null;
+        if(spinner != null && spinner.getSelectedItem() !=null ) {
+            spinnerValidate = (String)spinner.getSelectedItem();
+            return false;
+        } else  {
+            Toast.makeText(this, "Choose a city", Toast.LENGTH_SHORT).show();
+            return true;
+        }
     }
 
     private void confirmInput() {
@@ -303,6 +326,17 @@ public class signUpPage extends AppCompatActivity {
     private void menuButton() {
 
         drawer_layout.openDrawer(GravityCompat.START);
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+    //    Toast.makeText(this, " You select >> "+options[position], Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
 
     }
 }

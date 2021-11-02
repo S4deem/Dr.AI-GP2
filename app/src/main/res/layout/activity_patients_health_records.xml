@@ -52,62 +52,209 @@
             android:textColorLink="@color/black"
             android:textSize="25sp"/>
 
-
-
         <TextView
-            android:id="@+id/textPatientsId"
+            android:id="@+id/textHR"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="150dp"
-            android:text="Patien's ID" />
+            android:layout_below="@+id/linearr"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="sans-serif-light"
+            android:text="You can view or update patient information here"
+            android:textAlignment="center"
+            android:textSize="20dp" />
 
-        <Spinner
-            android:id="@+id/doctorSpinner"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="185dp"
-            android:layout_marginBottom="10dp"/>
 
-        <TextView
-            android:id="@+id/textPreviousAppointment"
+        <GridLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="80dp"
-            android:gravity="center"
-            android:text="Select patient's ID to view their health records"
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/patientHealthRButton"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="500dp"
-            android:layout_marginEnd="81dp"
-            android:layout_marginBottom="1dp"
-            android:background="@drawable/edittext"
-            android:gravity="center"
-            android:text="@string/health_record"
-            android:textAllCaps="false"
-            android:textColor="@android:color/black"
-            android:textSize="17sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_below="@+id/textHR"
+            android:layout_marginTop="70dp"
+            android:alignmentMode="alignMargins"
+            android:columnOrderPreserved="false"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496" />
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/footer"
-            app:menu="@menu/generalfooter"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/edittext"/>
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="211dp">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent">
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:layout_marginBottom="172dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent">
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="156dp"
+                android:layout_height="138dp"
+                android:layout_row="0"
+                android:layout_column="2"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/edittext"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_row="0"
+                    android:layout_column="1"
+                    android:background="@drawable/healthcalendar"
+                    tools:layout_editor_absoluteX="35dp"
+                    tools:layout_editor_absoluteY="45dp" />
+
+                <TextView
+                    android:id="@+id/textAppointment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View Record"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    tools:layout_editor_absoluteX="16dp"
+                    tools:layout_editor_absoluteY="133dp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="156dp"
+                android:layout_height="138dp"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/edittext"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/check"
+                    tools:layout_editor_absoluteX="35dp"
+                    tools:layout_editor_absoluteY="45dp" />
+
+                <TextView
+                    android:id="@+id/textInsert"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Update Record"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    tools:layout_editor_absoluteX="16dp"
+                    tools:layout_editor_absoluteY="133dp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="156dp"
+                android:layout_height="138dp"
+                android:layout_row="2"
+                android:layout_column="0"
+                android:layout_marginLeft="130dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/edittext"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/check"
+                    tools:layout_editor_absoluteX="35dp"
+                    tools:layout_editor_absoluteY="45dp" />
+
+                <TextView
+                    android:id="@+id/textCheckUp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Check Up Appointment"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    tools:layout_editor_absoluteX="16dp"
+                    tools:layout_editor_absoluteY="133dp" />
+
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/InsertBtn"
+                android:layout_width="156dp"
+                android:layout_height="138dp"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/edittext"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="16dp" />
+
+            <Button
+                android:id="@+id/viewBtn"
+                android:layout_width="156dp"
+                android:layout_height="138dp"
+                android:layout_row="0"
+                android:layout_column="2"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/edittext"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="16dp" />
+
+            <Button
+                android:id="@+id/checkUpBtn"
+                android:layout_width="156dp"
+                android:layout_height="138dp"
+                android:layout_row="2"
+                android:layout_column="0"
+                android:layout_marginLeft="130dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/edittext"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="16dp" />
+        </GridLayout>
 
     </RelativeLayout>
     <com.google.android.material.navigation.NavigationView

@@ -34,7 +34,7 @@ public class previousAppointments extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         return true;
                     case R.id.goBack:
-                        startActivity(new Intent(getApplicationContext(), healthRecords.class));
+                        startActivity(new Intent(getApplicationContext(), pdPatient.class));
                         return true;
                 }
                 return false;

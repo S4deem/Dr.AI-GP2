@@ -55,17 +55,18 @@
         android:textColorLink="@color/black"
         android:textSize="25sp" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="125dp"
-        android:gravity="center"
-        android:text="you can find your information here "
-        android:textSize="19sp"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-1dp" />
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="125dp"
+            android:gravity="center"
+            android:fontFamily="sans-serif-light"
+            android:text="you can find your information here "
+            android:textSize="19sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="-1dp" />
 
         <GridLayout
 
@@ -116,9 +117,10 @@
                     android:id="@+id/textVirtualTherapist"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/health_record"
+                    android:text="@string/appointments"
                     android:textColor="@color/black"
                     android:textSize="18sp"
+                    android:fontFamily="sans-serif-light"
                     tools:layout_editor_absoluteX="16dp"
                     tools:layout_editor_absoluteY="133dp" />
 
@@ -147,13 +149,13 @@
                     tools:layout_editor_absoluteY="45dp" />
 
                 <TextView
-                    android:id="@+id/textPatient"
-                    android:layout_width="133dp"
-                    android:layout_height="43dp"
-                    android:text="@string/appointment_summary"
-                    android:textAlignment="center"
+                    android:id="@+id/textHealthRecord"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/health_record"
                     android:textColor="@color/black"
-                    android:textSize="15sp"
+                    android:textSize="18sp"
+                    android:fontFamily="sans-serif-light"
                     tools:layout_editor_absoluteX="16dp"
                     tools:layout_editor_absoluteY="133dp" />
 
@@ -193,13 +195,6 @@
 
 
         </GridLayout>
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/footer"
-            app:menu="@menu/generalfooter"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/edittext"/>
 
     </RelativeLayout>
     <com.google.android.material.navigation.NavigationView

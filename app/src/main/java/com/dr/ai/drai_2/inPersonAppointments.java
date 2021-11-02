@@ -43,21 +43,7 @@ public class inPersonAppointments extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_in_person_appointments);
-        BottomNavigationView bottomNavigationView = findViewById(R.id.footer);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.home:
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        return true;
-                    case R.id.goBack:
-                        startActivity(new Intent(getApplicationContext(), patientAppointments.class));
-                        return true;
-                }
-                return false;
-            }
-        });
+
         drawer_layout = findViewById(R.id.drawer_layout);
         mainNavView = findViewById(R.id.main_nav_view);
         mainNavView.setItemIconTintList(null);
@@ -115,15 +101,15 @@ public class inPersonAppointments extends AppCompatActivity {
         dateButton.setText(getTodaysDate());
         timeButton = findViewById(R.id.buttonTime);
         spinnerTextSize = findViewById(R.id.doctorSpinner);
-        spinnerTextSize2 = findViewById(R.id.clinicSpinner);
+        //spinnerTextSize2 = findViewById(R.id.clinicSpinner);
         String [] textSizes = getResources().getStringArray(R.array.Doctors_Id);
-        String [] textSizes2 = getResources().getStringArray(R.array.Clinic_Id);
+        //String [] textSizes2 = getResources().getStringArray(R.array.Clinic_Id);
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, textSizes);
-        ArrayAdapter adapter2 = new ArrayAdapter(this, android.R.layout.simple_spinner_item, textSizes2);
+       // ArrayAdapter adapter2 = new ArrayAdapter(this, android.R.layout.simple_spinner_item, textSizes2);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+      //  adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerTextSize.setAdapter(adapter);
-        spinnerTextSize2.setAdapter(adapter2);
+       // spinnerTextSize2.setAdapter(adapter2);
         paymentButton = findViewById(R.id.inPersonPayment);
         paymentButton.setOnClickListener(new View.OnClickListener() {
             @Override

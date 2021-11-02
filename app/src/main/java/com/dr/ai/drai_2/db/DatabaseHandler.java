@@ -118,7 +118,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
     }
 
-    Boolean patientRegister(String name, String email, String personal_id, String gender, String city, String phone, String password) {
+    public Boolean patientRegister(String name, String email, String personal_id, String gender, String city, String phone, String password) {
         if (!userExist(email)) {
             SQLiteDatabase db = this.getWritableDatabase();
 
@@ -143,7 +143,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
     }
 
-    User login(String email, String password) {
+    public User login(String email, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + KEY_EMAIL + " = " + email + " AND " + KEY_PASSWORD + " = " + password + ";", null);

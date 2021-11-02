@@ -55,19 +55,7 @@ public class signInPage extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in_page);
         handler = new DatabaseHandler(this);
         signInBtnPatient = findViewById(R.id.signInBtnPatient);
-        BottomNavigationView bottomNavigationView = findViewById(R.id.footer);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.home:
-                    case R.id.goBack:
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        return true;
-                }
-                return false;
-            }
-        });
+
         drawer_layout = findViewById(R.id.drawer_layout);
         mainNavView = findViewById(R.id.main_nav_view);
         mainNavView.setItemIconTintList(null);

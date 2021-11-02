@@ -12,16 +12,22 @@ import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputLayout;
 
-public class signUpDoctor extends AppCompatActivity {
+public class signUpDoctor extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    String[] options;
+    Spinner spinner;
 
     ImageView imageView;
     int SELECT_IMAGE_CODE=1;
@@ -45,7 +51,7 @@ public class signUpDoctor extends AppCompatActivity {
             Pattern.compile("[0-9]{10}");
 
     public static final Pattern NAME_PATTERN =
-            Pattern.compile("[a-zA-Z]");
+            Pattern.compile("^[A-Za-z]+$");
 
     public static final Pattern IBAN_PATTERN =
             Pattern.compile("([S][A][0-9]{22})");
@@ -56,7 +62,7 @@ public class signUpDoctor extends AppCompatActivity {
     private TextInputLayout textInputPhone;
     private TextInputLayout textInputID;
     private TextInputLayout textInputName;
-    private TextInputLayout textInputCity;
+   // private TextInputLayout textInputCity;
     private TextInputLayout textInputIban;
     private RadioGroup radioGroupA;
     private RadioButton pRadioButton;
@@ -72,6 +78,20 @@ public class signUpDoctor extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_doctor);
+
+        spinner = (Spinner) findViewById(R.id.spinner);
+        // Creating ArrayAdapter using the string array and default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.cities, android.R.layout.simple_spinner_item);
+        // Specify layout to be used when list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Applying the adapter to our spinner
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
+
+        options = signUpDoctor.this.getResources().getStringArray(R.array.cities);
+
+
         btnImage = findViewById(R.id.btnImage);
         imageView = findViewById(R.id.imageView2);
         btnImage.setOnClickListener(new View.OnClickListener() {
@@ -167,7 +187,7 @@ public class signUpDoctor extends AppCompatActivity {
         textInputPhone = findViewById(R.id.textInputLayoutPhoneNo);
         textInputID = findViewById(R.id.textInputLayoutID);
         textInputName = findViewById(R.id.textInputLayoutName);
-        textInputCity = findViewById(R.id.textInputLayoutCity);
+      //  textInputCity = findViewById(R.id.textInputLayoutCity);
         textInputIban = findViewById(R.id.textInputLayoutIban);
 
 
@@ -281,7 +301,7 @@ public class signUpDoctor extends AppCompatActivity {
 
     }
 
-    private boolean validateCity() {
+    /*private boolean validateCity() {
         String cityInput = textInputCity.getEditText().getText().toString().trim();
         if (cityInput.isEmpty()) {
             textInputCity.setError("Field can't be empty");
@@ -297,7 +317,7 @@ public class signUpDoctor extends AppCompatActivity {
             return true;
         }
 
-    }
+    }*/
 
     private boolean validateIban() {
         String ibanInput = textInputIban.getEditText().getText().toString().trim();
@@ -315,6 +335,17 @@ public class signUpDoctor extends AppCompatActivity {
             return true;
         }
 
+    }
+
+    private boolean validateCity(){
+        String spinnerValidate= null;
+        if(spinner != null && spinner.getSelectedItem() !=null ) {
+            spinnerValidate = (String)spinner.getSelectedItem();
+            return false;
+        } else  {
+            Toast.makeText(this, "Choose a city", Toast.LENGTH_SHORT).show();
+            return true;
+        }
     }
 
 
@@ -343,5 +374,17 @@ public class signUpDoctor extends AppCompatActivity {
 
 
         }
+    }
+
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+      //  Toast.makeText(this, " You select >> "+options[position], Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

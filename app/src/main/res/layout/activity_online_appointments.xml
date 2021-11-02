@@ -53,20 +53,13 @@
         android:textColorLink="@color/black"
         android:textSize="25sp" />
 
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_below="@+id/oText"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="188dp">
-
         <GridLayout
 
             android:layout_width="406dp"
-            android:layout_height="529dp"
+            android:layout_height="429dp"
             android:alignmentMode="alignMargins"
             android:columnOrderPreserved="false"
+            android:layout_below="@+id/oText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="211dp">
@@ -103,7 +96,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
-                    android:layout_marginTop="-60dp"
+                    android:layout_marginTop="-140dp"
                     android:text="@string/doctor_s_name"
                     android:textColor="@color/black"
                     android:textSize="18sp"
@@ -111,25 +104,6 @@
 
                 <Spinner
                     android:id="@+id/doctorSpinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_margin="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="40dp"/>
-
-                <TextView
-                    android:id="@+id/textClinicsName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/clinic_s_name"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <Spinner
-                    android:id="@+id/clinicSpinner"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_margin="10dp"
@@ -191,37 +165,15 @@
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
-                <RadioButton
-                    android:id="@+id/radioPhoneCall"
+                <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="21dp"
-                    android:layout_gravity="left"
-                    android:onClick="@+id/save"
-                    android:text="Phone Call" />
-
-                <RadioButton
-                    android:id="@+id/radioVideo"
-                    android:layout_width="80dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="left"
-                    android:onClick="@+id/save"
-                    android:text="@string/video" />
-
-                <RadioButton
-                    android:id="@+id/radioChat"
-                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:layout_marginBottom="-543dp"
-                    android:checked="true"
-                    android:onClick="@+id/save"
-                    android:text="@string/chat" />
+                    android:text="All online sessions will be conducted in a private chat between the patient and the doctor" />
 
 
             </LinearLayout>
 
         </GridLayout>
-    </ScrollView>
 
     <TextView
         android:id="@+id/oText"
@@ -254,13 +206,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496" />
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/footer"
-            app:menu="@menu/generalfooter"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/edittext"/>
+
+
 
     </RelativeLayout>
 

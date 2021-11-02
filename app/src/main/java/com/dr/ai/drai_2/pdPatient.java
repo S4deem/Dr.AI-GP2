@@ -1,6 +1,5 @@
 package com.dr.ai.drai_2;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -12,10 +11,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
-public class healthRecords extends AppCompatActivity {
+public class pdPatient extends AppCompatActivity {
+
+    // ArrayList< pdRecyclerAdapter> pdRecyclerAdapters = new ArrayList<>();
 
     private Button patientComingButton;
     private Button patientPreviousButton;
@@ -29,22 +29,8 @@ public class healthRecords extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_health_records);
-        BottomNavigationView bottomNavigationView = findViewById(R.id.footer);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.home:
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        return true;
-                    case R.id.goBack:
-                        startActivity(new Intent(getApplicationContext(), patientsHealthRecords.class));
-                        return true;
-                }
-                return false;
-            }
-        });
+        setContentView(R.layout.activity_pd_patient);
+
         drawer_layout = findViewById(R.id.drawer_layout);
         mainNavView = findViewById(R.id.main_nav_view);
         mainNavView.setItemIconTintList(null);
@@ -61,7 +47,7 @@ public class healthRecords extends AppCompatActivity {
         menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(healthRecords.this, MainActivity.class);
+                Intent intent = new Intent(pdPatient.this, MainActivity.class);
                 startActivity(intent);
                 return false;
             }
@@ -71,7 +57,7 @@ public class healthRecords extends AppCompatActivity {
         menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(healthRecords.this, aboutUs.class);
+                Intent intent = new Intent(pdPatient.this, aboutUs.class);
                 startActivity(intent);
                 return false;
             }
@@ -81,7 +67,7 @@ public class healthRecords extends AppCompatActivity {
         menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(healthRecords.this, security.class);
+                Intent intent = new Intent(pdPatient.this, security.class);
                 startActivity(intent);
                 return false;
             }
@@ -91,50 +77,12 @@ public class healthRecords extends AppCompatActivity {
         menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(healthRecords.this, contactUs.class);
+                Intent intent = new Intent(pdPatient.this, contactUs.class);
                 startActivity(intent);
                 return false;
             }
         });
-
-        patientComingButton = findViewById(R.id.patientComingButton);
-        patientComingButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openPatientComingPage();
-            }
-        });
-        patientPreviousButton = findViewById(R.id.patientPreviousButton);
-        patientPreviousButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openPatientPreviousPage();
-            }
-        });
-        patientPrescriptionButton = findViewById(R.id.patientPrescriptionButton);
-        patientPrescriptionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openPatientPrescriptionPage();
-            }
-        });
     }
-
-    public void openPatientComingPage(){
-        Intent intent = new Intent(this, comingAppointments.class);
-        startActivity(intent);
-    }
-
-    public void openPatientPreviousPage(){
-        Intent intent = new Intent(this, previousAppointments.class);
-        startActivity(intent);
-    }
-
-    public void openPatientPrescriptionPage(){
-        Intent intent = new Intent(this, prescription.class);
-        startActivity(intent);
-    }
-
     private void menuButton() {
 
         drawer_layout.openDrawer(GravityCompat.START);

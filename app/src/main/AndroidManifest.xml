@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DrAI2">
         <activity
+            android:name=".viewHealthRecord"
+            android:exported="true" />
+        <activity
+            android:name=".updateHealthRecord"
+            android:exported="true" />
+        <activity
             android:name=".rejectedAccounts"
             android:exported="true" />
         <activity
@@ -73,7 +79,7 @@
             android:name=".comingAppointments"
             android:exported="true" />
         <activity
-            android:name=".healthRecords"
+            android:name=".pdPatient"
             android:exported="true" />
         <activity
             android:name=".patientsHealthRecords"

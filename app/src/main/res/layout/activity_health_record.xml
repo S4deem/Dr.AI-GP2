@@ -102,7 +102,7 @@
             android:layout_marginTop="50dp"
             android:fontFamily="sans-serif-light"
             android:gravity="center"
-            android:text="Pick a date to view appointments "
+            android:text="Pick a date to view your appointments, prescriptions, and diagnosis "
             android:textColor="@color/black"
             android:textSize="20dp" />
 

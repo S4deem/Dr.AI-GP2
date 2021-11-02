@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(MainActivity.this, aboutUs.class);
+                Intent intent = new Intent(MainActivity.this, patientScreen.class);
                 startActivity(intent);
                 return false;
             }
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(MainActivity.this, security.class);
+                Intent intent = new Intent(MainActivity.this, doctorsScreen.class);
                 startActivity(intent);
                 return false;
             }

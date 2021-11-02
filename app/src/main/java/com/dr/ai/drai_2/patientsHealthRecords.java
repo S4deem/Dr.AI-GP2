@@ -18,8 +18,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 public class patientsHealthRecords extends AppCompatActivity {
-    private Spinner spinnerTextSize;
-    private Button patientHealthRButton;
+   private Button InsertBtn;
+   private Button viewBtn;
+   private Button checkUpBtn;
+
     private NavigationView mainNavView;
     private Menu mainNavMenu;
     private MenuItem menuItem;
@@ -30,21 +32,7 @@ public class patientsHealthRecords extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patients_health_records);
-        BottomNavigationView bottomNavigationView = findViewById(R.id.footer);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.home:
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        return true;
-                    case R.id.goBack:
-                        startActivity(new Intent(getApplicationContext(), doctorsPatientScreen.class));
-                        return true;
-                }
-                return false;
-            }
-        });
+
         drawer_layout = findViewById(R.id.drawer_layout);
         mainNavView = findViewById(R.id.main_nav_view);
         mainNavView.setItemIconTintList(null);
@@ -97,24 +85,47 @@ public class patientsHealthRecords extends AppCompatActivity {
             }
         });
 
-        spinnerTextSize = findViewById(R.id.doctorSpinner);
-        String [] textSizes = getResources().getStringArray(R.array.Patient_Id);
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, textSizes);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerTextSize.setAdapter(adapter);
-        patientHealthRButton = findViewById(R.id.patientHealthRButton);
-        patientHealthRButton.setOnClickListener(new View.OnClickListener() {
+        InsertBtn = findViewById(R.id.InsertBtn);
+        InsertBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openpatientHealthRecordPage();
+                openInsertPage();
             }
         });
+
+        viewBtn = findViewById(R.id.viewBtn);
+        viewBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openViewPage();
+            }
+        });
+
+        checkUpBtn = findViewById(R.id.checkUpBtn);
+        checkUpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openCheckUpPage();
+            }
+        });
+
     }
 
-    public void openpatientHealthRecordPage(){
-        Intent intent = new Intent(this, healthRecords.class);
+    public void openInsertPage(){
+        Intent intent = new Intent(this, updateHealthRecord.class);
         startActivity(intent);
     }
+
+    public void openViewPage(){
+        Intent intent = new Intent(this, viewHealthRecord.class);
+        startActivity(intent);
+    }
+
+    public void openCheckUpPage(){
+        Intent intent = new Intent(this, checkUpAppointmentsDoctor.class);
+        startActivity(intent);
+    }
+
     private void menuButton() {
 
         drawer_layout.openDrawer(GravityCompat.START);

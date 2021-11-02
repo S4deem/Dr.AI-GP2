@@ -229,7 +229,9 @@ public class healthRecord extends AppCompatActivity {
 
     }
 
+
     private boolean validateDate() {
+        //    Date now = new Date(System.currentTimeMillis());
         //    String dateInput = dateButton.getInputType();
         if (dateButton != null) {
              Intent intent = new Intent(healthRecord.this, healthRecordPrevious.class);
