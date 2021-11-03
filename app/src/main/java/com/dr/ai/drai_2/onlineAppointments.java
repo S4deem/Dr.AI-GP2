@@ -13,16 +13,22 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 
+import com.dr.ai.drai_2.db.DatabaseHandler;
+import com.dr.ai.drai_2.model.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 public class onlineAppointments extends AppCompatActivity {
@@ -30,19 +36,24 @@ public class onlineAppointments extends AppCompatActivity {
     private Button dateButton;
     Button timeButton;
     int hour, minute;
-    private Spinner spinnerTextSize;
-    private Spinner spinnerTextSize2;
+    private Spinner doctorListSpinner;
     private Button paymentButton;
     private NavigationView mainNavView;
     private Menu mainNavMenu;
     private MenuItem menuItem;
     private Button menuButton;
     private DrawerLayout drawer_layout;
+    RadioGroup appointmentTypeRg;
+    String [] doctorNameItems;
+    DatabaseHandler handler;
+    User selectedDoctor;
+    String selectedDate, selectedTime, type = "On Person", patientId; // from sharedPre
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_online_appointments);
+        handler = new DatabaseHandler(this);
         BottomNavigationView bottomNavigationView = findViewById(R.id.footer);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -60,6 +71,7 @@ public class onlineAppointments extends AppCompatActivity {
         });
         drawer_layout = findViewById(R.id.drawer_layout);
         mainNavView = findViewById(R.id.main_nav_view);
+        appointmentTypeRg = findViewById(R.id.appointmentTypeRg);
         mainNavView.setItemIconTintList(null);
         menuButton = findViewById(R.id.menuButton);
         menuButton.setOnClickListener(new View.OnClickListener() {
@@ -115,16 +127,32 @@ public class onlineAppointments extends AppCompatActivity {
         dateButton = findViewById(R.id.buttonDate);
         dateButton.setText(getTodaysDate());
         timeButton = findViewById(R.id.buttonTime);
-        spinnerTextSize = findViewById(R.id.doctorSpinner);
-        spinnerTextSize2 = findViewById(R.id.clinicSpinner);
-        String [] textSizes = getResources().getStringArray(R.array.Doctors_Id);
-        String [] textSizes2 = getResources().getStringArray(R.array.Clinic_Id);
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, textSizes);
-        ArrayAdapter adapter2 = new ArrayAdapter(this, android.R.layout.simple_spinner_item, textSizes2);
+        doctorListSpinner = findViewById(R.id.doctorSpinner);
+        List<User> doctorsList = handler.getAllDoctors();
+        doctorNameItems = new String[doctorsList.size()];
+        for (int i = 0; i < doctorsList.size(); i++) {
+            doctorNameItems[i] = doctorsList.get(i).getName();
+        }
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, doctorNameItems);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerTextSize.setAdapter(adapter);
-        spinnerTextSize2.setAdapter(adapter2);
+        doctorListSpinner.setAdapter(adapter);
+        doctorListSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                selectedDoctor = doctorsList.get(i);
+            }
+        });
+
+        appointmentTypeRg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if (radioGroup.getCheckedRadioButtonId() == findViewById(R.id.onlineRb).getId()){
+                    type = "On Person";
+                }else {
+                    type = "Online";
+                }
+            }
+        });
         paymentButton = findViewById(R.id.paymentButton);
         paymentButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,8 +177,10 @@ public class onlineAppointments extends AppCompatActivity {
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
                 month = month + 1 ;
                 String date = makeDateString (day, month, year);
+                selectedDate = simpleDateFormat.format(date);
                 dateButton.setText(date);
 
 
@@ -224,7 +254,8 @@ public class onlineAppointments extends AppCompatActivity {
 
                 hour = selectHour;
                 minute = selectMinute;
-                timeButton.setText(String.format(Locale.getDefault(), "%2d:%2d", hour, minute));
+                selectedTime = String.format(Locale.getDefault(), "%2d:%2d", hour, minute);
+                timeButton.setText(selectedTime);
             }
         };
 
@@ -237,6 +268,7 @@ public class onlineAppointments extends AppCompatActivity {
     }
 
     public void openPaymentPage(){
+        handler.registerAppointment(selectedDate, selectedTime, type, selectedDoctor.getId(),"");
         Intent intent = new Intent(this, paymentPage.class);
         startActivity(intent);
     }

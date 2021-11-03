@@ -90,7 +90,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    Boolean doctorRegister(String name, String email, String personal_id, byte[] img, String gender, String city, String phone, String password, String iban) {
+    public Boolean doctorRegister(String name, String email, String personal_id, byte[] img, String gender, String city, String phone, String password, String iban) {
         if (!userExist(email)) {
             SQLiteDatabase db = this.getWritableDatabase();
 
@@ -118,7 +118,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
     }
 
-    Boolean patientRegister(String name, String email, String personal_id, String gender, String city, String phone, String password) {
+    public Boolean patientRegister(String name, String email, String personal_id, String gender, String city, String phone, String password) {
         if (!userExist(email)) {
             SQLiteDatabase db = this.getWritableDatabase();
 
@@ -143,7 +143,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
     }
 
-    User login(String email, String password) {
+    public User login(String email, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + KEY_EMAIL + " = " + email + " AND " + KEY_PASSWORD + " = " + password + ";", null);
@@ -174,7 +174,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
     }
 
-    Boolean logout(User user) {
+    public Boolean logout(User user) {
 
         return updateUserStatus(user, "LoggedOut") == 1;
     }
@@ -214,7 +214,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return list;
     }
 
-    Boolean registerAppointment(String date, String time, String type, String doctorId, String patientId) {
+    public Boolean registerAppointment(String date, String time, String type, String doctorId, String patientId) {
         if (!appointmentExist(date,
                 time, doctorId)) {
             SQLiteDatabase db = this.getWritableDatabase();
