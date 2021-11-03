@@ -96,6 +96,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
+                    android:fontFamily="sans-serif-light"
                     android:layout_marginTop="-140dp"
                     android:text="@string/doctor_s_name"
                     android:textColor="@color/black"
@@ -117,6 +118,7 @@
                     android:layout_gravity="left"
                     android:layout_marginBottom="5dp"
                     android:text="Date"
+                    android:fontFamily="sans-serif-light"
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -129,6 +131,7 @@
                     android:background="@drawable/edittext"
                     android:onClick="openDatePicker"
                     android:text="Jan 01 2022"
+                    android:fontFamily="sans-serif-light"
                     android:textAlignment="center" />
 
                 <TextView
@@ -139,6 +142,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="5sp"
                     android:text="@string/time"
+                    android:fontFamily="sans-serif-light"
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -151,6 +155,7 @@
                     android:background="@drawable/edittext"
                     android:onClick="popTimePicker"
                     android:text="@string/time"
+                    android:fontFamily="sans-serif-light"
                     android:textAlignment="center" />
 
                 <TextView
@@ -162,30 +167,52 @@
                     android:layout_marginBottom="5sp"
                     android:text="@string/session"
                     android:textColor="@color/black"
+                    android:fontFamily="sans-serif-light"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <RadioGroup
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="All online sessions will be conducted in a private chat between the patient and the doctor" />
+                    android:orientation="horizontal"
+                    android:layout_marginEnd="80dp"
+                    android:id="@+id/paGroupBtn">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Online"
+                        android:fontFamily="sans-serif-light"
+                        android:buttonTint="@color/teal_700"
+                        android:checked="true"
+                        android:id="@+id/orBtn"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="In-person"
+                        android:checked="false"
+                        android:fontFamily="sans-serif-light"
+                        android:buttonTint="@color/teal_700"
+                        android:id="@+id/irBtn"/>
+                </RadioGroup>
 
 
             </LinearLayout>
 
         </GridLayout>
 
-    <TextView
-        android:id="@+id/oText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="80dp"
-        android:gravity="center"
-        android:text="@string/online_appointments"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/oText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="80dp"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"
+            android:text="@string/appointments"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/paymentButton"
@@ -199,6 +226,8 @@
             android:layout_marginBottom="4dp"
             android:background="@drawable/edittext"
             android:gravity="center"
+            android:fontFamily="sans-serif-light"
+            android:buttonTint="@color/teal_700"
             android:text="Process to payment"
             android:textAllCaps="false"
             android:textColor="@android:color/black"

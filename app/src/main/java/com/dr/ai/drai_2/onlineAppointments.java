@@ -16,6 +16,8 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 
@@ -39,10 +41,25 @@ public class onlineAppointments extends AppCompatActivity {
     private Button menuButton;
     private DrawerLayout drawer_layout;
 
+    private RadioGroup paGroupBtn;
+    String selectedAppointments = "Online";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_online_appointments);
+
+        paGroupBtn.setOnCheckedChangeListener (new RadioGroup.OnCheckedChangeListener() {
+            @Override
+
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if (radioGroup.getCheckedRadioButtonId() == findViewById(R.id.orBtn).getId()) {
+                    selectedAppointments = "Online";
+                } else {
+                    selectedAppointments = "In-Person";
+                }
+            }
+        });
 
         drawer_layout = findViewById(R.id.drawer_layout);
         mainNavView = findViewById(R.id.main_nav_view);

@@ -109,9 +109,9 @@ public class signUpDoctor extends AppCompatActivity implements AdapterView.OnIte
 
 
 
-        radioGroupA=(RadioGroup)findViewById(R.id.radioGroupA);
-        pRadioButton=(RadioButton)findViewById(R.id.pRadioBtn);
-        dRadioButton=(RadioButton)findViewById(R.id.dRadioBtn);
+        radioGroupA=findViewById(R.id.radioGroupA);
+        pRadioButton=findViewById(R.id.pRadioBtn);
+        dRadioButton=findViewById(R.id.dRadioBtn);
         next=(Button)findViewById(R.id.next);
         next.setOnClickListener(new View.OnClickListener() {
             @Override

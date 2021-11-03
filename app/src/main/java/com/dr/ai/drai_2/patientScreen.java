@@ -165,7 +165,7 @@ public class patientScreen extends AppCompatActivity {
     }
 
     public void openAppointmentsPage() {
-        Intent intent = new Intent(this, patientAppointments.class);
+        Intent intent = new Intent(this, onlineAppointments.class);
         startActivity(intent);
     }
 
