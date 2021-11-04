@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -25,22 +26,39 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class checkUpAppointmentsDoctor extends AppCompatActivity {
+public class checkUpAppointmentsDoctor extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+
     private DatePickerDialog datePickerDialog;
     private Button dateButton;
     Button timeButton;
     int hour, minute;
-    private Spinner spinnerTextSize;
+   // private Spinner spinnerTextSize;
     private NavigationView mainNavView;
     private Menu mainNavMenu;
     private MenuItem menuItem;
     private Button menuButton;
     private DrawerLayout drawer_layout;
 
+    String[] options;
+    Spinner doctorSpinner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_up_appointments_doctor);
+
+
+        doctorSpinner = findViewById(R.id.doctorSpinner);
+        // Creating ArrayAdapter using the string array and default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.Patient_Id, android.R.layout.simple_spinner_item);
+        // Specify layout to be used when list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Applying the adapter to our spinner
+        doctorSpinner.setAdapter(adapter);
+        doctorSpinner.setOnItemSelectedListener(this);
+
+        options = checkUpAppointmentsDoctor.this.getResources().getStringArray(R.array.Patient_Id);
 
         drawer_layout = findViewById(R.id.drawer_layout);
         mainNavView = findViewById(R.id.main_nav_view);
@@ -98,11 +116,6 @@ public class checkUpAppointmentsDoctor extends AppCompatActivity {
         dateButton = findViewById(R.id.buttonDate);
         dateButton.setText(getTodaysDate());
         timeButton = findViewById(R.id.buttonTime);
-        spinnerTextSize = findViewById(R.id.doctorSpinner);
-        String[] textSizes = getResources().getStringArray(R.array.Patient_Id);
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, textSizes);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerTextSize.setAdapter(adapter);
     }
 
     private String getTodaysDate() {
@@ -208,6 +221,16 @@ public class checkUpAppointmentsDoctor extends AppCompatActivity {
     private void menuButton() {
 
         drawer_layout.openDrawer(GravityCompat.START);
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
 
     }
 }

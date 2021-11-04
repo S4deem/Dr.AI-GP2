@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DrAI2">
         <activity
+            android:name=".updateHealthRecord1"
+            android:exported="true" />
+        <activity
             android:name=".viewHealthRecord"
             android:exported="true" />
         <activity

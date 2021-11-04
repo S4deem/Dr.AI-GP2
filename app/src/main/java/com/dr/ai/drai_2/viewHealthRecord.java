@@ -9,15 +9,19 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class viewHealthRecord extends AppCompatActivity {
+public class viewHealthRecord extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    private Spinner spinnerTextSize;
+    String[] options;
+    Spinner doctorSpinner;
+
+  //  private Spinner spinnerTextSize;
     private Button viewBtn;
     private NavigationView mainNavView;
     private Menu mainNavMenu;
@@ -29,6 +33,18 @@ public class viewHealthRecord extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_health_record);
+
+        doctorSpinner = findViewById(R.id.doctorSpinner);
+        // Creating ArrayAdapter using the string array and default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.Patient_Id, android.R.layout.simple_spinner_item);
+        // Specify layout to be used when list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Applying the adapter to our spinner
+        doctorSpinner.setAdapter(adapter);
+        doctorSpinner.setOnItemSelectedListener(this);
+
+        options = viewHealthRecord.this.getResources().getStringArray(R.array.Patient_Id);
 
         drawer_layout = findViewById(R.id.drawer_layout);
         mainNavView = findViewById(R.id.main_nav_view);
@@ -81,19 +97,6 @@ public class viewHealthRecord extends AppCompatActivity {
                 return false;
             }
         });
-
-        spinnerTextSize = findViewById(R.id.doctorSpinner);
-        String [] textSizes = getResources().getStringArray(R.array.Patient_Id);
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, textSizes);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerTextSize.setAdapter(adapter);
-        viewBtn = findViewById(R.id.viewBtn);
-        viewBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openViewPage();
-            }
-        });
     }
     public void openViewPage(){
         Intent intent = new Intent(this, pdPatient.class);
@@ -102,6 +105,16 @@ public class viewHealthRecord extends AppCompatActivity {
     private void menuButton() {
 
         drawer_layout.openDrawer(GravityCompat.START);
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
 
     }
 }

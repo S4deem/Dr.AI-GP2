@@ -77,13 +77,14 @@
                 android:layout_marginTop="30dp"
                 android:text="Patien's ID" />
 
-            <Spinner
+            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:id="@+id/doctorSpinner"
-                android:layout_width="match_parent"
+                android:layout_width="330dp"
                 android:layout_height="40dp"
-                android:layout_margin="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="40dp" />
+                android:layout_below="@+id/textPatientsId"
+                android:layout_marginTop="28dp"
+                android:padding="5dp"
+                app:errorEnabled="true" />
 
 
             <TextView

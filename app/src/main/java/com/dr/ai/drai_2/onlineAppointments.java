@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -27,12 +28,12 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class onlineAppointments extends AppCompatActivity {
+public class onlineAppointments extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private DatePickerDialog datePickerDialog;
     private Button dateButton;
     Button timeButton;
     int hour, minute;
-    private Spinner spinnerTextSize;
+    // private Spinner spinnerTextSize;
    // private Spinner spinnerTextSize2;
     private Button paymentButton;
     private NavigationView mainNavView;
@@ -42,24 +43,34 @@ public class onlineAppointments extends AppCompatActivity {
     private DrawerLayout drawer_layout;
 
     private RadioGroup paGroupBtn;
+    private RadioButton irBtn, orBtn;
     String selectedAppointments = "Online";
+
+    String[] options;
+    Spinner patientSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_online_appointments);
 
-        paGroupBtn.setOnCheckedChangeListener (new RadioGroup.OnCheckedChangeListener() {
+        paGroupBtn = findViewById(R.id.paGroupBtn);
+        irBtn = findViewById(R.id.irBtn);
+        orBtn = findViewById(R.id.orBtn);
+        paGroupBtn.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if (radioGroup.getCheckedRadioButtonId() == findViewById(R.id.orBtn).getId()) {
                     selectedAppointments = "Online";
                 } else {
-                    selectedAppointments = "In-Person";
+                    selectedAppointments = "In-person";
                 }
             }
         });
+
+
+
 
         drawer_layout = findViewById(R.id.drawer_layout);
         mainNavView = findViewById(R.id.main_nav_view);
@@ -118,15 +129,15 @@ public class onlineAppointments extends AppCompatActivity {
         dateButton = findViewById(R.id.buttonDate);
         dateButton.setText(getTodaysDate());
         timeButton = findViewById(R.id.buttonTime);
-        spinnerTextSize = findViewById(R.id.doctorSpinner);
+      //  spinnerTextSize = findViewById(R.id.doctorSpinner);
       //  spinnerTextSize2 = findViewById(R.id.clinicSpinner);
-        String [] textSizes = getResources().getStringArray(R.array.Doctors_Id);
+       // String [] textSizes = getResources().getStringArray(R.array.Doctors_Id);
        // String [] textSizes2 = getResources().getStringArray(R.array.Clinic_Id);
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, textSizes);
+     //   ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, textSizes);
       //  ArrayAdapter adapter2 = new ArrayAdapter(this, android.R.layout.simple_spinner_item, textSizes2);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+      //  adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
      //   adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerTextSize.setAdapter(adapter);
+        // spinnerTextSize.setAdapter(adapter);
      //   spinnerTextSize2.setAdapter(adapter2);
         paymentButton = findViewById(R.id.paymentButton);
         paymentButton.setOnClickListener(new View.OnClickListener() {
@@ -246,6 +257,16 @@ public class onlineAppointments extends AppCompatActivity {
     private void menuButton() {
 
         drawer_layout.openDrawer(GravityCompat.START);
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
 
     }
 }

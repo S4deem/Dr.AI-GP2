@@ -86,12 +86,12 @@ public class signUpPage extends AppCompatActivity implements AdapterView.OnItemS
         options = signUpPage.this.getResources().getStringArray(R.array.cities);
 
 
-        userTypeRG = (RadioGroup) findViewById(R.id.radioGroupA);
-        genderRG = (RadioGroup) findViewById(R.id.radioGroup);
-        pRadioButton = (RadioButton) findViewById(R.id.pRadioBtn);
-        dRadioButton = (RadioButton) findViewById(R.id.dRadioBtn);
-        next = (Button) findViewById(R.id.next);
-        signUpBtn = (Button) findViewById(R.id.signUp);
+        userTypeRG = findViewById(R.id.radioGroupA);
+        genderRG = findViewById(R.id.radioGroup);
+        pRadioButton = findViewById(R.id.pRadioBtn);
+        dRadioButton = findViewById(R.id.dRadioBtn);
+        next = findViewById(R.id.next);
+        signUpBtn = findViewById(R.id.signUp);
         handler = new DatabaseHandler(this);
         next.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -90,7 +90,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    Boolean doctorRegister(String name, String email, String personal_id, byte[] img, String gender, String city, String phone, String password, String iban) {
+    public Boolean doctorRegister(String name, String email, String personal_id, byte[] img, String gender, String city, String phone, String password, String iban) {
         if (!userExist(email)) {
             SQLiteDatabase db = this.getWritableDatabase();
 
@@ -174,7 +174,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
     }
 
-    Boolean logout(User user) {
+    public Boolean logout(User user) {
 
         return updateUserStatus(user, "LoggedOut") == 1;
     }
@@ -214,7 +214,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return list;
     }
 
-    Boolean registerAppointment(String date, String time, String type, String doctorId, String patientId) {
+    public Boolean registerAppointment(String date, String time, String type, String doctorId, String patientId) {
         if (!appointmentExist(date,
                 time, doctorId)) {
             SQLiteDatabase db = this.getWritableDatabase();

@@ -112,7 +112,7 @@ public class patientsHealthRecords extends AppCompatActivity {
     }
 
     public void openInsertPage(){
-        Intent intent = new Intent(this, updateHealthRecord.class);
+        Intent intent = new Intent(this, updateHealthRecord1.class);
         startActivity(intent);
     }
 
