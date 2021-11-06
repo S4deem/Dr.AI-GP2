@@ -45,6 +45,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_APPOINTMENT_PATIENT_ID = "patient_id";
     //endregion
 
+    //region Records Table
+    private static final String TABLE_RECORD = "records";
+    private static final String KEY_RECORD_ID = "id";
+    private static final String KEY_RECORD_DIAGNOSES = "diagnoses";
+    private static final String KEY_RECORD_PRESCRIPTION = "prescription";
+    private static final String KEY_RECORD_PATIENT_ID = "patient_id";
+    private static final String KEY_RECORD_DOCTOR_ID = "doctor_id";
+    //endregion
+
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         //3rd argument to be passed is CursorFactory instance
@@ -75,8 +84,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + KEY_APPOINTMENT_TIME + " TEXT,"
                 + KEY_APPOINTMENT_DOCTOR_ID + " TEXT,"
                 + KEY_APPOINTMENT_PATIENT_ID + " TEXT" + ")";
+
+        String CREATE_RECORD_TABLE = "CREATE TABLE " + TABLE_RECORD + "("
+                + KEY_RECORD_ID + " INTEGER PRIMARY KEY,"
+                + KEY_RECORD_DIAGNOSES + " TEXT,"
+                + KEY_RECORD_PRESCRIPTION + " TEXT,"
+                + KEY_RECORD_DOCTOR_ID + " TEXT,"
+                + KEY_RECORD_PATIENT_ID + " TEXT" + ")";
+
         db.execSQL(CREATE_USERS_TABLE);
         db.execSQL(CREATE_APPOINTMENTS_TABLE);
+        db.execSQL(CREATE_RECORD_TABLE);
     }
 
     // Upgrading database
@@ -85,6 +103,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // Drop older table if existed
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_APPOINTMENTS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_RECORD);
 
         // Create tables again
         onCreate(db);
@@ -240,6 +259,27 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         List<Appointment> list = new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();
         try (Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_APPOINTMENTS + " WHERE " + KEY_APPOINTMENT_DATE + " = " + date + " AND " + KEY_APPOINTMENT_PATIENT_ID + " =  " + user.getId() + " ;", null)) {
+            if (cursor.moveToFirst()) {
+                do {
+                    Appointment appointment = new Appointment();
+                    appointment.setId(cursor.getString(0));
+                    appointment.setType(cursor.getString(1));
+                    appointment.setDate(cursor.getString(2));
+                    appointment.setTime(cursor.getString(3));
+                    appointment.setDoctorId(cursor.getString(4));
+                    appointment.setPatientId(cursor.getString(5));
+                    // Adding contact to list
+                    list.add(appointment);
+                } while (cursor.moveToNext());
+            }
+        }
+        return list;
+    }
+
+    public List<Appointment> getDoctorAppointments(User user, String date) {
+        List<Appointment> list = new ArrayList<>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        try (Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_APPOINTMENTS + " WHERE " + KEY_APPOINTMENT_DATE + " = " + date + " AND " + KEY_APPOINTMENT_DOCTOR_ID + " =  " + user.getId() + " ;", null)) {
             if (cursor.moveToFirst()) {
                 do {
                     Appointment appointment = new Appointment();
