@@ -53,216 +53,13 @@
             android:textColorLink="@color/black"
             android:textSize="25sp" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayoutName"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="30dp"
-            android:hint="@string/name"
-            app:errorEnabled="true"
-            android:layout_below="@+id/textInputLayoutRadio">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:drawableStart="@drawable/ic_baseline_person_outline_24"
-                android:fontFamily="sans-serif-light"
-                android:inputType="textEmailAddress"
-                tools:targetApi="jelly_bean" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayoutEmail"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textInputLayoutRadio"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="30dp"
-            android:layout_toEndOf="@+id/textInputLayoutName"
-            android:hint="@string/email"
-            app:errorEnabled="true">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_email"
-                android:fontFamily="sans-serif-light"
-                android:inputType="textEmailAddress"
-                android:textColor="@color/black"
-                tools:targetApi="jelly_bean" />
-        </com.google.android.material.textfield.TextInputLayout>
 
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayoutPassword"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textInputLayoutEmail"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="30dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="30dp"
-            android:hint="@string/password"
-            app:errorEnabled="true"
-            app:passwordToggleEnabled="true"
-            tools:layout_editor_absoluteX="0dp">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_lock"
-                android:fontFamily="sans-serif-light"
-                android:inputType="textPassword"
-                android:textColor="@color/black"
-                tools:targetApi="jelly_bean" />
 
-        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayoutCPassword"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textInputLayoutEmail"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="30dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="30dp"
-            android:layout_toEndOf="@+id/textInputLayoutPassword"
-            android:hint="Confirm Password"
-            app:errorEnabled="true"
-            app:passwordToggleEnabled="true"
-            tools:layout_editor_absoluteX="0dp">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_lock"
-                android:fontFamily="sans-serif-light"
-                android:inputType="textPassword"
-                android:textColor="@color/black"
-                tools:targetApi="jelly_bean" />
 
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayoutID"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="30dp"
-            android:hint="ID"
-            app:errorEnabled="true"
-            android:layout_below="@+id/textInputLayoutCPassword"
-            tools:layout_editor_absoluteX="0dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:drawableStart="@drawable/ic_id"
-                android:fontFamily="sans-serif-light"
-                android:inputType="number"
-                tools:targetApi="jelly_bean" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-            android:id="@+id/spinner"
-            android:layout_width="150dp"
-            android:layout_height="40dp"
-            android:layout_below="@+id/textInputLayoutCPassword"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            app:errorEnabled="true"
-            android:layout_toEndOf="@+id/textInputLayoutID"
-            android:padding="5dp" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayoutPhoneNo"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="30dp"
-            android:hint="Phone No."
-            app:errorEnabled="true"
-            android:layout_below="@+id/textInputLayoutID"
-            tools:layout_editor_absoluteX="0dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:drawableStart="@drawable/ic_phone"
-                android:fontFamily="sans-serif-light"
-                android:inputType="phone"
-                tools:targetApi="jelly_bean" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayoutGender"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textInputLayoutID"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="30dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="30dp"
-            android:layout_toEndOf="@+id/textInputLayoutID"
-            android:hint="Gender"
-            app:errorEnabled="true"
-            tools:layout_editor_absoluteX="0dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="-30dp"
-                android:text="Gender" />
-
-            <RadioGroup
-                android:id="@+id/radioGroup"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edittext"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/maleRadioBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:buttonTint="@color/teal_700"
-                    android:checked="true"
-                    android:text="Male" />
-
-                <RadioButton
-                    android:id="@+id/femaleRadioBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:buttonTint="@color/teal_700"
-                    android:checked="false"
-                    android:text="Female" />
-            </RadioGroup>
-        </com.google.android.material.textfield.TextInputLayout>
 
 
         <TextView
@@ -329,50 +126,13 @@
                     android:checked="false"
                     android:text="Doctor" />
             </RadioGroup>
-
-            <Button
-                android:id="@+id/next"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginStart="160dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="-30dp"
-                android:background="@drawable/ic_check" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/textAlready"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="139dp"
-            android:layout_marginEnd="121dp"
-            android:layout_below="@+id/signUpP"
-            android:layout_marginBottom="30dp"
-            android:fontFamily="sans-serif-light"
-            android:text="Already have an account" />
-
-        <Button
-            android:id="@+id/signUpP"
+        <FrameLayout
+            android:id="@+id/frameLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textInputLayoutPhoneNo"
-            android:layout_marginStart="80dp"
-            android:layout_marginEnd="80dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/edittext"
-            android:fontFamily="sans-serif-light"
-            android:gravity="center"
-            android:text="@string/sign_up"
-            android:textColor="@android:color/black"
-            android:textSize="17sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent" />
-
-
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp" />
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
