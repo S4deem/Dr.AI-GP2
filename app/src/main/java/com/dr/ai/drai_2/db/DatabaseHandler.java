@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.dr.ai.drai_2.model.Appointment;
 import com.dr.ai.drai_2.model.User;
+import com.dr.ai.drai_2.pdRecycler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -233,6 +234,33 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return list;
     }
 
+    public List<User> getAllPatients() {
+        List<User> list = new ArrayList<>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        try (Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + KEY_USER_TYPE + " =  'Patient' ;", null)) {
+            if (cursor.moveToFirst()) {
+                do {
+                    User user = new User(cursor.getString(0),
+                            cursor.getString(1),
+                            cursor.getString(2),
+                            cursor.getString(3),
+                            cursor.getBlob(4),
+                            cursor.getString(5),
+                            cursor.getString(6),
+                            cursor.getString(7),
+                            cursor.getString(8),
+                            cursor.getString(9),
+                            cursor.getString(10),
+                            cursor.getString(11),
+                            cursor.getString(12));
+                    // Adding contact to list
+                    list.add(user);
+                } while (cursor.moveToNext());
+            }
+        }
+        return list;
+    }
+
     public Boolean registerAppointment(String date, String time, String type, String doctorId, String patientId) {
         if (!appointmentExist(date,
                 time, doctorId)) {
@@ -297,6 +325,60 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return list;
     }
 
+    public Boolean registerDiagnoses(String diagnoses, String prescription, String doctorId, String patientId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_RECORD_DIAGNOSES, diagnoses);
+        values.put(KEY_RECORD_PRESCRIPTION, prescription);
+        values.put(KEY_RECORD_DOCTOR_ID, doctorId);
+        values.put(KEY_RECORD_PATIENT_ID, patientId);
+
+        // Inserting Row
+        db.insert(TABLE_RECORD, null, values);
+        //2nd argument is String containing nullColumnHack
+        db.close(); // Closing database connection
+        return true;
+    }
+
+    public List<pdRecycler> getAllDiagnoses() {
+        List<pdRecycler> list = new ArrayList<>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        try (Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_RECORD +";", null)) {
+            if (cursor.moveToFirst()) {
+                do {
+                    pdRecycler dia = new pdRecycler();
+                    dia.setId(cursor.getString(0));
+                    dia.setDiagnose(cursor.getString(1));
+                    dia.setPrescription(cursor.getString(2));
+                    dia.setdName(cursor.getString(3));
+                    dia.setpName(cursor.getString(4));
+                    list.add(dia);
+                } while (cursor.moveToNext());
+            }
+        }
+        return list;
+    }
+
+    public List<pdRecycler> getAllDiagnoses(String id) {
+        List<pdRecycler> list = new ArrayList<>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        try (Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_RECORD +" WHERE "+KEY_RECORD_PATIENT_ID+" = $id"+";", null)) {
+            if (cursor.moveToFirst()) {
+                do {
+                    pdRecycler dia = new pdRecycler();
+                    dia.setId(cursor.getString(0));
+                    dia.setDiagnose(cursor.getString(1));
+                    dia.setPrescription(cursor.getString(2));
+                    dia.setdName(cursor.getString(3));
+                    dia.setpName(cursor.getString(4));
+                    list.add(dia);
+                } while (cursor.moveToNext());
+            }
+        }
+        return list;
+    }
+
     /**
      * Private Methods implemented for easy use
      */
@@ -312,6 +394,20 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             db.close();
             return false; // means no users with same email exist
         }
+    }
+
+    private String getUserName(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + KEY_ID + " = " + id + ";", null);
+        if (cursor != null) {
+            while (cursor.moveToNext()){
+                return cursor.getString(1);
+            }
+        } else {
+            db.close();
+        }
+        return null;
     }
 
     private Boolean appointmentExist(String date, String time, String doctorId) {

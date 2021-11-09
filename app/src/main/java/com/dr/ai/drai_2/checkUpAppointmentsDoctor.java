@@ -1,10 +1,5 @@
 package com.dr.ai.drai_2;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -17,13 +12,21 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.dr.ai.drai_2.db.DatabaseHandler;
+import com.dr.ai.drai_2.model.User;
 import com.google.android.material.navigation.NavigationView;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 public class checkUpAppointmentsDoctor extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -36,11 +39,17 @@ public class checkUpAppointmentsDoctor extends AppCompatActivity implements Adap
     private NavigationView mainNavView;
     private Menu mainNavMenu;
     private MenuItem menuItem;
-    private Button menuButton;
+    private Button menuButton, save;
     private DrawerLayout drawer_layout;
 
     String[] options;
-    Spinner doctorSpinner;
+    Spinner patientSpinner;
+
+    RadioGroup appointmentTypeRg;
+    String [] patientNameItems;
+    DatabaseHandler handler;
+    User selectedPatient;
+    String selectedDate, selectedTime, type = "On Person", patientId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,17 +57,36 @@ public class checkUpAppointmentsDoctor extends AppCompatActivity implements Adap
         setContentView(R.layout.activity_check_up_appointments_doctor);
 
 
-        doctorSpinner = findViewById(R.id.doctorSpinner);
-        // Creating ArrayAdapter using the string array and default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.Patient_Id, android.R.layout.simple_spinner_item);
+        patientSpinner = findViewById(R.id.patientSpinner);
+        save = findViewById(R.id.save);
+
+
+        List<User> patientList = handler.getAllPatients();
+        patientNameItems = new String[patientList.size()];
+        for (int i = 0; i < patientList.size(); i++) {
+            patientNameItems[i] = patientList.get(i).getName();
+        }
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, patientNameItems);
         // Specify layout to be used when list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Applying the adapter to our spinner
-        doctorSpinner.setAdapter(adapter);
-        doctorSpinner.setOnItemSelectedListener(this);
-
-        options = checkUpAppointmentsDoctor.this.getResources().getStringArray(R.array.Patient_Id);
+        patientSpinner.setAdapter(adapter);
+        patientSpinner.setOnItemSelectedListener(this);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        patientSpinner.setAdapter(adapter);
+        patientSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                selectedPatient = patientList.get(i);
+            }
+        });
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                handler.registerAppointment(selectedDate, selectedTime, type, signInPage.loggedUser.getId(), selectedPatient.getId());
+                //Todo: navigate to repeat the process
+            }
+        });
 
         drawer_layout = findViewById(R.id.drawer_layout);
         mainNavView = findViewById(R.id.main_nav_view);
@@ -132,8 +160,10 @@ public class checkUpAppointmentsDoctor extends AppCompatActivity implements Adap
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                month = month + 1;
-                String date = makeDateString(day, month, year);
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                month = month + 1 ;
+                String date = makeDateString (day, month, year);
+                selectedDate = simpleDateFormat.format(date);
                 dateButton.setText(date);
 
 

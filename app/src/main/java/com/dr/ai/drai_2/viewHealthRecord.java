@@ -3,6 +3,7 @@ package com.dr.ai.drai_2;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,12 +15,17 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import com.dr.ai.drai_2.db.DatabaseHandler;
+import com.dr.ai.drai_2.model.User;
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class viewHealthRecord extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     String[] options;
-    Spinner doctorSpinner;
+    Spinner patientSpinner;
 
   //  private Spinner spinnerTextSize;
     private Button viewBtn;
@@ -28,21 +34,42 @@ public class viewHealthRecord extends AppCompatActivity implements AdapterView.O
     private MenuItem menuItem;
     private Button menuButton;
     private DrawerLayout drawer_layout;
+    RecyclerView recDiagnoses;
+    RecyclerView.Adapter adapter;
+    List<pdRecycler> pdRecyclers = new ArrayList<>();
+    String [] doctorNameItems;
+    DatabaseHandler handler;
+    User selectedPatient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_health_record);
+        handler = new DatabaseHandler(this);
 
-        doctorSpinner = findViewById(R.id.doctorSpinner);
-        // Creating ArrayAdapter using the string array and default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.Patient_Id, android.R.layout.simple_spinner_item);
+        patientSpinner = findViewById(R.id.doctorSpinner);
+        recDiagnoses = findViewById(R.id.recDiagnoses);
+        List<User> patientList = handler.getAllPatients();
+        doctorNameItems = new String[patientList.size()];
+        for (int i = 0; i < patientList.size(); i++) {
+            doctorNameItems[i] = patientList.get(i).getName();
+        }
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, doctorNameItems);
         // Specify layout to be used when list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Applying the adapter to our spinner
-        doctorSpinner.setAdapter(adapter);
-        doctorSpinner.setOnItemSelectedListener(this);
+        patientSpinner.setAdapter(adapter);
+        patientSpinner.setOnItemSelectedListener(this);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        patientSpinner.setAdapter(adapter);
+        patientSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                selectedPatient = patientList.get(i);
+                loadDiagnoses(selectedPatient.getId());
+            }
+        });
+
 
         options = viewHealthRecord.this.getResources().getStringArray(R.array.Patient_Id);
 
@@ -97,6 +124,12 @@ public class viewHealthRecord extends AppCompatActivity implements AdapterView.O
                 return false;
             }
         });
+    }
+
+    private void loadDiagnoses(String id) {
+        pdRecyclers = handler.getAllDiagnoses(id);
+        adapter = new pdRecyclerAdapter(this, pdRecyclers);
+        recDiagnoses.setAdapter(adapter);
     }
 
     private void menuButton() {

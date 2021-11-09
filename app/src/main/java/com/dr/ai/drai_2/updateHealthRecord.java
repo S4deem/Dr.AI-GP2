@@ -14,32 +14,63 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import com.dr.ai.drai_2.db.DatabaseHandler;
+import com.dr.ai.drai_2.model.User;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.textfield.TextInputEditText;
+
+import java.util.List;
 
 public class updateHealthRecord extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     String[] options;
-    Spinner doctorSpinner;
+    Spinner patientSpinner;
 
     private NavigationView mainNavView;
     private Menu mainNavMenu;
     private MenuItem menuItem;
     private Button menuButton;
     private DrawerLayout drawer_layout;
+    TextInputEditText diagnosisTIET, prescriptionTIET;
+    Button saveBtn;
+    String [] patientNameItems;
+    DatabaseHandler handler;
+    User selectedPatient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_health_record);
 
-        doctorSpinner = findViewById(R.id.doctorSpinner);
-        // Creating ArrayAdapter using the string array and default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.Patient_Id, android.R.layout.simple_spinner_item);
+        diagnosisTIET = findViewById(R.id.diagnosisTIET);
+        prescriptionTIET = findViewById(R.id.prescriptionTIET);
+        saveBtn = findViewById(R.id.saveBtn);
+        patientSpinner = findViewById(R.id.doctorSpinner);
+        List<User> patientList = handler.getAllPatients();
+        patientNameItems = new String[patientList.size()];
+        for (int i = 0; i < patientList.size(); i++) {
+            patientNameItems[i] = patientList.get(i).getName();
+        }
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, patientNameItems);
         // Specify layout to be used when list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Applying the adapter to our spinner
-        doctorSpinner.setAdapter(adapter);
-        doctorSpinner.setOnItemSelectedListener(this);
+        patientSpinner.setAdapter(adapter);
+        patientSpinner.setOnItemSelectedListener(this);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        patientSpinner.setAdapter(adapter);
+        patientSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                selectedPatient = patientList.get(i);
+            }
+        });
+
+        saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveDiagnoses();
+            }
+        });
 
         options = updateHealthRecord.this.getResources().getStringArray(R.array.Patient_Id);
 
@@ -94,6 +125,11 @@ public class updateHealthRecord extends AppCompatActivity implements AdapterView
                 return false;
             }
         });
+    }
+
+    private void saveDiagnoses() {
+        handler.registerDiagnoses(String.valueOf(diagnosisTIET.getText()), String.valueOf(prescriptionTIET.getText()), signInPage.loggedUser.getId(), selectedPatient.getId());
+        //Todo: navigate to repeat the process
     }
 
     private void menuButton() {

@@ -260,7 +260,7 @@ public class onlineAppointments extends AppCompatActivity implements AdapterView
     }
 
     public void openPaymentPage(){
-        handler.registerAppointment(selectedDate, selectedTime, type, selectedDoctor.getId(),"");
+        handler.registerAppointment(selectedDate, selectedTime, type, selectedDoctor.getId(),signInPage.loggedUser.getId());
         Intent intent = new Intent(this, paymentPage.class);
         startActivity(intent);
     }

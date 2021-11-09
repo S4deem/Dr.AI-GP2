@@ -108,6 +108,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:drawableStart="@drawable/ic_add"
+                android:id="@+id/prescriptionTIET"
                 android:fontFamily="sans-serif-light"
                 android:inputType="text"
                 tools:targetApi="jelly_bean" />
@@ -127,6 +128,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/diagnosisTIET"
                 android:drawableStart="@drawable/ic_add"
                 android:fontFamily="sans-serif-light"
                 android:inputType="text"
@@ -135,7 +137,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/signInBtnPatient"
+            android:id="@+id/saveBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
