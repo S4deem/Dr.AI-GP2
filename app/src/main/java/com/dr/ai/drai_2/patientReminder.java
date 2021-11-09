@@ -19,8 +19,10 @@ public class patientReminder extends AppCompatActivity implements CalendarAdapte
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_reminder);
         initWidgets();
@@ -57,6 +59,7 @@ public class patientReminder extends AppCompatActivity implements CalendarAdapte
         setMonthView();
     }
 
+    @Override
     public void onItemClick(int position, LocalDate date)
     {
         if(date != null)
@@ -70,22 +73,7 @@ public class patientReminder extends AppCompatActivity implements CalendarAdapte
     {
         startActivity(new Intent(this, WeekViewActivity.class));
     }
-
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
-    }
 }
-
-
-
-
-
-
-
-
-
-
 
 
 

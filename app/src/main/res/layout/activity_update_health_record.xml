@@ -67,6 +67,29 @@
             android:textAlignment="center"
             android:textSize="20dp" />
 
+        <TextView
+            android:id="@+id/textPatientsId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="139dp"
+            android:fontFamily="sans-serif-light"
+            android:text="Patien's ID" />
+
+        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+            android:id="@+id/doctorSpinner"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/textPatientsId"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="10dp"
+            android:padding="5dp"
+            app:errorEnabled="true" />
+
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayoutPassword"
@@ -94,9 +117,9 @@
             android:id="@+id/textInputLayoutEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/textU"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="120dp"
-            android:layout_below="@+id/textU"
             android:layout_marginRight="30dp"
             android:hint="Write the diagnosis here"
             app:errorEnabled="true">
@@ -104,10 +127,10 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
                 android:drawableStart="@drawable/ic_add"
                 android:fontFamily="sans-serif-light"
                 android:inputType="text"
+                android:textColor="@color/black"
                 tools:targetApi="jelly_bean" />
         </com.google.android.material.textfield.TextInputLayout>
 

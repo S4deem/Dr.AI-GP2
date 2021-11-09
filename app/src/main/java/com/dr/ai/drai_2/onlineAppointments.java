@@ -43,6 +43,8 @@ public class onlineAppointments extends AppCompatActivity implements AdapterView
     private MenuItem menuItem;
     private Button menuButton;
     private DrawerLayout drawer_layout;
+    Spinner patientSpinner;
+    String[] options;
     RadioGroup appointmentTypeRg;
     String [] doctorNameItems;
     DatabaseHandler handler;
@@ -53,22 +55,12 @@ public class onlineAppointments extends AppCompatActivity implements AdapterView
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_online_appointments);
+        patientSpinner = findViewById(R.id.patientSpinner);
         handler = new DatabaseHandler(this);
-        BottomNavigationView bottomNavigationView = findViewById(R.id.footer);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.home:
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        return true;
-                    case R.id.goBack:
-                        startActivity(new Intent(getApplicationContext(), patientAppointments.class));
-                        return true;
-                }
-                return false;
-            }
-        });
+
+
+        options = onlineAppointments.this.getResources().getStringArray(R.array.Doctors_Id);
+
         drawer_layout = findViewById(R.id.drawer_layout);
         mainNavView = findViewById(R.id.main_nav_view);
         appointmentTypeRg = findViewById(R.id.appointmentTypeRg);

@@ -17,10 +17,9 @@ import android.widget.Spinner;
 import com.google.android.material.navigation.NavigationView;
 
 public class updateHealthRecord1 extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    String[] options;
-    Spinner doctorSpinner;
 
-  //  private Spinner spinnerTextSize;
+
+    //  private Spinner spinnerTextSize;
     private Button viewBtn;
     private NavigationView mainNavView;
     private Menu mainNavMenu;
@@ -32,18 +31,6 @@ public class updateHealthRecord1 extends AppCompatActivity implements AdapterVie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_health_record1);
-        doctorSpinner = findViewById(R.id.doctorSpinner);
-        // Creating ArrayAdapter using the string array and default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.Patient_Id, android.R.layout.simple_spinner_item);
-        // Specify layout to be used when list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Applying the adapter to our spinner
-        doctorSpinner.setAdapter(adapter);
-        doctorSpinner.setOnItemSelectedListener(this);
-
-        options = updateHealthRecord1.this.getResources().getStringArray(R.array.Patient_Id);
-
         drawer_layout = findViewById(R.id.drawer_layout);
         mainNavView = findViewById(R.id.main_nav_view);
         mainNavView.setItemIconTintList(null);
@@ -96,10 +83,12 @@ public class updateHealthRecord1 extends AppCompatActivity implements AdapterVie
             }
         });
     }
-    public void openViewPage(){
+
+    public void openViewPage() {
         Intent intent = new Intent(this, updateHealthRecord.class);
         startActivity(intent);
     }
+
     private void menuButton() {
 
         drawer_layout.openDrawer(GravityCompat.START);
@@ -114,5 +103,10 @@ public class updateHealthRecord1 extends AppCompatActivity implements AdapterVie
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    public void openUpdateHR(View view) {
+        Intent intent = new Intent(this, updateHealthRecord.class);
+        startActivity(intent);
     }
 }

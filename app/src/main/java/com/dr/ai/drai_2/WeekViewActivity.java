@@ -2,19 +2,23 @@ package com.dr.ai.drai_2;
 
 import static com.dr.ai.drai_2.CalendarUtils.daysInWeekArray;
 import static com.dr.ai.drai_2.CalendarUtils.monthYearFromDate;
+import static com.dr.ai.drai_2.CalendarUtils.daysInMonthArray;
+
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import android.widget.Toast;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+
 
 public class WeekViewActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener
 {
