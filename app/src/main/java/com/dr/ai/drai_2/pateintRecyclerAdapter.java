@@ -1,6 +1,7 @@
 package com.dr.ai.drai_2;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -19,25 +20,30 @@ public class pateintRecyclerAdapter extends RecyclerView.Adapter<pateintRecycler
         this.context = context;
         this.patientPRecyclers = patientPRecyclers;
     }
+
     @NonNull
     @Override
     public pateintRecyclerAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // inflate Layout (giving a look to each row)
-        return null;
+        View view = LayoutInflater.from(context).inflate(R.layout.recycler_p_row, parent, false);
+        return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
+        patientPRecycler item = patientPRecyclers.get(position);
+        holder.dateView.setText(item.getDate());
+        holder.typeOAView.setText(item.getTypeOfSession());
+        holder.doctorView.setText(item.getDoctorName());
     }
 
     @Override
     public int getItemCount() {
         // number of items displayed
-        return 0;
+        return patientPRecyclers.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    class MyViewHolder extends RecyclerView.ViewHolder {
         // takes views from recycler_view_row layout file
 
         TextView doctorView, typeOAView, dateView;

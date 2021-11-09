@@ -1,10 +1,5 @@
 package com.dr.ai.drai_2;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -12,13 +7,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
 import com.dr.ai.drai_2.db.DatabaseHandler;
 import com.dr.ai.drai_2.model.User;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -48,6 +45,7 @@ public class signInPage extends AppCompatActivity {
     private TextInputLayout textInputPassword;
     String emailInput, passwordInput;
     DatabaseHandler handler;
+    public static User loggedUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,12 +149,10 @@ public class signInPage extends AppCompatActivity {
         if (passwordInput.isEmpty()) {
             textInputPassword.setError("Field can't be empty");
             return false;
-        }
-        else if (!PASSWORD_PATTERN.matcher(passwordInput).matches()){
+        } else if (!PASSWORD_PATTERN.matcher(passwordInput).matches()) {
             textInputPassword.setError("Password is weak");
             return false;
-        }
-        else{
+        } else {
             textInputPassword.setError(null);
             textInputPassword.setErrorEnabled(false);
             return true;
@@ -176,8 +172,9 @@ public class signInPage extends AppCompatActivity {
 
         User user = handler.login(emailInput, passwordInput);
         if (user != null) {
+            loggedUser = user;
             Toast.makeText(this, user.getEmail(), Toast.LENGTH_SHORT).show();
-        }else {
+        } else {
             Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show();
         }
     }
