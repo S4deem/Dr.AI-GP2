@@ -52,8 +52,18 @@ public class onlineAppointments extends AppCompatActivity implements AdapterView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_online_appointments);
+        patientSpinner = findViewById(R.id.patientSpinner);
+        // Creating ArrayAdapter using the string array and default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.Doctors_Id, android.R.layout.simple_spinner_item);
+        // Specify layout to be used when list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Applying the adapter to our spinner
+        patientSpinner.setAdapter(adapter);
+        patientSpinner.setOnItemSelectedListener(this);
+
+        options = onlineAppointments.this.getResources().getStringArray(R.array.Doctors_Id);
 
         paGroupBtn = findViewById(R.id.paGroupBtn);
         irBtn = findViewById(R.id.irBtn);

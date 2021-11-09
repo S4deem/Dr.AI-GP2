@@ -105,6 +105,7 @@
             android:fontFamily="sans-serif-light"
             android:gravity="center"
             android:text="@string/health_record"
+            android:onClick="openViewPage"
             android:textAllCaps="true"
             android:textColor="@android:color/black"
             android:textSize="17sp"

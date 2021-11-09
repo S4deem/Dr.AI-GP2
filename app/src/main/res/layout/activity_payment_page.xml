@@ -73,13 +73,6 @@
             android:text="Pay for session"
             android:textAllCaps="true"
             android:textColor="@color/black" />
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/footer"
-            app:menu="@menu/generalfooter"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/edittext"/>
 
     </RelativeLayout>
 

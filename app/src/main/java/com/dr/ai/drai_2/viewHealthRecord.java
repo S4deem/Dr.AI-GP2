@@ -98,10 +98,7 @@ public class viewHealthRecord extends AppCompatActivity implements AdapterView.O
             }
         });
     }
-    public void openViewPage(){
-        Intent intent = new Intent(this, pdPatient.class);
-        startActivity(intent);
-    }
+
     private void menuButton() {
 
         drawer_layout.openDrawer(GravityCompat.START);
@@ -116,5 +113,10 @@ public class viewHealthRecord extends AppCompatActivity implements AdapterView.O
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    public void openViewPage(View view) {
+        Intent intent = new Intent(this, pdPatient.class);
+        startActivity(intent);
     }
 }

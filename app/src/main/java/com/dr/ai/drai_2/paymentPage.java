@@ -34,21 +34,7 @@ public class paymentPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_page);
-        BottomNavigationView bottomNavigationView = findViewById(R.id.footer);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.home:
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        return true;
-                    case R.id.goBack:
-                        startActivity(new Intent(getApplicationContext(), patientAppointments.class));
-                        return true;
-                }
-                return false;
-            }
-        });
+
         drawer_layout = findViewById(R.id.drawer_layout);
         mainNavView = findViewById(R.id.main_nav_view);
         mainNavView.setItemIconTintList(null);
