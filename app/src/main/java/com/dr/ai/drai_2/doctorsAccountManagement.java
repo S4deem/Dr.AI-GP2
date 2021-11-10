@@ -12,53 +12,58 @@ import android.widget.RadioGroup;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.navigation.NavigationView;
 
 public class doctorsAccountManagement extends AppCompatActivity {
-    private Button doctorsForm;
-    private Button doctorsForm1;
+
     private NavigationView mainNavView;
     private Menu mainNavMenu;
     private MenuItem menuItem;
     private Button menuButton;
     private DrawerLayout drawer_layout;
 
-    private Button next;
+    private RadioButton pendingBtn;
 
-    private RadioGroup radioGroupD;
-
-    private RadioButton pRadioButton;
-    private RadioButton aRadioButton;
-    private RadioButton rRadioButton;
+    FragmentTransaction ft;
+    pendingFragment frgPending;
+    acceptedFragment frgAccepted;
+    rejectedFragment frgRejected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctors_account_management);
 
-        radioGroupD=(RadioGroup)findViewById(R.id.radioGroupD);
+        frgPending = new pendingFragment();
+        frgAccepted = new acceptedFragment();
+        frgRejected = new rejectedFragment();
 
-        pRadioButton=(RadioButton)findViewById(R.id.pRadioBtn);
-        aRadioButton=(RadioButton)findViewById(R.id.aRadioBtn);
-        rRadioButton=(RadioButton)findViewById(R.id.rRadioBtn);
-        next=(Button)findViewById(R.id.nextD);
+        pendingBtn = findViewById(R.id.pendingBtn);
+        pendingBtn.setChecked(true);
+        getSupportFragmentManager().
+                beginTransaction().
+                add(R.id.frameLayoutAdmin, frgPending).
+                commit();
 
-        next.setOnClickListener(new View.OnClickListener() {
+        // set listener
+        ((RadioGroup)findViewById(R.id.radioGroupD)).setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                if(pRadioButton.isChecked()){
-                    Intent intent = new Intent(doctorsAccountManagement.this, pendingAccounts.class);
-                    startActivity(intent);
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                ft = getSupportFragmentManager().beginTransaction();
+                switch (checkedId) {
+                    case R.id.pendingBtn:
+                        ft.replace(R.id.frameLayoutAdmin, frgPending);
+                        break;
+                    case R.id.acceptedBtn:
+                        ft.replace(R.id.frameLayoutAdmin, frgAccepted);
+                        break;
+                    case R.id.rejectedBtn:
+                        ft.replace(R.id.frameLayoutAdmin, frgRejected);
+                        break;
                 }
-                else if(rRadioButton.isChecked()){
-                    Intent intent = new Intent(doctorsAccountManagement.this, rejectedAccounts.class);
-                    startActivity(intent);
-                }
-                else if(aRadioButton.isChecked()){
-                    Intent intent = new Intent(doctorsAccountManagement.this, acceptedAccounts.class);
-                    startActivity(intent);
-                }
+                ft.commit();
             }
         });
 

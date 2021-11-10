@@ -34,14 +34,12 @@ public class signUpPage extends FragmentActivity {
     private MenuItem menuItem;
     private Button menuButton;
     private DrawerLayout drawer_layout;
-    DatabaseHandler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_page);
 
-        handler = new DatabaseHandler(this);
         frg1 = new signUpFragment();
         frg2 = new signUpDocFragment();
         pRadioBtn = findViewById(R.id.pRadioBtn);

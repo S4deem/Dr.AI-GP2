@@ -3,10 +3,7 @@ package com.dr.ai.drai_2;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,11 +12,20 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+import com.dr.ai.drai_2.db.DatabaseHandler;
+import com.dr.ai.drai_2.util.Utils;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.regex.Pattern;
 
 /**
@@ -32,7 +38,8 @@ public class signUpDocFragment extends Fragment implements AdapterView.OnItemSel
     Spinner spinner;
 
     ImageView imageView;
-    int SELECT_IMAGE_CODE=1;
+    int SELECT_IMAGE_CODE = 1;
+    private Uri selectedImageUri;
     Button btnImage;
 
     public static final Pattern PASSWORD_PATTERN =
@@ -66,6 +73,10 @@ public class signUpDocFragment extends Fragment implements AdapterView.OnItemSel
     private TextInputLayout textInputName;
     // private TextInputLayout textInputCity;
     private TextInputLayout textInputIban;
+    Button signUpP;
+    DatabaseHandler handler;
+    private RadioGroup genderRG;
+    String nameInput, ibanInput, cityInput, idInput, phoneInput, passwordInput, emailInput, selectedGender = "Male";
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -109,9 +120,10 @@ public class signUpDocFragment extends Fragment implements AdapterView.OnItemSel
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_sign_up_doc, container, false);
-
+        View view = inflater.inflate(R.layout.fragment_sign_up_doc, container, false);
+        handler = new DatabaseHandler(requireActivity());
         spinner = view.findViewById(R.id.spinner);
+        signUpP = view.findViewById(R.id.signUpP);
         // Creating ArrayAdapter using the string array and default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 getActivity().getBaseContext(),
@@ -150,11 +162,24 @@ public class signUpDocFragment extends Fragment implements AdapterView.OnItemSel
         textInputName = view.findViewById(R.id.textInputLayoutName);
         //  textInputCity = findViewById(R.id.textInputLayoutCity);
         textInputIban = view.findViewById(R.id.textInputLayoutIban);
+        genderRG = view.findViewById(R.id.radioGroup);
 
-        return inflater.inflate(R.layout.fragment_sign_up_doc, container, false);
+        genderRG.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if (radioGroup.getCheckedRadioButtonId() == view.findViewById(R.id.maleRadioBtn).getId()) {
+                    selectedGender = "Male";
+                } else {
+                    selectedGender = "Female";
+                }
+            }
+        });
+
+        return view;
     }
+
     private boolean validateEmail() {
-        String emailInput = textInputEmail.getEditText().getText().toString().trim();
+        emailInput = textInputEmail.getEditText().getText().toString().trim();
         if (emailInput.isEmpty()) {
             textInputEmail.setError("Field can't be empty");
             return false;
@@ -170,34 +195,28 @@ public class signUpDocFragment extends Fragment implements AdapterView.OnItemSel
     }
 
     private boolean validatePassword() {
-        String passwordInput = textInputPassword.getEditText().getText().toString().trim();
+        passwordInput = textInputPassword.getEditText().getText().toString().trim();
         if (passwordInput.isEmpty()) {
             textInputPassword.setError("Field can't be empty");
             return false;
-        }
-        else if (!PASSWORD_PATTERN.matcher(passwordInput).matches()){
+        } else if (!PASSWORD_PATTERN.matcher(passwordInput).matches()) {
             textInputPassword.setError("Password is weak");
             return false;
-        }
-        else{
+        } else {
             textInputPassword.setError(null);
             textInputPassword.setErrorEnabled(false);
             return true;
         }
     }
 
+
     private boolean validateCPassword() {
         String passwordInput = textInputPassword.getEditText().getText().toString().trim();
         String passwordCInput = textInputCPassword.getEditText().getText().toString().trim();
-        if (passwordCInput == passwordInput) {
-            textInputCPassword.setError("Field can't be empty");
+        if (!passwordCInput.equals(passwordInput)) {
+            textInputCPassword.setError("Password isn't correct");
             return false;
-        }
-        else if (!PASSWORD_PATTERN.matcher(passwordCInput).matches()){
-            textInputCPassword.setError("Password is weak");
-            return false;
-        }
-        else{
+        } else {
             textInputCPassword.setError(null);
             textInputCPassword.setErrorEnabled(false);
             return true;
@@ -205,16 +224,14 @@ public class signUpDocFragment extends Fragment implements AdapterView.OnItemSel
     }
 
     private boolean validatePhone() {
-        String phoneInput = textInputPhone.getEditText().getText().toString().trim();
+        phoneInput = textInputPhone.getEditText().getText().toString().trim();
         if (phoneInput.isEmpty()) {
             textInputPhone.setError("Field can't be empty");
             return false;
-        }
-        else if (!PHONE_PATTERN.matcher(phoneInput).matches()){
+        } else if (!PHONE_PATTERN.matcher(phoneInput).matches()) {
             textInputPhone.setError("Make sure you entered the correct number");
             return false;
-        }
-        else{
+        } else {
             textInputPhone.setError(null);
             textInputPhone.setErrorEnabled(false);
             return true;
@@ -222,16 +239,14 @@ public class signUpDocFragment extends Fragment implements AdapterView.OnItemSel
     }
 
     private boolean validateID() {
-        String idInput = textInputID.getEditText().getText().toString().trim();
+        idInput = textInputID.getEditText().getText().toString().trim();
         if (idInput.isEmpty()) {
             textInputID.setError("Field can't be empty");
             return false;
-        }
-        else if (!ID_PATTERN.matcher(idInput).matches()){
+        } else if (!ID_PATTERN.matcher(idInput).matches()) {
             textInputID.setError("Make sure you entered the correct number");
             return false;
-        }
-        else{
+        } else {
             textInputID.setError(null);
             textInputID.setErrorEnabled(false);
             return true;
@@ -240,16 +255,14 @@ public class signUpDocFragment extends Fragment implements AdapterView.OnItemSel
     }
 
     private boolean validateName() {
-        String nameInput = textInputName.getEditText().getText().toString().trim();
+        nameInput = textInputName.getEditText().getText().toString().trim();
         if (nameInput.isEmpty()) {
             textInputName.setError("Field can't be empty");
             return false;
-        }
-        else if (!NAME_PATTERN.matcher(nameInput).matches()){
+        } else if (!NAME_PATTERN.matcher(nameInput).matches()) {
             textInputName.setError("Make sure you entered the correct name");
             return false;
-        }
-        else{
+        } else {
             textInputName.setError(null);
             textInputName.setErrorEnabled(false);
             return true;
@@ -257,35 +270,15 @@ public class signUpDocFragment extends Fragment implements AdapterView.OnItemSel
 
     }
 
-    /*private boolean validateCity() {
-        String cityInput = textInputCity.getEditText().getText().toString().trim();
-        if (cityInput.isEmpty()) {
-            textInputCity.setError("Field can't be empty");
-            return false;
-        }
-        else if (!NAME_PATTERN.matcher(cityInput).matches()){
-            textInputCity.setError("Make sure you entered the correct name");
-            return false;
-        }
-        else{
-            textInputCity.setError(null);
-            textInputCity.setErrorEnabled(false);
-            return true;
-        }
-
-    }*/
-
     private boolean validateIban() {
-        String ibanInput = textInputIban.getEditText().getText().toString().trim();
+        ibanInput = textInputIban.getEditText().getText().toString().trim();
         if (ibanInput.isEmpty()) {
             textInputIban.setError("Field can't be empty");
             return false;
-        }
-        else if (!IBAN_PATTERN.matcher(ibanInput).matches()){
+        } else if (!IBAN_PATTERN.matcher(ibanInput).matches()) {
             textInputIban.setError("Make the Iban starts with 'SA'");
             return false;
-        }
-        else{
+        } else {
             textInputIban.setError(null);
             textInputIban.setErrorEnabled(false);
             return true;
@@ -293,33 +286,44 @@ public class signUpDocFragment extends Fragment implements AdapterView.OnItemSel
 
     }
 
-    private boolean validateCity(){
-        String spinnerValidate= null;
-        if(spinner != null && spinner.getSelectedItem() !=null ) {
-            spinnerValidate = (String)spinner.getSelectedItem();
-            return false;
-        } else  {
-            Toast.makeText(getActivity(),"Choose a city!",Toast.LENGTH_SHORT).show();
+    private boolean validateCity() {
+        if (cityInput != null ) {
             return true;
+        } else {
+            Toast.makeText(getActivity(), "Choose a city!", Toast.LENGTH_SHORT).show();
+            return false;
         }
     }
 
 
-
-
-
-    public void confirmInput (View v) {
-        if (!validateEmail() | !validatePassword() | validateCPassword() | validatePhone() | validateID() | validateName() | validateCity() | validateIban())  {
+    private void confirmInput() {
+        if (!validateEmail() || !validatePassword() || !validateCPassword() || !validatePhone() || !validateID() || !validateName() || !validateCity() || !validateIban() || selectedImageUri==null) {
             return;
+        }else {
+            try {
+                InputStream iStream = requireActivity().getContentResolver().openInputStream(selectedImageUri);
+                byte[] inputData = Utils.getBytes(iStream);
+
+                if(handler.doctorRegister(nameInput, emailInput, idInput, inputData, selectedGender, cityInput, phoneInput, passwordInput, ibanInput)){
+                    //Todo: navigate to login
+                }else {
+                    Log.e("DB","Register error");
+                }
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+
         }
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode==1){
-            Uri uri = data.getData();
-            imageView.setImageURI(uri);
+        if (requestCode == SELECT_IMAGE_CODE) {
+            selectedImageUri = data.getData();
+            if (selectedImageUri != null)
+                imageView.setImageURI(selectedImageUri);
 
 
         }
@@ -335,5 +339,16 @@ public class signUpDocFragment extends Fragment implements AdapterView.OnItemSel
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        signUpP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                confirmInput();
+            }
+        });
     }
 }

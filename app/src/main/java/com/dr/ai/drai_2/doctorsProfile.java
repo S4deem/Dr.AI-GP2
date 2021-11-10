@@ -11,7 +11,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.dr.ai.drai_2.db.DatabaseHandler;
+import com.dr.ai.drai_2.util.Utils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -21,10 +25,26 @@ public class doctorsProfile extends AppCompatActivity {
     private MenuItem menuItem;
     private Button menuButton;
     private DrawerLayout drawer_layout;
+    TextView textInputLayoutName, textInputLayoutEmail, textInputLayoutPassword, textInputLayoutCity1, textInputLayoutID, textInputLayoutGender, textInputLayoutPhoneNo, textInputLayoutIban;
+    ImageView imageView2;
+    DatabaseHandler handler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctors_profile);
+        handler = new DatabaseHandler(this);
+
+        textInputLayoutName = findViewById(R.id.textInputLayoutName);
+        textInputLayoutEmail = findViewById(R.id.textInputLayoutEmail);
+        textInputLayoutPassword = findViewById(R.id.textInputLayoutPassword);
+        textInputLayoutCity1 = findViewById(R.id.textInputLayoutCity1);
+        textInputLayoutID = findViewById(R.id.textInputLayoutID);
+        textInputLayoutGender = findViewById(R.id.textInputLayoutGender);
+        textInputLayoutPhoneNo = findViewById(R.id.textInputLayoutPhoneNo);
+        textInputLayoutIban = findViewById(R.id.textInputLayoutIban);
+        imageView2 = findViewById(R.id.imageView2);
+        loadProfileData();
 
         drawer_layout = findViewById(R.id.drawer_layout);
         mainNavView = findViewById(R.id.main_nav_view);
@@ -78,6 +98,23 @@ public class doctorsProfile extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void loadProfileData() {
+        textInputLayoutName.setText(signInPage.loggedUser.getName());
+        textInputLayoutEmail.setText(signInPage.loggedUser.getEmail());
+        textInputLayoutPassword.setText(signInPage.loggedUser.getPassword());
+        textInputLayoutCity1.setText(signInPage.loggedUser.getCity());
+        textInputLayoutID.setText(signInPage.loggedUser.getPersonal_id());
+        textInputLayoutGender.setText(signInPage.loggedUser.getGender());
+        textInputLayoutPhoneNo.setText(signInPage.loggedUser.getPhone());
+        textInputLayoutIban.setText(signInPage.loggedUser.getIban());
+        imageView2.post(new Runnable() {
+            @Override
+            public void run() {
+                imageView2.setImageBitmap(Utils.getImage(signInPage.loggedUser.getCertificate()));
+            }
+        });
     }
 
     private void menuButton() {

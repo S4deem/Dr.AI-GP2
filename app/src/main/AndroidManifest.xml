@@ -16,15 +16,6 @@
             android:name=".updateHealthRecord"
             android:exported="true" />
         <activity
-            android:name=".rejectedAccounts"
-            android:exported="true" />
-        <activity
-            android:name=".acceptedAccounts"
-            android:exported="true" />
-        <activity
-            android:name=".pendingAccounts"
-            android:exported="true" />
-        <activity
             android:name=".patientReminder"
             android:exported="true" />
 

@@ -97,7 +97,7 @@
                 android:orientation="horizontal">
 
                 <RadioButton
-                    android:id="@+id/pRadioBtn"
+                    android:id="@+id/pendingBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:buttonTint="@color/teal_700"
@@ -105,14 +105,14 @@
                     android:text="Pending" />
 
                 <RadioButton
-                    android:id="@+id/rRadioBtn"
+                    android:id="@+id/rejectedBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:buttonTint="@color/red"
                     android:checked="false"
                     android:text="Rejected" />
                 <RadioButton
-                    android:id="@+id/aRadioBtn"
+                    android:id="@+id/acceptedBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:buttonTint="@color/purple_200"
@@ -120,16 +120,13 @@
                     android:text="Accepted" />
             </RadioGroup>
 
-            <Button
-                android:id="@+id/nextD"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginStart="300dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="-30dp"
-                android:background="@drawable/ic_check" />
         </com.google.android.material.textfield.TextInputLayout>
-
+        <FrameLayout
+            android:id="@+id/frameLayoutAdmin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/textInputLayoutRadio"
+            android:layout_marginTop="10dp" />
 
     </RelativeLayout>
 

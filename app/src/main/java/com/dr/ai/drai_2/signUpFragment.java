@@ -1,28 +1,21 @@
 package com.dr.ai.drai_2;
 
-import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+
 import com.dr.ai.drai_2.db.DatabaseHandler;
-import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.regex.Pattern;
@@ -61,9 +54,11 @@ public class signUpFragment extends Fragment implements AdapterView.OnItemSelect
     private TextInputLayout textInputPhone;
     private TextInputLayout textInputID;
     private TextInputLayout textInputName;
-    private TextInputLayout textInputCity;
     private RadioGroup genderRG;
+    Button signUpP;
     String nameInput, cityInput, idInput, phoneInput, passwordInput, emailInput, selectedGender = "Male";
+    DatabaseHandler handler;
+    ArrayAdapter<CharSequence> adapter;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -111,11 +106,13 @@ public class signUpFragment extends Fragment implements AdapterView.OnItemSelect
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View view =  inflater.inflate(R.layout.fragment_sign_up, container, false);
+        View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
+        handler = new DatabaseHandler(requireActivity());
 
         spinner = (Spinner) view.findViewById(R.id.spinner);
+        signUpP = view.findViewById(R.id.signUpP);
         // Creating ArrayAdapter using the string array and default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+        adapter = ArrayAdapter.createFromResource(
                 getActivity().getBaseContext(),
                 R.array.cities,
                 android.R.layout.simple_spinner_item);
@@ -128,7 +125,7 @@ public class signUpFragment extends Fragment implements AdapterView.OnItemSelect
         options = signUpFragment.this.getResources().getStringArray(R.array.cities);
 
 
-       // userTypeRG = view.findViewById(R.id.radioGroupA);
+        // userTypeRG = view.findViewById(R.id.radioGroupA);
         genderRG = view.findViewById(R.id.radioGroup);
 
         textInputEmail = view.findViewById(R.id.textInputLayoutEmail);
@@ -151,8 +148,8 @@ public class signUpFragment extends Fragment implements AdapterView.OnItemSelect
             }
         });
 
-        return inflater.inflate(R.layout.fragment_sign_up, null);
-}
+        return view;
+    }
 
     private boolean validateEmail() {
         emailInput = textInputEmail.getEditText().getText().toString().trim();
@@ -188,11 +185,8 @@ public class signUpFragment extends Fragment implements AdapterView.OnItemSelect
     private boolean validateCPassword() {
         String passwordInput = textInputPassword.getEditText().getText().toString().trim();
         String passwordCInput = textInputCPassword.getEditText().getText().toString().trim();
-        if (passwordCInput == passwordInput) {
-            textInputCPassword.setError("Field can't be empty");
-            return false;
-        } else if (!PASSWORD_PATTERN.matcher(passwordCInput).matches()) {
-            textInputCPassword.setError("Password is weak");
+        if (!passwordCInput.equals(passwordInput)) {
+            textInputCPassword.setError("Password isn't correct");
             return false;
         } else {
             textInputCPassword.setError(null);
@@ -264,34 +258,42 @@ public class signUpFragment extends Fragment implements AdapterView.OnItemSelect
 
     }*/
 
-    private boolean validateCity(){
-        String spinnerValidate= null;
-        if(spinner != null && spinner.getSelectedItem() !=null ) {
-            spinnerValidate = (String)spinner.getSelectedItem();
-            return false;
-        } else  {
-            Toast.makeText(getActivity(),"Choose a city!",Toast.LENGTH_SHORT).show();
+    private boolean validateCity() {
+        if (cityInput != null ) {
             return true;
+        } else {
+            Toast.makeText(getActivity(), "Choose a city!", Toast.LENGTH_SHORT).show();
+            return false;
         }
     }
 
     private void confirmInput() {
         if (!validateEmail() | !validatePassword() | !validateCPassword() | !validatePhone() | !validateID() | !validateName() | !validateCity()) {
             return;
-        } /*else {
-            if (selectedGender.equals("Doctor")) {
-//                handler.patientRegister(nameInput, emailInput, idInput, selectedGender, cityInput, phoneInput, passwordInput);
-            } */
-        else {
-               // handler.patientRegister(nameInput, emailInput, idInput, selectedGender, cityInput, phoneInput, passwordInput);
+        } else {
+            if(handler.patientRegister(nameInput, emailInput, idInput, selectedGender, cityInput, phoneInput, passwordInput)){
+                //Todo: navigate to login
+            }else {
+                Log.e("DB","Register error");
             }
         }
-
+    }
 
 
     @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+    public void onStart() {
+        super.onStart();
+        signUpP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                confirmInput();
+            }
+        });
+    }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        cityInput = spinner.getSelectedItem().toString();
     }
 
     @Override
