@@ -164,12 +164,7 @@ public class signUpPage extends FragmentActivity {
         textInputName = findViewById(R.id.textInputLayoutName);
         textInputCity = findViewById(R.id.textInputLayoutCity);
 
-        signUpBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                confirmInput();
-            }
-        });
+
 
         userTypeRG.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override

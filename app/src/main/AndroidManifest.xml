@@ -10,9 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DrAI2">
         <activity
-            android:name=".updateHealthRecord1"
-            android:exported="true" />
-        <activity
             android:name=".viewHealthRecord"
             android:exported="true" />
         <activity
@@ -28,9 +25,6 @@
             android:name=".pendingAccounts"
             android:exported="true" />
         <activity
-            android:name=".patientSummaryPage"
-            android:exported="true" />
-        <activity
             android:name=".patientReminder"
             android:exported="true" />
 
@@ -42,34 +36,13 @@
         <activity android:name=".WeekViewActivity" />
 
         <activity
-            android:name=".inPersonAppointments"
-            android:exported="true" />
-        <activity
             android:name=".paymentPage"
-            android:exported="true" />
-        <activity
-            android:name=".onlineAppointments"
-            android:exported="true" />
-        <activity
-            android:name=".patientAppointments"
-            android:exported="true" />
-        <activity
-            android:name=".checkUpAppointments"
-            android:exported="true" />
-        <activity
-            android:name=".diagnosis"
-            android:exported="true" />
-        <activity
-            android:name=".healthRecordComing"
             android:exported="true" />
         <activity
             android:name=".healthRecordPrevious"
             android:exported="true" />
         <activity
             android:name=".healthRecord"
-            android:exported="true" />
-        <activity
-            android:name=".patientAppointmentSummary"
             android:exported="true" />
         <activity
             android:name=".patient"
@@ -79,15 +52,6 @@
             android:exported="true" />
         <activity
             android:name=".checkUpAppointmentsDoctor"
-            android:exported="true" />
-        <activity
-            android:name=".prescription"
-            android:exported="true" />
-        <activity
-            android:name=".previousAppointments"
-            android:exported="true" />
-        <activity
-            android:name=".comingAppointments"
             android:exported="true" />
         <activity
             android:name=".pdPatient"
@@ -100,9 +64,6 @@
             android:exported="true" />
         <activity
             android:name=".patientTracking"
-            android:exported="true" />
-        <activity
-            android:name=".doctorsPatientScreen"
             android:exported="true" />
         <activity
             android:name=".doctorsProfile"
@@ -126,9 +87,6 @@
             android:name=".patientsAccountManagment"
             android:exported="true" />
         <activity
-            android:name=".doctorsAccountManagement1"
-            android:exported="true" />
-        <activity
             android:name=".doctorsAccountManagement"
             android:exported="true" />
         <activity
@@ -142,12 +100,6 @@
             android:exported="true" />
         <activity
             android:name=".security"
-            android:exported="true" />
-        <activity
-            android:name=".signInAdmin"
-            android:exported="true" />
-        <activity
-            android:name=".signInDoctor"
             android:exported="true" />
         <activity
             android:name=".signInPage"
