@@ -103,7 +103,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
-                    android:layout_marginTop="-60dp"
+                    android:layout_marginTop="-130dp"
                     android:text="@string/doctor_s_name"
                     android:textColor="@color/black"
                     android:textSize="18sp"
@@ -117,24 +117,6 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="40dp"/>
 
-                <TextView
-                    android:id="@+id/textClinicsName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/clinic_s_name"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <Spinner
-                    android:id="@+id/clinicSpinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_margin="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="40dp" />
 
                 <TextView
                     android:id="@+id/TextDate"
@@ -220,17 +202,17 @@
         </GridLayout>
     </ScrollView>
 
-    <TextView
-        android:id="@+id/oText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="80dp"
-        android:gravity="center"
-        android:text="@string/online_appointments"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/oText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="80dp"
+            android:gravity="center"
+            android:text="@string/appointments"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/paymentButton"
@@ -251,13 +233,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496" />
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/footer"
-            app:menu="@menu/generalfooter"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/edittext"/>
 
     </RelativeLayout>
 
