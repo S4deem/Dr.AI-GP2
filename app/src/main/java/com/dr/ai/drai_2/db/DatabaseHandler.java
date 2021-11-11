@@ -31,7 +31,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_PHONE_NO = "phone";
     private static final String KEY_PASSWORD = "password";
     private static final String KEY_IBAN = "iban";
-    private static final String KEY_DOCTOR_APPROVED = "approved";//yes(for approved) OR no(for rejected) OR notYet(for registered)
+    private static final String KEY_DOCTOR_APPROVED = "approved";//yes(for approved) OR no(for rejected) OR pending(for registered)
     private static final String KEY_USER_TYPE = "type";//Doctor OR Patient
     private static final String KEY_USER_STATUS = "status";//LoggedIn OR LoggedOut
     //endregion
@@ -124,7 +124,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             values.put(KEY_PHONE_NO, phone);
             values.put(KEY_PASSWORD, password);
             values.put(KEY_IBAN, iban);
-            values.put(KEY_DOCTOR_APPROVED, "notYet");
+            values.put(KEY_DOCTOR_APPROVED, "pending");
             values.put(KEY_USER_TYPE, "Doctor");
             values.put(KEY_USER_STATUS, "LoggedOut");
 
