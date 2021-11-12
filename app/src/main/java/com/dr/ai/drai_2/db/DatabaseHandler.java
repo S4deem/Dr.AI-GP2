@@ -234,6 +234,87 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return list;
     }
 
+    public List<User> getAllPendingDoctors() {
+        List<User> list = new ArrayList<>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        try (Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + KEY_USER_TYPE + " =  'Doctor' AND "+KEY_DOCTOR_APPROVED+" = 'pending';", null)) {
+            if (cursor.moveToFirst()) {
+                do {
+                    User user = new User(cursor.getString(0),
+                            cursor.getString(1),
+                            cursor.getString(2),
+                            cursor.getString(3),
+                            cursor.getBlob(4),
+                            cursor.getString(5),
+                            cursor.getString(6),
+                            cursor.getString(7),
+                            cursor.getString(8),
+                            cursor.getString(9),
+                            cursor.getString(10),
+                            cursor.getString(11),
+                            cursor.getString(12));
+                    // Adding contact to list
+                    list.add(user);
+                } while (cursor.moveToNext());
+            }
+        }
+        return list;
+    }
+
+    public List<User> getAllAcceptedDoctors() {
+        List<User> list = new ArrayList<>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        try (Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + KEY_USER_TYPE + " =  'Doctor' AND "+KEY_DOCTOR_APPROVED+" = 'yes';", null)) {
+            if (cursor.moveToFirst()) {
+                do {
+                    User user = new User(cursor.getString(0),
+                            cursor.getString(1),
+                            cursor.getString(2),
+                            cursor.getString(3),
+                            cursor.getBlob(4),
+                            cursor.getString(5),
+                            cursor.getString(6),
+                            cursor.getString(7),
+                            cursor.getString(8),
+                            cursor.getString(9),
+                            cursor.getString(10),
+                            cursor.getString(11),
+                            cursor.getString(12));
+                    // Adding contact to list
+                    list.add(user);
+                } while (cursor.moveToNext());
+            }
+        }
+        return list;
+    }
+
+    public List<User> getAllRejectedDoctors() {
+        List<User> list = new ArrayList<>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        try (Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + KEY_USER_TYPE + " =  'Doctor' AND "+KEY_DOCTOR_APPROVED+" = 'no';", null)) {
+            if (cursor.moveToFirst()) {
+                do {
+                    User user = new User(cursor.getString(0),
+                            cursor.getString(1),
+                            cursor.getString(2),
+                            cursor.getString(3),
+                            cursor.getBlob(4),
+                            cursor.getString(5),
+                            cursor.getString(6),
+                            cursor.getString(7),
+                            cursor.getString(8),
+                            cursor.getString(9),
+                            cursor.getString(10),
+                            cursor.getString(11),
+                            cursor.getString(12));
+                    // Adding contact to list
+                    list.add(user);
+                } while (cursor.moveToNext());
+            }
+        }
+        return list;
+    }
+
     public List<User> getAllPatients() {
         List<User> list = new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();
