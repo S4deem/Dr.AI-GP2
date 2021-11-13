@@ -12,86 +12,32 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="0dp"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:id="@+id/appBarLayout">
 
+            <com.google.android.material.appbar.MaterialToolbar
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:navigationIcon="@drawable/ic_baseline_menu_24"
+                android:background="@color/white"
+                android:id="@+id/topAppBar"/>
 
-            <Button
-                android:id="@+id/menuButton"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/ic_baseline_menu_24" />
+        </com.google.android.material.appbar.AppBarLayout>
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/frameLayoutDrawer"
+            android:layout_below="@+id/appBarLayout"/>
 
-        </LinearLayout>
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_marginTop="52dp"
             android:background="@color/black"/>
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="214dp"
-            android:layout_height="227dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="97dp"
-            android:layout_marginTop="66dp"
-            android:layout_marginEnd="100dp"
-            android:background="@drawable/bg"
-            android:scaleType="centerCrop" />
-
-        <TextView
-            android:id="@+id/textWelcome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="1"
-            android:layout_column="0"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_gravity="center"
-            android:layout_marginStart="173dp"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="154dp"
-            android:layout_marginEnd="174dp"
-            android:layout_marginBottom="50dp"
-            android:text="Dr.AI"
-            android:textColorLink="@color/black"
-            android:textSize="30sp"/>
-
-        <Button
-            android:id="@+id/signIn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/imageView"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="177dp"
-            android:layout_marginEnd="80dp"
-            android:background="@drawable/edittext"
-            android:text="Sign In" />
-
-        <Button
-            android:id="@+id/signUp"
-            android:layout_below="@+id/signIn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="80dp"
-            android:layout_marginEnd="80dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/edittext"
-            android:text="Sign Up" />
 
     </RelativeLayout>
 
@@ -101,7 +47,8 @@
         android:id="@+id/main_nav_view"
         android:layout_gravity="start"
         app:menu="@menu/navigation_menu"
-        app:headerLayout="@layout/navigation_header"/>
+        app:headerLayout="@layout/navigation_header"
+        android:visibility="visible"/>
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

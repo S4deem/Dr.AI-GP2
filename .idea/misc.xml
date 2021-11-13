@@ -3,12 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/activity_about_us.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/activity_about_us.xml" value="0.15693430656934307" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/activity_accepted_accounts.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/activity_admin_screen.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/activity_check_up_appointments.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/activity_check_up_appointments_doctor.xml" value="0.176" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/activity_coming_appointments.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/activity_contact_us.xml" value="0.1" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/activity_daily_calendar.xml" value="0.1" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/activity_diagnosis.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/activity_doctors_account_management.xml" value="0.25416666666666665" />
@@ -24,7 +25,7 @@
         <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/activity_health_record_previous.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/activity_health_records.xml" value="0.176" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/activity_in_person_appointments.xml" value="0.264" />
-        <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/activity_main.xml" value="0.152" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/activity_online_appointments.xml" value="0.264" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/activity_patient.xml" value="0.264" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/activity_patient_appointment_summary.xml" value="0.2" />
@@ -41,6 +42,7 @@
         <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/activity_prescription.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/activity_previous_appointments.xml" value="0.13177083333333334" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/activity_rejected_accounts.xml" value="0.12604166666666666" />
+        <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/activity_security.xml" value="0.12239583333333333" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/activity_sign_in_page.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/activity_sign_up_doctor.xml" value="0.176" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/activity_sign_up_page.xml" value="0.152" />
@@ -50,8 +52,13 @@
         <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/activity_week_view.xml" value="0.1" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/calendar_cell.xml" value="0.1" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/event_cell.xml" value="0.1" />
+        <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/fragment_about_us.xml" value="0.12239583333333333" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/fragment_accepted.xml" value="0.12604166666666666" />
+        <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/fragment_contact_us.xml" value="0.10833333333333334" />
+        <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/fragment_home.xml" value="0.24010416666666667" />
+        <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/fragment_logout.xml" value="0.12239583333333333" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/fragment_pending.xml" value="0.12604166666666666" />
+        <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/fragment_privacy.xml" value="0.12239583333333333" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/fragment_rejected.xml" value="0.12604166666666666" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/fragment_sign_up.xml" value="0.152" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/fragment_sign_up_doc.xml" value="0.1171875" />
@@ -60,8 +67,9 @@
         <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/recycler_hr_rows.xml" value="0.4394409937888199" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/recycler_p_row.xml" value="0.536" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/recycler_patient_rows.xml" value="0.536" />
-        <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/recycler_pending_rows.xml" value="0.536" />
+        <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/recycler_pending_rows.xml" value="0.4" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/layout/recycler_view_row.xml" value="0.3368055555555556" />
+        <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/menu/navigation_menu.xml" value="0.136" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/Dr.AI-GP2/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2222222222222222" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/DrAI22/app/src/main/res/drawable/edittext.xml" value="0.1" />
         <entry key="..\:/Users/tefan/AndroidStudioProjects/DrAI22/app/src/main/res/drawable/forimageview.xml" value="0.1" />

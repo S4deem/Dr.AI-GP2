@@ -6,25 +6,25 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.ui.AppBarConfiguration;
 
 import com.dr.ai.drai_2.databinding.ActivityMainBinding;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
 
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
-
-    private NavigationView mainNavView;
-    private Menu mainNavMenu;
-    private MenuItem menuItem;
-    private Button menuButton;
-    private DrawerLayout drawer_layout;
-    private Button signIn;
-    private Button signUp;
+    private AppBarConfiguration mAppBarConfiguration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,99 +32,71 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
 
-        drawer_layout = findViewById(R.id.drawer_layout);
-        mainNavView = findViewById(R.id.main_nav_view);
-        mainNavView.setItemIconTintList(null);
-        menuButton = findViewById(R.id.menuButton);
-        menuButton.setOnClickListener(new View.OnClickListener() {
+        homeFragment mHomeFragment = new homeFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.frameLayoutDrawer, mHomeFragment).commit();
+
+        MaterialToolbar toolbar = findViewById(R.id.topAppBar);
+        DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
+        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.ContactUs, R.id.aboutUs, R.id.Privacy).setDrawerLayout(drawerLayout).build();
+        NavigationView navigationView = findViewById(R.id.main_nav_view);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                menuButton();
+            public void onClick(View v) {
+
+                drawerLayout.openDrawer(GravityCompat.START);
+
             }
         });
-
-        mainNavMenu = mainNavView.getMenu();
-        menuItem = mainNavMenu.findItem(R.id.Home);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                startActivity(intent);
-                return false;
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                item.setChecked(true);
+
+              if (id == R.id.aboutUs) {
+                  Fragment aboutUsFragment = new aboutUsFragment();
+                  openFragment(aboutUsFragment);
+
+                } else if (id == R.id.ContactUs) {
+                    Fragment contactUsFragment = new contactUsFragment();
+                  openFragment(contactUsFragment);
+                } else if (id == R.id.Privacy) {
+                    Fragment privacyFragment = new privacyFragment();
+                  openFragment(privacyFragment);
+                }
+              else if (id == R.id.Home) {
+                  Fragment homeFragment = new homeFragment();
+                  openFragment(homeFragment);
+              }
+
+              else if (id == R.id.LogOut) {
+                 Intent intent = new Intent(MainActivity.this, patientScreen.class);
+                 startActivity(intent);
+
+              }
+
+                drawerLayout.closeDrawer(GravityCompat.START);
+              return true;
             }
         });
+    }
 
-        menuItem = mainNavMenu.findItem(R.id.aboutUs);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(MainActivity.this, patientScreen.class);
-                startActivity(intent);
-                return false;
-            }
-        });
-
-        menuItem = mainNavMenu.findItem(R.id.Privacy);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(MainActivity.this, doctorsScreen.class);
-                startActivity(intent);
-                return false;
-            }
-        });
-
-        menuItem = mainNavMenu.findItem(R.id.ContactUs);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(MainActivity.this, doctorsScreen.class);
-                startActivity(intent);
-                return false;
-            }
-        });
-
-        menuItem = mainNavMenu.findItem(R.id.LogOut);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(MainActivity.this, adminScreen.class);
-                startActivity(intent);
-                return false;
-            }
-        });
-
-
-        signIn = findViewById(R.id.signIn);
-        signIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openSignIn();
-            }
-        });
-
-        signUp = findViewById(R.id.signUp);
-        signUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openSignUp();
-            }
-        });
+    private void openFragment (Fragment fragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayoutDrawer, fragment);
+        fragmentTransaction.commit();
 
     }
-    private void menuButton() {
 
-        drawer_layout.openDrawer(GravityCompat.START);
-
-    }
-    private void openSignIn() {
-
+    public void openSignIn(View view) {
         Intent intent = new Intent(this, signInPage.class);
         startActivity(intent);
     }
 
-    private void openSignUp() {
-
+    public void openSignUp(View view) {
         Intent intent = new Intent(this, signUpPage.class);
         startActivity(intent);
     }

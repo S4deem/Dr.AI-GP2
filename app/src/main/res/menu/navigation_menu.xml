@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="main_nav_view">
+
+    <group android:checkableBehavior="single">
     <item android:id="@+id/Home"
         android:title="Home">
     </item>
@@ -16,6 +20,6 @@
         android:title="Logout">
     </item>
 
-
+    </group>
 
 </menu>
