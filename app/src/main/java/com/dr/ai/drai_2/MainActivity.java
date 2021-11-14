@@ -18,6 +18,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.ui.AppBarConfiguration;
 
 import com.dr.ai.drai_2.databinding.ActivityMainBinding;
+import com.dr.ai.drai_2.db.DatabaseHandler;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -55,35 +56,35 @@ public class MainActivity extends AppCompatActivity {
                 int id = item.getItemId();
                 item.setChecked(true);
 
-              if (id == R.id.aboutUs) {
-                  Fragment aboutUsFragment = new aboutUsFragment();
-                  openFragment(aboutUsFragment);
+                if (id == R.id.aboutUs) {
+                    Fragment aboutUsFragment = new aboutUsFragment();
+                    openFragment(aboutUsFragment);
 
                 } else if (id == R.id.ContactUs) {
                     Fragment contactUsFragment = new contactUsFragment();
-                  openFragment(contactUsFragment);
+                    openFragment(contactUsFragment);
                 } else if (id == R.id.Privacy) {
                     Fragment privacyFragment = new privacyFragment();
-                  openFragment(privacyFragment);
+                    openFragment(privacyFragment);
+                } else if (id == R.id.Home) {
+                    Fragment homeFragment = new homeFragment();
+                    openFragment(homeFragment);
+                } else if (id == R.id.LogOut) {
+                    DatabaseHandler handler = new DatabaseHandler(getApplicationContext());
+                    handler.logout(signInPage.loggedUser);
+                    signInPage.loggedUser = null;
+                    Intent intent = new Intent(MainActivity.this, signInPage.class);
+                    startActivity(intent);
+
                 }
-              else if (id == R.id.Home) {
-                  Fragment homeFragment = new homeFragment();
-                  openFragment(homeFragment);
-              }
-
-              else if (id == R.id.LogOut) {
-                 Intent intent = new Intent(MainActivity.this, patientScreen.class);
-                 startActivity(intent);
-
-              }
 
                 drawerLayout.closeDrawer(GravityCompat.START);
-              return true;
+                return true;
             }
         });
     }
 
-    private void openFragment (Fragment fragment){
+    private void openFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frameLayoutDrawer, fragment);
