@@ -2,6 +2,7 @@ package com.dr.ai.drai_2;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,19 +33,26 @@ public class healthRecordPrevious extends AppCompatActivity {
     DatabaseHandler handler;
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
-    String today;
-    String[] date;//"dd[0]-MM[1]-yyyy[2]"
+    String date;
+//    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+//    String today;
+//    String[] date;//"dd[0]-MM[1]-yyyy[2]"
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_health_record_previous);
-        today = simpleDateFormat.format(Calendar.getInstance().getTime());
-        date = today.split("-");
+//        today = simpleDateFormat.format(Calendar.getInstance().getTime());
+//        date = today.split("-");
         handler = new DatabaseHandler(this);
-        loadAppointments();
         recyclerView = findViewById(R.id.mRecyclerView);
+        if (getIntent().getStringExtra("date") != null){
+            Log.e("Date Status","Arrived");
+            date = getIntent().getStringExtra("date");
+            loadAppointments();
+        }else {
+            Log.e("Date Status","Failed");
+        }
         drawer_layout = findViewById(R.id.drawer_layout);
         mainNavView = findViewById(R.id.main_nav_view);
         mainNavView.setItemIconTintList(null);
@@ -99,7 +107,7 @@ public class healthRecordPrevious extends AppCompatActivity {
 
     }
     private void loadAppointments() {
-        patientPRecyclers = handler.getPatientAppointments(signInPage.loggedUser, date[0]+"-"+date[1]+"-"+date[2]);
+        patientPRecyclers = handler.getPatientAppointments(signInPage.loggedUser, date);
         adapter = new doctorRecyclerAdapter(this, patientPRecyclers);
         recyclerView.setAdapter(adapter);
     }

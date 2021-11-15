@@ -1,10 +1,5 @@
 package com.dr.ai.drai_2;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -18,7 +13,10 @@ import android.widget.DatePicker;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.Calendar;
@@ -134,7 +132,7 @@ public class healthRecord extends AppCompatActivity {
         int month = cal.get(Calendar.MONTH);
         month = month + 1;
         int day = cal.get(Calendar.DAY_OF_MONTH);
-        return makeDateString(day, month, year);
+        return day + "-" + month + "-" + year;
     }
 
 
@@ -142,8 +140,9 @@ public class healthRecord extends AppCompatActivity {
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+//                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
                 month = month + 1;
-                String date = makeDateString(day, month, year);
+                String date = day + "-" + month + "-" + year;
                 dateButton.setText(date);
 
 
@@ -234,7 +233,8 @@ public class healthRecord extends AppCompatActivity {
         //    Date now = new Date(System.currentTimeMillis());
         //    String dateInput = dateButton.getInputType();
         if (dateButton != null) {
-             Intent intent = new Intent(healthRecord.this, healthRecordPrevious.class);
+            Intent intent = new Intent(healthRecord.this, healthRecordPrevious.class);
+            intent.putExtra("date", dateButton.getText());
             startActivity(intent);
             return false;
         } else {

@@ -40,8 +40,8 @@ public class pdPatient extends AppCompatActivity {
         setContentView(R.layout.activity_pd_patient);
 
         handler = new DatabaseHandler(this);
-        loadDiagnoses();
         recyclerView = findViewById(R.id.patientRecyclerView);
+        loadDiagnoses();
         drawer_layout = findViewById(R.id.drawer_layout);
         mainNavView = findViewById(R.id.main_nav_view);
         mainNavView.setItemIconTintList(null);
