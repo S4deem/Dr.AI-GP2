@@ -40,6 +40,7 @@ public class viewHealthRecord extends AppCompatActivity implements AdapterView.O
     String [] doctorNameItems;
     DatabaseHandler handler;
     User selectedPatient;
+    List<User> patientList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +50,7 @@ public class viewHealthRecord extends AppCompatActivity implements AdapterView.O
 
         patientSpinner = findViewById(R.id.doctorSpinner);
         recDiagnoses = findViewById(R.id.recDiagnoses);
-        List<User> patientList = handler.getAllPatients();
+        patientList = handler.getAllPatients();
         doctorNameItems = new String[patientList.size()];
         for (int i = 0; i < patientList.size(); i++) {
             doctorNameItems[i] = patientList.get(i).getName();
@@ -60,15 +61,6 @@ public class viewHealthRecord extends AppCompatActivity implements AdapterView.O
         // Applying the adapter to our spinner
         patientSpinner.setAdapter(adapter);
         patientSpinner.setOnItemSelectedListener(this);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        patientSpinner.setAdapter(adapter);
-        patientSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                selectedPatient = patientList.get(i);
-                loadDiagnoses(selectedPatient.getId());
-            }
-        });
 
 
         options = viewHealthRecord.this.getResources().getStringArray(R.array.Patient_Id);
@@ -140,7 +132,8 @@ public class viewHealthRecord extends AppCompatActivity implements AdapterView.O
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+        selectedPatient = patientList.get(position);
+        loadDiagnoses(selectedPatient.getId());
     }
 
     @Override

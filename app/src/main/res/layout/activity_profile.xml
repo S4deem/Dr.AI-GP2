@@ -59,19 +59,20 @@
             android:layout_height="50dp"
             android:layout_below="@+id/textProfile"
             android:layout_marginLeft="30dp"
+            android:gravity="center_vertical"
             android:layout_marginTop="100dp"
             android:layout_marginRight="30dp"
             android:drawableStart="@drawable/ic_baseline_person_outline_24"
             android:fontFamily="sans-serif-light"
             android:hint="@string/name"
-            android:textColor="@color/black"
-            app:errorEnabled="true" />
+            android:textColor="@color/black" />
 
 
         <TextView
             android:id="@+id/textInputLayoutEmail"
             android:layout_width="150dp"
             android:layout_height="50dp"
+            android:gravity="center_vertical"
             android:layout_below="@+id/textProfile"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="10dp"
@@ -83,14 +84,14 @@
             android:drawableStart="@drawable/ic_email"
             android:fontFamily="sans-serif-light"
             android:hint="@string/email"
-            android:textColor="@color/black"
-            app:errorEnabled="true" />
+            android:textColor="@color/black"/>
 
 
         <TextView
             android:id="@+id/textInputLayoutPassword"
             android:layout_width="150dp"
             android:layout_height="50dp"
+            android:gravity="center_vertical"
             android:layout_below="@+id/textInputLayoutEmail"
             android:layout_alignParentStart="true"
             android:layout_marginStart="30dp"
@@ -101,8 +102,7 @@
             android:drawableStart="@drawable/ic_lock"
             android:fontFamily="sans-serif-light"
             android:hint="@string/password"
-            android:textColor="@color/black"
-            tools:layout_editor_absoluteX="0dp" />
+            android:textColor="@color/black"/>
 
 
         <TextView
@@ -121,7 +121,7 @@
             android:fontFamily="sans-serif-light"
             android:hint="City"
             android:textColor="@color/black"
-            app:errorEnabled="true"
+            android:gravity="center_vertical"
             app:passwordToggleEnabled="true"
             tools:layout_editor_absoluteX="0dp" />
 
@@ -139,7 +139,7 @@
             android:fontFamily="sans-serif-light"
             android:hint="ID"
             android:textColor="@color/black"
-            app:errorEnabled="true"
+            android:gravity="center_vertical"
             tools:layout_editor_absoluteX="0dp" />
 
 
@@ -159,7 +159,7 @@
             android:fontFamily="sans-serif-light"
             android:hint="Gender"
             android:textColor="@color/black"
-            app:errorEnabled="true"
+            android:gravity="center_vertical"
             tools:layout_editor_absoluteX="0dp" />
 
         <TextView
@@ -176,7 +176,7 @@
             android:fontFamily="sans-serif-light"
             android:hint="Phone No."
             android:textColor="@color/black"
-            app:errorEnabled="true"
+            android:gravity="center_vertical"
             tools:layout_editor_absoluteX="0dp" />
 
         <TextView

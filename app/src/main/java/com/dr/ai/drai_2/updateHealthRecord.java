@@ -6,6 +6,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,17 +36,18 @@ public class updateHealthRecord extends AppCompatActivity implements AdapterView
     String [] patientNameItems;
     DatabaseHandler handler;
     User selectedPatient;
+    List<User> patientList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_health_record);
-
+        handler = new DatabaseHandler(this);
         diagnosisTIET = findViewById(R.id.diagnosisTIET);
         prescriptionTIET = findViewById(R.id.prescriptionTIET);
         saveBtn = findViewById(R.id.saveBtn);
         patientSpinner = findViewById(R.id.doctorSpinner);
-        List<User> patientList = handler.getAllPatients();
+        patientList = handler.getAllPatients();
         patientNameItems = new String[patientList.size()];
         for (int i = 0; i < patientList.size(); i++) {
             patientNameItems[i] = patientList.get(i).getName();
@@ -56,14 +58,6 @@ public class updateHealthRecord extends AppCompatActivity implements AdapterView
         // Applying the adapter to our spinner
         patientSpinner.setAdapter(adapter);
         patientSpinner.setOnItemSelectedListener(this);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        patientSpinner.setAdapter(adapter);
-        patientSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                selectedPatient = patientList.get(i);
-            }
-        });
 
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,8 +122,11 @@ public class updateHealthRecord extends AppCompatActivity implements AdapterView
     }
 
     private void saveDiagnoses() {
-        handler.registerDiagnoses(String.valueOf(diagnosisTIET.getText()), String.valueOf(prescriptionTIET.getText()), signInPage.loggedUser.getId(), selectedPatient.getId());
-        //Todo: navigate to repeat the process
+        if (handler.registerDiagnoses(String.valueOf(diagnosisTIET.getText()), String.valueOf(prescriptionTIET.getText()), signInPage.loggedUser.getId(), selectedPatient.getId())) {
+            //Todo: navigate to repeat the process
+        }else {
+            Log.e("DB","Diagnoses Registration Failed");
+        }
     }
 
     private void menuButton() {
@@ -140,7 +137,7 @@ public class updateHealthRecord extends AppCompatActivity implements AdapterView
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+        selectedPatient = patientList.get(position);
     }
 
     @Override

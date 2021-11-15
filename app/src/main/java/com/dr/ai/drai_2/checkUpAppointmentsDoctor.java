@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -50,18 +51,17 @@ public class checkUpAppointmentsDoctor extends AppCompatActivity implements Adap
     DatabaseHandler handler;
     User selectedPatient;
     String selectedDate, selectedTime, type = "On Person", patientId;
+    List<User> patientList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_up_appointments_doctor);
-
-
+        handler = new DatabaseHandler(this);
         patientSpinner = findViewById(R.id.patientSpinner);
         save = findViewById(R.id.save);
 
-
-        List<User> patientList = handler.getAllPatients();
+        patientList = handler.getAllPatients();
         patientNameItems = new String[patientList.size()];
         for (int i = 0; i < patientList.size(); i++) {
             patientNameItems[i] = patientList.get(i).getName();
@@ -72,19 +72,15 @@ public class checkUpAppointmentsDoctor extends AppCompatActivity implements Adap
         // Applying the adapter to our spinner
         patientSpinner.setAdapter(adapter);
         patientSpinner.setOnItemSelectedListener(this);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        patientSpinner.setAdapter(adapter);
-        patientSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                selectedPatient = patientList.get(i);
-            }
-        });
+
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                handler.registerAppointment(selectedDate, selectedTime, type, signInPage.loggedUser.getId(), selectedPatient.getId());
-                //Todo: navigate to repeat the process
+                if(handler.registerAppointment(selectedDate, selectedTime, type, signInPage.loggedUser.getId(), selectedPatient.getId())) {
+                    //Todo: navigate to repeat the process
+                }else {
+                    Log.e("DB","Check up Appointment Failed");
+                }
             }
         });
 
@@ -152,7 +148,7 @@ public class checkUpAppointmentsDoctor extends AppCompatActivity implements Adap
         int month = cal.get(Calendar.MONTH);
         month = month + 1;
         int day = cal.get(Calendar.DAY_OF_MONTH);
-        return makeDateString(day, month, year);
+        return day+"-"+month+"-"+year;
     }
 
 
@@ -160,10 +156,9 @@ public class checkUpAppointmentsDoctor extends AppCompatActivity implements Adap
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
                 month = month + 1 ;
-                String date = makeDateString (day, month, year);
-                selectedDate = simpleDateFormat.format(date);
+                String date = day+"-"+month+"-"+year;
+                selectedDate = date;
                 dateButton.setText(date);
 
 
@@ -256,7 +251,7 @@ public class checkUpAppointmentsDoctor extends AppCompatActivity implements Adap
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+        selectedPatient = patientList.get(position);
     }
 
     @Override

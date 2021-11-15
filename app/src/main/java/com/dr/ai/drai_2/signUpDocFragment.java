@@ -306,8 +306,10 @@ public class signUpDocFragment extends Fragment implements AdapterView.OnItemSel
 
                 if(handler.doctorRegister(nameInput, emailInput, idInput, inputData, selectedGender, cityInput, phoneInput, passwordInput, ibanInput)){
                     //Todo: navigate to login
+                    Log.e("DB","Register Success");
+                    startActivity(new Intent(requireActivity(), signInPage.class));
                 }else {
-                    Log.e("DB","Register error");
+                    Log.e("DB","User Already Exist");
                 }
             }catch (Exception e) {
                 e.printStackTrace();
@@ -333,6 +335,7 @@ public class signUpDocFragment extends Fragment implements AdapterView.OnItemSel
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         //  Toast.makeText(this, " You select >> "+options[position], Toast.LENGTH_SHORT).show();
+        cityInput = spinner.getSelectedItem().toString();
 
     }
 

@@ -10,6 +10,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -49,6 +50,7 @@ public class onlineAppointments extends AppCompatActivity implements AdapterView
     String [] doctorNameItems;
     DatabaseHandler handler;
     User selectedDoctor;
+    List<User> doctorsList;
     String selectedDate, selectedTime, type = "On Person", patientId; // from sharedPre
 
     @Override
@@ -120,7 +122,7 @@ public class onlineAppointments extends AppCompatActivity implements AdapterView
         dateButton.setText(getTodaysDate());
         timeButton = findViewById(R.id.buttonTime);
         doctorListSpinner = findViewById(R.id.doctorSpinner);
-        List<User> doctorsList = handler.getAllDoctors();
+        doctorsList = handler.getAllDoctors();
         doctorNameItems = new String[doctorsList.size()];
         for (int i = 0; i < doctorsList.size(); i++) {
             doctorNameItems[i] = doctorsList.get(i).getName();
@@ -128,12 +130,7 @@ public class onlineAppointments extends AppCompatActivity implements AdapterView
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, doctorNameItems);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         doctorListSpinner.setAdapter(adapter);
-        doctorListSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                selectedDoctor = doctorsList.get(i);
-            }
-        });
+        doctorListSpinner.setOnItemSelectedListener(this);
 
         appointmentTypeRg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -161,7 +158,7 @@ public class onlineAppointments extends AppCompatActivity implements AdapterView
         int month = cal.get(Calendar.MONTH);
         month = month + 1;
         int day = cal.get(Calendar.DAY_OF_MONTH);
-        return makeDateString(day, month, year);
+        return day+"-"+month+"-"+year;
     }
 
 
@@ -169,10 +166,10 @@ public class onlineAppointments extends AppCompatActivity implements AdapterView
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+//                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
                 month = month + 1 ;
-                String date = makeDateString (day, month, year);
-                selectedDate = simpleDateFormat.format(date);
+                String date = day+"-"+month+"-"+year;
+                selectedDate = date;
                 dateButton.setText(date);
 
 
@@ -260,9 +257,12 @@ public class onlineAppointments extends AppCompatActivity implements AdapterView
     }
 
     public void openPaymentPage(){
-        handler.registerAppointment(selectedDate, selectedTime, type, selectedDoctor.getId(),signInPage.loggedUser.getId());
-        Intent intent = new Intent(this, paymentPage.class);
-        startActivity(intent);
+        if(handler.registerAppointment(selectedDate, selectedTime, type, selectedDoctor.getId(),signInPage.loggedUser.getId())) {
+            Intent intent = new Intent(this, paymentPage.class);
+            startActivity(intent);
+        }else {
+            Log.e("DB","Appointment Registration Failed");
+        }
     }
     private void menuButton() {
 
@@ -272,7 +272,7 @@ public class onlineAppointments extends AppCompatActivity implements AdapterView
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+        selectedDoctor = doctorsList.get(position);
     }
 
     @Override

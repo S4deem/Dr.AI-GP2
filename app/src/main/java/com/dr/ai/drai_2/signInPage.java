@@ -174,6 +174,11 @@ public class signInPage extends AppCompatActivity {
         if (user != null) {
             loggedUser = user;
             Toast.makeText(this, user.getEmail(), Toast.LENGTH_SHORT).show();
+            if (user.getType().equals("Patient")) {
+                startActivity(new Intent(this, patientScreen.class));
+            }else {
+                startActivity(new Intent(this, doctorsScreen.class));
+            }
         } else {
             Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show();
         }

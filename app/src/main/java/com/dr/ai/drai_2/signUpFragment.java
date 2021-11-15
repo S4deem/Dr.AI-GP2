@@ -1,5 +1,6 @@
 package com.dr.ai.drai_2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
@@ -274,6 +275,7 @@ public class signUpFragment extends Fragment implements AdapterView.OnItemSelect
             if(handler.patientRegister(nameInput, emailInput, idInput, selectedGender, cityInput, phoneInput, passwordInput)){
                 //Todo: navigate to login
                 Log.e("DB","Register Success");
+                startActivity(new Intent(requireActivity(), signInPage.class));
             }else {
                 Log.e("DB","User Already Exist");
             }

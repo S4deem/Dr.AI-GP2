@@ -83,6 +83,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/recDiagnoses"
             android:layout_margin="5dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:layout_below="@id/doctorSpinner"/>
 
         <TextView
