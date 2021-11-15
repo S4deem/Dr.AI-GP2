@@ -154,14 +154,14 @@ public class signUpFragment extends Fragment implements AdapterView.OnItemSelect
     private boolean validateEmail() {
         emailInput = textInputEmail.getEditText().getText().toString().trim();
         if (emailInput.isEmpty()) {
-            textInputEmail.setError("Field can't be empty");
+            textInputEmail.getEditText().setError("Field can't be empty");
             return false;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
-            textInputEmail.setError("Please enter a valid email address");
+            textInputEmail.getEditText().setError("Please enter a valid email address");
             return false;
 
         } else {
-            textInputEmail.setError(null);
+            textInputEmail.getEditText().setError(null);
             textInputEmail.setErrorEnabled(false);
             return true;
         }
@@ -170,13 +170,13 @@ public class signUpFragment extends Fragment implements AdapterView.OnItemSelect
     private boolean validatePassword() {
         passwordInput = textInputPassword.getEditText().getText().toString().trim();
         if (passwordInput.isEmpty()) {
-            textInputPassword.setError("Field can't be empty");
+            textInputPassword.getEditText().setError("Field can't be empty");
             return false;
         } else if (!PASSWORD_PATTERN.matcher(passwordInput).matches()) {
-            textInputPassword.setError("Password is weak");
+            textInputPassword.getEditText().setError("Password is weak");
             return false;
         } else {
-            textInputPassword.setError(null);
+            textInputPassword.getEditText().setError(null);
             textInputPassword.setErrorEnabled(false);
             return true;
         }
@@ -186,10 +186,10 @@ public class signUpFragment extends Fragment implements AdapterView.OnItemSelect
         String passwordInput = textInputPassword.getEditText().getText().toString().trim();
         String passwordCInput = textInputCPassword.getEditText().getText().toString().trim();
         if (!passwordCInput.equals(passwordInput)) {
-            textInputCPassword.setError("Password isn't correct");
+            textInputCPassword.getEditText().setError("Password isn't correct");
             return false;
         } else {
-            textInputCPassword.setError(null);
+            textInputCPassword.getEditText().setError(null);
             textInputCPassword.setErrorEnabled(false);
             return true;
         }
@@ -198,13 +198,13 @@ public class signUpFragment extends Fragment implements AdapterView.OnItemSelect
     private boolean validatePhone() {
         phoneInput = textInputPhone.getEditText().getText().toString().trim();
         if (phoneInput.isEmpty()) {
-            textInputPhone.setError("Field can't be empty");
+            textInputPhone.getEditText().setError("Field can't be empty");
             return false;
         } else if (!PHONE_PATTERN.matcher(phoneInput).matches()) {
-            textInputPhone.setError("Make sure you entered the correct number");
+            textInputPhone.getEditText().setError("Make sure you entered the correct number");
             return false;
         } else {
-            textInputPhone.setError(null);
+            textInputPhone.getEditText().setError(null);
             textInputPhone.setErrorEnabled(false);
             return true;
         }
@@ -213,10 +213,10 @@ public class signUpFragment extends Fragment implements AdapterView.OnItemSelect
     private boolean validateID() {
         idInput = textInputID.getEditText().getText().toString().trim();
         if (idInput.isEmpty()) {
-            textInputID.setError("Field can't be empty");
+            textInputID.getEditText().setError("Field can't be empty");
             return false;
         } else if (!ID_PATTERN.matcher(idInput).matches()) {
-            textInputID.setError("Make sure you entered the correct number");
+            textInputID.getEditText().setError("Make sure you entered the correct number");
             return false;
         } else {
             textInputID.setError(null);
@@ -229,10 +229,10 @@ public class signUpFragment extends Fragment implements AdapterView.OnItemSelect
     private boolean validateName() {
         nameInput = textInputName.getEditText().getText().toString().trim();
         if (nameInput.isEmpty()) {
-            textInputName.setError("Field can't be empty");
+            textInputName.getEditText().setError("Field can't be empty");
             return false;
         } else if (!NAME_PATTERN.matcher(nameInput).matches()) {
-            textInputName.setError("Make sure you entered the correct name");
+            textInputName.getEditText().setError("Make sure you entered the correct name");
             return false;
         } else {
             textInputName.setError(null);
@@ -268,13 +268,14 @@ public class signUpFragment extends Fragment implements AdapterView.OnItemSelect
     }
 
     private void confirmInput() {
-        if (!validateEmail() | !validatePassword() | !validateCPassword() | !validatePhone() | !validateID() | !validateName() | !validateCity()) {
+        if (!validateEmail() || !validatePassword() || !validateCPassword() || !validatePhone() || !validateID() || !validateName() || !validateCity()) {
             return;
         } else {
             if(handler.patientRegister(nameInput, emailInput, idInput, selectedGender, cityInput, phoneInput, passwordInput)){
                 //Todo: navigate to login
+                Log.e("DB","Register Success");
             }else {
-                Log.e("DB","Register error");
+                Log.e("DB","User Already Exist");
             }
         }
     }

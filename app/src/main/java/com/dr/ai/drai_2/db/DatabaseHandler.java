@@ -166,10 +166,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public User login(String email, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + KEY_EMAIL + " = " + email + " AND " + KEY_PASSWORD + " = " + password + ";", null);
-        if (cursor != null) {
-            cursor.moveToFirst();
-
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + KEY_EMAIL + " = '" + email + "' AND " + KEY_PASSWORD + " = '" + password + "';", null);
+        if (cursor.moveToFirst()) {
             User user = new User(cursor.getString(0),
                     cursor.getString(1),
                     cursor.getString(2),
@@ -237,7 +235,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public List<User> getAllPendingDoctors() {
         List<User> list = new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();
-        try (Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + KEY_USER_TYPE + " =  'Doctor' AND "+KEY_DOCTOR_APPROVED+" = 'pending';", null)) {
+        try (Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + KEY_USER_TYPE + " =  'Doctor' AND " + KEY_DOCTOR_APPROVED + " = 'pending';", null)) {
             if (cursor.moveToFirst()) {
                 do {
                     User user = new User(cursor.getString(0),
@@ -264,7 +262,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public List<User> getAllAcceptedDoctors() {
         List<User> list = new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();
-        try (Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + KEY_USER_TYPE + " =  'Doctor' AND "+KEY_DOCTOR_APPROVED+" = 'yes';", null)) {
+        try (Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + KEY_USER_TYPE + " =  'Doctor' AND " + KEY_DOCTOR_APPROVED + " = 'yes';", null)) {
             if (cursor.moveToFirst()) {
                 do {
                     User user = new User(cursor.getString(0),
@@ -291,7 +289,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public List<User> getAllRejectedDoctors() {
         List<User> list = new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();
-        try (Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + KEY_USER_TYPE + " =  'Doctor' AND "+KEY_DOCTOR_APPROVED+" = 'no';", null)) {
+        try (Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + KEY_USER_TYPE + " =  'Doctor' AND " + KEY_DOCTOR_APPROVED + " = 'no';", null)) {
             if (cursor.moveToFirst()) {
                 do {
                     User user = new User(cursor.getString(0),
@@ -367,7 +365,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public List<Appointment> getPatientAppointments(User user, String date) {
         List<Appointment> list = new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();
-        try (Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_APPOINTMENTS + " WHERE " + KEY_APPOINTMENT_DATE + " = " + date + " AND " + KEY_APPOINTMENT_PATIENT_ID + " =  " + user.getId() + " ;", null)) {
+        try (Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_APPOINTMENTS + " WHERE " + KEY_APPOINTMENT_DATE + " = '" + date + "' AND " + KEY_APPOINTMENT_PATIENT_ID + " =  '" + user.getId() + "' ;", null)) {
             if (cursor.moveToFirst()) {
                 do {
                     Appointment appointment = new Appointment();
@@ -388,7 +386,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public List<Appointment> getDoctorAppointments(User user, String date) {
         List<Appointment> list = new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();
-        try (Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_APPOINTMENTS + " WHERE " + KEY_APPOINTMENT_DATE + " = " + date + " AND " + KEY_APPOINTMENT_DOCTOR_ID + " =  " + user.getId() + " ;", null)) {
+        try (Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_APPOINTMENTS + " WHERE " + KEY_APPOINTMENT_DATE + " = '" + date + "' AND " + KEY_APPOINTMENT_DOCTOR_ID + " =  '" + user.getId() + "' ;", null)) {
             if (cursor.moveToFirst()) {
                 do {
                     Appointment appointment = new Appointment();
@@ -425,7 +423,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public List<pdRecycler> getAllDiagnoses() {
         List<pdRecycler> list = new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();
-        try (Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_RECORD +";", null)) {
+        try (Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_RECORD + ";", null)) {
             if (cursor.moveToFirst()) {
                 do {
                     pdRecycler dia = new pdRecycler();
@@ -444,7 +442,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public List<pdRecycler> getAllDiagnoses(String id) {
         List<pdRecycler> list = new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();
-        try (Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_RECORD +" WHERE "+KEY_RECORD_PATIENT_ID+" = $id"+";", null)) {
+        try (Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_RECORD + " WHERE " + KEY_RECORD_PATIENT_ID + " = '" + id + "';", null)) {
             if (cursor.moveToFirst()) {
                 do {
                     pdRecycler dia = new pdRecycler();
@@ -466,8 +464,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private Boolean userExist(String email) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + KEY_EMAIL + " = " + email + ";", null);
-        if (cursor != null) {
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + KEY_EMAIL + " = '" + email + "';", null);
+        if (cursor.moveToNext()) {
             cursor.close();
             db.close();
             return true; // means already registered
@@ -480,9 +478,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private String getUserName(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + KEY_ID + " = " + id + ";", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + KEY_ID + " = '" + id + "';", null);
         if (cursor != null) {
-            while (cursor.moveToNext()){
+            while (cursor.moveToNext()) {
                 return cursor.getString(1);
             }
         } else {
@@ -494,8 +492,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private Boolean appointmentExist(String date, String time, String doctorId) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_APPOINTMENTS + " WHERE " + KEY_APPOINTMENT_DATE + " = " + date + " AND " + KEY_APPOINTMENT_TIME + " = " + time + " AND " + KEY_APPOINTMENT_DOCTOR_ID + " = " + doctorId + ";", null);
-        if (cursor != null) {
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_APPOINTMENTS + " WHERE " + KEY_APPOINTMENT_DATE + " = '" + date + "' AND " + KEY_APPOINTMENT_TIME + " = '" + time + "' AND " + KEY_APPOINTMENT_DOCTOR_ID + " = '" + doctorId + "';", null);
+        if (cursor.moveToFirst()) {
             cursor.close();
             db.close();
             return true;

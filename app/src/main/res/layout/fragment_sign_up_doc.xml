@@ -233,7 +233,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="@color/teal_700"
-                        android:checked="false"
+                        android:checked="true"
                         android:text="Male" />
 
                     <RadioButton
@@ -292,7 +292,6 @@
                 android:layout_marginEnd="80dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/edittext"
-                android:enabled="false"
                 android:fontFamily="sans-serif-light"
                 android:gravity="center"
                 android:text="@string/sign_up"
