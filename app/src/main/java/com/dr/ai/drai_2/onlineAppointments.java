@@ -135,7 +135,7 @@ public class onlineAppointments extends AppCompatActivity implements AdapterView
         appointmentTypeRg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (radioGroup.getCheckedRadioButtonId() == findViewById(R.id.onlineRb).getId()){
+                if (radioGroup.getCheckedRadioButtonId() != findViewById(R.id.onlineRb).getId()){
                     type = "On Person";
                 }else {
                     type = "Online";

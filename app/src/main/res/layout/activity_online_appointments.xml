@@ -176,6 +176,7 @@
                     <RadioGroup
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:orientation="vertical"
                         android:id="@+id/appointmentTypeRg">
 
                         <RadioButton
@@ -184,7 +185,6 @@
                             android:layout_height="21dp"
                             android:layout_gravity="left"
                             android:checked="true"
-                            android:onClick="@+id/save"
                             android:text="On Person" />
 
                         <RadioButton
@@ -192,7 +192,6 @@
                             android:layout_width="80dp"
                             android:layout_height="20dp"
                             android:layout_gravity="left"
-                            android:onClick="@+id/save"
                             android:text="@string/online" />
                     </RadioGroup>
 

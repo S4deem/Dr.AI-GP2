@@ -375,6 +375,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     appointment.setTime(cursor.getString(3));
                     appointment.setDoctorId(cursor.getString(4));
                     appointment.setPatientId(cursor.getString(5));
+                    appointment.setPatientName(getUserName(cursor.getString(5)));
+                    appointment.setDoctorName(cursor.getString(4));
                     // Adding contact to list
                     list.add(appointment);
                 } while (cursor.moveToNext());
@@ -396,6 +398,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     appointment.setTime(cursor.getString(3));
                     appointment.setDoctorId(cursor.getString(4));
                     appointment.setPatientId(cursor.getString(5));
+                    appointment.setPatientName(getUserName(cursor.getString(5)));
+                    appointment.setDoctorName(cursor.getString(4));
                     // Adding contact to list
                     list.add(appointment);
                 } while (cursor.moveToNext());
