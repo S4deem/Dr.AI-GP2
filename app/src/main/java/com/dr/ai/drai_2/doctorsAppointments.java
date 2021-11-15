@@ -136,7 +136,7 @@ public class doctorsAppointments extends AppCompatActivity {
         int month = cal.get(Calendar.MONTH);
         month = month + 1;
         int day = cal.get(Calendar.DAY_OF_MONTH);
-        return makeDateString(day, month, year);
+        return day+"-"+month+"-"+year;
     }
 
 
@@ -144,8 +144,9 @@ public class doctorsAppointments extends AppCompatActivity {
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+//                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
                 month = month + 1 ;
-                String date = makeDateString (day, month, year);
+                String date = day+"-"+month+"-"+year;
                 dateButton.setText(date);
 
 
@@ -235,6 +236,7 @@ public class doctorsAppointments extends AppCompatActivity {
     //    String dateInput = dateButton.getInputType();
         if (dateButton != null) {
             Intent intent = new Intent(doctorsAppointments.this, doctorsAppointments1.class);
+            intent.putExtra("date",dateButton.getText());
             startActivity(intent);
             return false;
         }

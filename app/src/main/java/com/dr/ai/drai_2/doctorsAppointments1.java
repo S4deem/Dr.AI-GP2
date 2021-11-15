@@ -2,6 +2,7 @@ package com.dr.ai.drai_2;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,20 +33,27 @@ public class doctorsAppointments1 extends AppCompatActivity {
     RecyclerView.Adapter adapter;
     List<Appointment> appointmentArrayList = new ArrayList<>();
     DatabaseHandler handler;
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
-    String today;
-    String[] date;//"dd[0]-MM[1]-yyyy[2]"
+    String date;
+//    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+//    String today;
+//    String[] date;//"dd[0]-MM[1]-yyyy[2]"
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctors_appointments1);
-        today = simpleDateFormat.format(Calendar.getInstance().getTime());
-        date = today.split("-");
-        handler = new DatabaseHandler(this);
-        loadAppointments();
+//        today = simpleDateFormat.format(Calendar.getInstance().getTime());
+//        date = today.split("-");
         recyclerView = findViewById(R.id.mRecyclerView);
+        handler = new DatabaseHandler(this);
+        if (getIntent().getStringExtra("date") != null){
+            Log.e("Date Status","Arrived");
+            date = getIntent().getStringExtra("date");
+            loadAppointments();
+        }else {
+            Log.e("Date Status","Failed");
+        }
         drawer_layout = findViewById(R.id.drawer_layout);
         mainNavView = findViewById(R.id.main_nav_view);
         mainNavView.setItemIconTintList(null);
@@ -101,7 +109,8 @@ public class doctorsAppointments1 extends AppCompatActivity {
     }
 
     private void loadAppointments() {
-        appointmentArrayList = handler.getDoctorAppointments(signInPage.loggedUser, date[0]+"-"+date[1]+"-"+date[2]);
+//        appointmentArrayList = handler.getDoctorAppointments(signInPage.loggedUser, date[0]+"-"+date[1]+"-"+date[2]);
+        appointmentArrayList = handler.getDoctorAppointments(signInPage.loggedUser, date);
         adapter = new doctorRecyclerAdapter(this, appointmentArrayList);
         recyclerView.setAdapter(adapter);
     }
