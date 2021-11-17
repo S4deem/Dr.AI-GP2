@@ -55,6 +55,20 @@
           android:text="Sign In" />
 
       <Button
+          android:id="@+id/signInAdmin"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/imageView"
+          android:layout_alignParentStart="true"
+          android:layout_alignParentEnd="true"
+          android:layout_marginStart="79dp"
+          android:layout_marginTop="56dp"
+          android:layout_marginEnd="81dp"
+          android:background="@drawable/edittext"
+          android:onClick="openSignInAdmin"
+          android:text="Admin" />
+
+      <Button
           android:id="@+id/signUp"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"

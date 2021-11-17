@@ -10,8 +10,15 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.dr.ai.drai_2.db.DatabaseHandler;
+import com.dr.ai.drai_2.model.Appointment;
+import com.dr.ai.drai_2.model.User;
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class patientsAccountManagment extends AppCompatActivity {
     private NavigationView mainNavView;
@@ -19,13 +26,18 @@ public class patientsAccountManagment extends AppCompatActivity {
     private MenuItem menuItem;
     private Button menuButton;
     private DrawerLayout drawer_layout;
-
-    // ArrayList< pendingRecycler> pendingRecyclers = new ArrayList<>();
+    RecyclerView recyclerView;
+    RecyclerView.Adapter adapter;
+    DatabaseHandler handler;
+     List<User> userList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patients_account_managment);
+        recyclerView = findViewById(R.id.patientRecyclerView);
+        handler = new DatabaseHandler(this);
+        loadPatients();
         drawer_layout = findViewById(R.id.drawer_layout);
         mainNavView = findViewById(R.id.main_nav_view);
         mainNavView.setItemIconTintList(null);
@@ -79,6 +91,13 @@ public class patientsAccountManagment extends AppCompatActivity {
         });
 
     }
+
+    private void loadPatients() {
+        userList = handler.getAllPatients();
+        adapter = new pManaRecyclerAdapter(this, userList);
+        recyclerView.setAdapter(adapter);
+    }
+
     private void menuButton() {
 
         drawer_layout.openDrawer(GravityCompat.START);

@@ -92,6 +92,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void openSignInAdmin(View view) {
+        Intent intent = new Intent(this, adminScreen.class);
+        startActivity(intent);
+    }
+
     public void openSignIn(View view) {
         Intent intent = new Intent(this, signInPage.class);
         startActivity(intent);

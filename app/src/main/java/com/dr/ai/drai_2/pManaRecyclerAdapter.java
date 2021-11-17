@@ -1,6 +1,7 @@
 package com.dr.ai.drai_2;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -8,14 +9,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dr.ai.drai_2.model.User;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class pManaRecyclerAdapter extends RecyclerView.Adapter<pManaRecyclerAdapter.MyViewHolder>{
 
     Context context;
-    ArrayList<pManaRecyclerAdapter> pManaRecyclerAdapters;
+    List<User> pManaRecyclerAdapters;
 
-    public pManaRecyclerAdapter(Context context, ArrayList<pManaRecyclerAdapter> pManaRecyclerAdapters){
+    public pManaRecyclerAdapter(Context context, List<User> pManaRecyclerAdapters){
         this.context = context;
         this.pManaRecyclerAdapters = pManaRecyclerAdapters;
     }
@@ -23,19 +27,26 @@ public class pManaRecyclerAdapter extends RecyclerView.Adapter<pManaRecyclerAdap
     @NonNull
     @Override
     public pManaRecyclerAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View view = LayoutInflater.from(context).inflate(R.layout.recycler_patient_rows, parent, false);
+        return new pManaRecyclerAdapter.MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull pManaRecyclerAdapter.MyViewHolder holder, int position) {
-
+        User item = pManaRecyclerAdapters.get(position);
+        holder.nameViewP.setText(item.getName());
+        holder.numberViewP.setText(item.getPersonal_id());
+        holder.emailViewP.setText(item.getEmail());
+        holder.idViewP.setText(item.getId());
+        holder.cityView.setText(item.getCity());
+        holder.genderView.setText(item.getGender());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return pManaRecyclerAdapters.size();
     }
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
+    class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView nameViewP, numberViewP, emailViewP, idViewP, cityView, genderView;
 

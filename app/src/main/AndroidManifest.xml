@@ -102,6 +102,8 @@
             android:name=".virtualTherapist"
             android:exported="true" />
 
+        <activity android:name=".signInAdmin"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
