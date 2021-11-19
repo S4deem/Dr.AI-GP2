@@ -122,7 +122,7 @@ public class onlineAppointments extends AppCompatActivity implements AdapterView
         dateButton.setText(getTodaysDate());
         timeButton = findViewById(R.id.buttonTime);
         doctorListSpinner = findViewById(R.id.doctorSpinner);
-        doctorsList = handler.getAllDoctors();
+        doctorsList = handler.getAllAcceptedDoctors();
         doctorNameItems = new String[doctorsList.size()];
         for (int i = 0; i < doctorsList.size(); i++) {
             doctorNameItems[i] = doctorsList.get(i).getName();
