@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openSignInAdmin(View view) {
-        Intent intent = new Intent(this, adminScreen.class);
+        Intent intent = new Intent(this, signInAdmin.class);
         startActivity(intent);
     }
 
