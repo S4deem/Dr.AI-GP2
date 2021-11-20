@@ -191,18 +191,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + KEY_EMAIL + " = '" + email + "' AND " + KEY_PASSWORD + " = '" + password + "';", null);
         if (cursor.moveToFirst()) {
             User user = new User(cursor.getString(0),
-                    cursor.getString(1),
-                    cursor.getString(2),
-                    cursor.getString(3),
+                    RSAUtil.decryptData(cursor.getString(1)),
+                    RSAUtil.decryptData(cursor.getString(2)),
+                    RSAUtil.decryptData(cursor.getString(3)),
                     cursor.getBlob(4),
-                    cursor.getString(5),
-                    cursor.getString(6),
-                    cursor.getString(7),
-                    cursor.getString(8),
-                    cursor.getString(9),
-                    cursor.getString(10),
-                    cursor.getString(11),
-                    cursor.getString(12));
+                    RSAUtil.decryptData(cursor.getString(5)),
+                    RSAUtil.decryptData(cursor.getString(6)),
+                    RSAUtil.decryptData(cursor.getString(7)),
+                    RSAUtil.decryptData(cursor.getString(8)),
+                    RSAUtil.decryptData(cursor.getString(9)),
+                    RSAUtil.decryptData(cursor.getString(10)),
+                    RSAUtil.decryptData(cursor.getString(11)),
+                    RSAUtil.decryptData(cursor.getString(12)));
 
             if (updateUserStatus(user, "LoggedIn") == 1) {
                 return user;
