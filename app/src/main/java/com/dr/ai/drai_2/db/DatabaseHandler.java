@@ -115,15 +115,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public Boolean doctorRegister(String name, String email, String personal_id, byte[] img, String gender, String city, String phone, String password, String iban) {
-        name = RSAUtil.encryptData(name);
-        email = RSAUtil.encryptData(email);
-        personal_id = RSAUtil.encryptData(personal_id);
-        gender = RSAUtil.encryptData(gender);
-        city = RSAUtil.encryptData(city);
-        phone = RSAUtil.encryptData(phone);
-        password = RSAUtil.encryptData(password);
-        iban = RSAUtil.encryptData(iban);
+
         if (!userExist(email)) {
+            name = RSAUtil.encryptData(name);
+            email = RSAUtil.encryptData(email);
+            personal_id = RSAUtil.encryptData(personal_id);
+            gender = RSAUtil.encryptData(gender);
+            city = RSAUtil.encryptData(city);
+            phone = RSAUtil.encryptData(phone);
+            password = RSAUtil.encryptData(password);
+            iban = RSAUtil.encryptData(iban);
             SQLiteDatabase db = this.getWritableDatabase();
 
             ContentValues values = new ContentValues();
@@ -151,14 +152,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public Boolean patientRegister(String name, String email, String personal_id, String gender, String city, String phone, String password) {
-        name = RSAUtil.encryptData(name);
-        email = RSAUtil.encryptData(email);
-        personal_id = RSAUtil.encryptData(personal_id);
-        gender = RSAUtil.encryptData(gender);
-        city = RSAUtil.encryptData(city);
-        phone = RSAUtil.encryptData(phone);
-        password = RSAUtil.encryptData(password);
+
         if (!userExist(email)) {
+            name = RSAUtil.encryptData(name);
+            email = RSAUtil.encryptData(email);
+            personal_id = RSAUtil.encryptData(personal_id);
+            gender = RSAUtil.encryptData(gender);
+            city = RSAUtil.encryptData(city);
+            phone = RSAUtil.encryptData(phone);
+            password = RSAUtil.encryptData(password);
             SQLiteDatabase db = this.getWritableDatabase();
 
             ContentValues values = new ContentValues();
@@ -186,30 +188,30 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USERS + ";", null);
-        if (cursor.moveToNext()) {
-            if (RSAUtil.decryptData(cursor.getString(2)).equals(email) &&
-                    RSAUtil.decryptData(cursor.getString(8)).equals(password)) {
-                User user = new User(cursor.getString(0),
-                        RSAUtil.decryptData(cursor.getString(1)),
-                        RSAUtil.decryptData(cursor.getString(2)),
-                        RSAUtil.decryptData(cursor.getString(3)),
-                        cursor.getBlob(4),
-                        RSAUtil.decryptData(cursor.getString(5)),
-                        RSAUtil.decryptData(cursor.getString(6)),
-                        RSAUtil.decryptData(cursor.getString(7)),
-                        RSAUtil.decryptData(cursor.getString(8)),
-                        RSAUtil.decryptData(cursor.getString(9)),
-                        RSAUtil.decryptData(cursor.getString(10)),
-                        RSAUtil.decryptData(cursor.getString(11)),
-                        RSAUtil.decryptData(cursor.getString(12)));
+        if (cursor.moveToFirst()) {
+            do {
+                if (RSAUtil.decryptData(cursor.getString(2)).equals(email) && RSAUtil.decryptData(cursor.getString(8)).equals(password)) {
+                    User user = new User(cursor.getString(0),
+                            RSAUtil.decryptData(cursor.getString(1)),
+                            RSAUtil.decryptData(cursor.getString(2)),
+                            RSAUtil.decryptData(cursor.getString(3)),
+                            cursor.getBlob(4),
+                            RSAUtil.decryptData(cursor.getString(5)),
+                            RSAUtil.decryptData(cursor.getString(6)),
+                            RSAUtil.decryptData(cursor.getString(7)),
+                            RSAUtil.decryptData(cursor.getString(8)),
+                            RSAUtil.decryptData(cursor.getString(9)),
+                            RSAUtil.decryptData(cursor.getString(10)),
+                            RSAUtil.decryptData(cursor.getString(11)),
+                            RSAUtil.decryptData(cursor.getString(12)));
 
-                if (updateUserStatus(user, "LoggedIn") == 1) {
-                    return user;
-                } else {
-                    return null;
+                    if (updateUserStatus(user, "LoggedIn") == 1) {
+                        return user;
+                    } else {
+                        return null;
+                    }
                 }
-            }
-
+            }while (cursor.moveToNext());
         } else {
             return null;
         }
@@ -502,8 +504,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private Boolean userExist(String email) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + KEY_EMAIL + " = '" + email + "';", null);
-        if (cursor.moveToNext()) {
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USERS + ";", null);
+        if (cursor.moveToFirst()) {
+            do {
+                if (RSAUtil.decryptData(cursor.getString(2)).equals(email)){
+                    return true;
+                }
+            }while (cursor.moveToNext());
             cursor.close();
             db.close();
             return true; // means already registered
@@ -531,12 +538,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_APPOINTMENTS + " WHERE " + KEY_APPOINTMENT_DOCTOR_ID + " = '" + doctorId + "';", null);
-        if (cursor.moveToNext()) {
-            if (RSAUtil.decryptData(cursor.getString(2)).equals(date) && RSAUtil.decryptData(cursor.getString(3)).equals(time)) {
-                cursor.close();
-                db.close();
-                return true;
-            }
+        if (cursor.moveToFirst()) {
+            do {
+                if (RSAUtil.decryptData(cursor.getString(2)).equals(date) && RSAUtil.decryptData(cursor.getString(3)).equals(time)) {
+                    cursor.close();
+                    db.close();
+                    return true;
+                }
+            }while (cursor.moveToNext());
         } else {
             db.close();
             return false;
