@@ -185,33 +185,35 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public User login(String email, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        email = RSAUtil.encryptData(email);
-        password = RSAUtil.encryptData(password);
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USERS + ";", null);
+        if (cursor.moveToNext()) {
+            if (RSAUtil.decryptData(cursor.getString(2)).equals(email) &&
+                    RSAUtil.decryptData(cursor.getString(8)).equals(password)) {
+                User user = new User(cursor.getString(0),
+                        RSAUtil.decryptData(cursor.getString(1)),
+                        RSAUtil.decryptData(cursor.getString(2)),
+                        RSAUtil.decryptData(cursor.getString(3)),
+                        cursor.getBlob(4),
+                        RSAUtil.decryptData(cursor.getString(5)),
+                        RSAUtil.decryptData(cursor.getString(6)),
+                        RSAUtil.decryptData(cursor.getString(7)),
+                        RSAUtil.decryptData(cursor.getString(8)),
+                        RSAUtil.decryptData(cursor.getString(9)),
+                        RSAUtil.decryptData(cursor.getString(10)),
+                        RSAUtil.decryptData(cursor.getString(11)),
+                        RSAUtil.decryptData(cursor.getString(12)));
 
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + KEY_EMAIL + " = '" + email + "' AND " + KEY_PASSWORD + " = '" + password + "';", null);
-        if (cursor.moveToFirst()) {
-            User user = new User(cursor.getString(0),
-                    RSAUtil.decryptData(cursor.getString(1)),
-                    RSAUtil.decryptData(cursor.getString(2)),
-                    RSAUtil.decryptData(cursor.getString(3)),
-                    cursor.getBlob(4),
-                    RSAUtil.decryptData(cursor.getString(5)),
-                    RSAUtil.decryptData(cursor.getString(6)),
-                    RSAUtil.decryptData(cursor.getString(7)),
-                    RSAUtil.decryptData(cursor.getString(8)),
-                    RSAUtil.decryptData(cursor.getString(9)),
-                    RSAUtil.decryptData(cursor.getString(10)),
-                    RSAUtil.decryptData(cursor.getString(11)),
-                    RSAUtil.decryptData(cursor.getString(12)));
-
-            if (updateUserStatus(user, "LoggedIn") == 1) {
-                return user;
-            } else {
-                return null;
+                if (updateUserStatus(user, "LoggedIn") == 1) {
+                    return user;
+                } else {
+                    return null;
+                }
             }
+
         } else {
             return null;
         }
+        return null;
     }
 
     public Boolean logout(User user) {
@@ -363,11 +365,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public Boolean registerAppointment(String date, String time, String type, String doctorId, String patientId) {
-        date = RSAUtil.encryptData(date);
-        time = RSAUtil.encryptData(time);
-        type = RSAUtil.encryptData(type);
+
         if (!appointmentExist(date,
                 time, doctorId)) {
+            date = RSAUtil.encryptData(date);
+            time = RSAUtil.encryptData(time);
+            type = RSAUtil.encryptData(type);
             SQLiteDatabase db = this.getWritableDatabase();
 
             ContentValues values = new ContentValues();
@@ -388,23 +391,24 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public List<Appointment> getPatientAppointments(User user, String date) {
-        date = RSAUtil.encryptData(date);
         List<Appointment> list = new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();
-        try (Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_APPOINTMENTS + " WHERE " + KEY_APPOINTMENT_DATE + " = '" + date + "' AND " + KEY_APPOINTMENT_PATIENT_ID + " =  '" + user.getId() + "' ;", null)) {
+        try (Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_APPOINTMENTS + " WHERE " + KEY_APPOINTMENT_PATIENT_ID + " =  '" + user.getId() + "' ;", null)) {
             if (cursor.moveToFirst()) {
                 do {
-                    Appointment appointment = new Appointment();
-                    appointment.setId(cursor.getString(0));
-                    appointment.setType(RSAUtil.decryptData(cursor.getString(1)));
-                    appointment.setDate(RSAUtil.decryptData(cursor.getString(2)));
-                    appointment.setTime(RSAUtil.decryptData(cursor.getString(3)));
-                    appointment.setDoctorId(cursor.getString(4));
-                    appointment.setPatientId(cursor.getString(5));
-                    appointment.setPatientName(RSAUtil.decryptData(getUserName(cursor.getString(5))));
-                    appointment.setDoctorName(RSAUtil.decryptData(getUserName(cursor.getString(4))));
-                    // Adding contact to list
-                    list.add(appointment);
+                    if (RSAUtil.decryptData(cursor.getString(2)).equals(date)) {
+                        Appointment appointment = new Appointment();
+                        appointment.setId(cursor.getString(0));
+                        appointment.setType(RSAUtil.decryptData(cursor.getString(1)));
+                        appointment.setDate(RSAUtil.decryptData(cursor.getString(2)));
+                        appointment.setTime(RSAUtil.decryptData(cursor.getString(3)));
+                        appointment.setDoctorId(cursor.getString(4));
+                        appointment.setPatientId(cursor.getString(5));
+                        appointment.setPatientName(RSAUtil.decryptData(getUserName(cursor.getString(5))));
+                        appointment.setDoctorName(RSAUtil.decryptData(getUserName(cursor.getString(4))));
+                        // Adding contact to list
+                        list.add(appointment);
+                    }
                 } while (cursor.moveToNext());
             }
         }
@@ -412,23 +416,24 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public List<Appointment> getDoctorAppointments(User user, String date) {
-        date = RSAUtil.encryptData(date);
         List<Appointment> list = new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();
-        try (Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_APPOINTMENTS + " WHERE " + KEY_APPOINTMENT_DATE + " = '" + date + "' AND " + KEY_APPOINTMENT_DOCTOR_ID + " =  '" + user.getId() + "' ;", null)) {
+        try (Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_APPOINTMENTS + " WHERE " + KEY_APPOINTMENT_DOCTOR_ID + " =  '" + user.getId() + "' ;", null)) {
             if (cursor.moveToFirst()) {
                 do {
-                    Appointment appointment = new Appointment();
-                    appointment.setId(cursor.getString(0));
-                    appointment.setType(RSAUtil.decryptData(cursor.getString(1)));
-                    appointment.setDate(RSAUtil.decryptData(cursor.getString(2)));
-                    appointment.setTime(RSAUtil.decryptData(cursor.getString(3)));
-                    appointment.setDoctorId(cursor.getString(4));
-                    appointment.setPatientId(cursor.getString(5));
-                    appointment.setPatientName(RSAUtil.decryptData(getUserName(cursor.getString(5))));
-                    appointment.setDoctorName(RSAUtil.decryptData(getUserName(cursor.getString(4))));
-                    // Adding contact to list
-                    list.add(appointment);
+                    if (RSAUtil.decryptData(cursor.getString(2)).equals(date)) {
+                        Appointment appointment = new Appointment();
+                        appointment.setId(cursor.getString(0));
+                        appointment.setType(RSAUtil.decryptData(cursor.getString(1)));
+                        appointment.setDate(RSAUtil.decryptData(cursor.getString(2)));
+                        appointment.setTime(RSAUtil.decryptData(cursor.getString(3)));
+                        appointment.setDoctorId(cursor.getString(4));
+                        appointment.setPatientId(cursor.getString(5));
+                        appointment.setPatientName(RSAUtil.decryptData(getUserName(cursor.getString(5))));
+                        appointment.setDoctorName(RSAUtil.decryptData(getUserName(cursor.getString(4))));
+                        // Adding contact to list
+                        list.add(appointment);
+                    }
                 } while (cursor.moveToNext());
             }
         }
@@ -525,15 +530,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private Boolean appointmentExist(String date, String time, String doctorId) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_APPOINTMENTS + " WHERE " + KEY_APPOINTMENT_DATE + " = '" + date + "' AND " + KEY_APPOINTMENT_TIME + " = '" + time + "' AND " + KEY_APPOINTMENT_DOCTOR_ID + " = '" + doctorId + "';", null);
-        if (cursor.moveToFirst()) {
-            cursor.close();
-            db.close();
-            return true;
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_APPOINTMENTS + " WHERE " + KEY_APPOINTMENT_DOCTOR_ID + " = '" + doctorId + "';", null);
+        if (cursor.moveToNext()) {
+            if (RSAUtil.decryptData(cursor.getString(2)).equals(date) && RSAUtil.decryptData(cursor.getString(3)).equals(time)) {
+                cursor.close();
+                db.close();
+                return true;
+            }
         } else {
             db.close();
             return false;
         }
+        return false;
     }
 
     private int updateUserStatus(User user, String status) {
