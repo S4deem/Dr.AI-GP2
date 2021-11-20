@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.dr.ai.drai_2.model.Appointment;
 import com.dr.ai.drai_2.model.User;
 import com.dr.ai.drai_2.pdRecycler;
+import com.dr.ai.drai_2.util.RSAUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,8 +56,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_RECORD_DOCTOR_ID = "doctor_id";
     //endregion
 
+    RSAUtil rsaUtil;
+
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        rsaUtil = new RSAUtil();
         //3rd argument to be passed is CursorFactory instance
     }
 
@@ -111,6 +115,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public Boolean doctorRegister(String name, String email, String personal_id, byte[] img, String gender, String city, String phone, String password, String iban) {
+        name = RSAUtil.encryptData(name);
+        email = RSAUtil.encryptData(email);
+        personal_id = RSAUtil.encryptData(personal_id);
+        gender = RSAUtil.encryptData(gender);
+        city = RSAUtil.encryptData(city);
+        phone = RSAUtil.encryptData(phone);
+        password = RSAUtil.encryptData(password);
+        iban = RSAUtil.encryptData(iban);
         if (!userExist(email)) {
             SQLiteDatabase db = this.getWritableDatabase();
 
@@ -139,6 +151,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public Boolean patientRegister(String name, String email, String personal_id, String gender, String city, String phone, String password) {
+        name = RSAUtil.encryptData(name);
+        email = RSAUtil.encryptData(email);
+        personal_id = RSAUtil.encryptData(personal_id);
+        gender = RSAUtil.encryptData(gender);
+        city = RSAUtil.encryptData(city);
+        phone = RSAUtil.encryptData(phone);
+        password = RSAUtil.encryptData(password);
         if (!userExist(email)) {
             SQLiteDatabase db = this.getWritableDatabase();
 
@@ -165,6 +184,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public User login(String email, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
+
+        email = RSAUtil.encryptData(email);
+        password = RSAUtil.encryptData(password);
 
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + KEY_EMAIL + " = '" + email + "' AND " + KEY_PASSWORD + " = '" + password + "';", null);
         if (cursor.moveToFirst()) {
@@ -239,18 +261,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             if (cursor.moveToFirst()) {
                 do {
                     User user = new User(cursor.getString(0),
-                            cursor.getString(1),
-                            cursor.getString(2),
-                            cursor.getString(3),
+                            RSAUtil.decryptData(cursor.getString(1)),
+                            RSAUtil.decryptData(cursor.getString(2)),
+                            RSAUtil.decryptData(cursor.getString(3)),
                             cursor.getBlob(4),
-                            cursor.getString(5),
-                            cursor.getString(6),
-                            cursor.getString(7),
-                            cursor.getString(8),
-                            cursor.getString(9),
-                            cursor.getString(10),
-                            cursor.getString(11),
-                            cursor.getString(12));
+                            RSAUtil.decryptData(cursor.getString(5)),
+                            RSAUtil.decryptData(cursor.getString(6)),
+                            RSAUtil.decryptData(cursor.getString(7)),
+                            RSAUtil.decryptData(cursor.getString(8)),
+                            RSAUtil.decryptData(cursor.getString(9)),
+                            RSAUtil.decryptData(cursor.getString(10)),
+                            RSAUtil.decryptData(cursor.getString(11)),
+                            RSAUtil.decryptData(cursor.getString(12)));
                     // Adding contact to list
                     list.add(user);
                 } while (cursor.moveToNext());
@@ -266,18 +288,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             if (cursor.moveToFirst()) {
                 do {
                     User user = new User(cursor.getString(0),
-                            cursor.getString(1),
-                            cursor.getString(2),
-                            cursor.getString(3),
+                            RSAUtil.decryptData(cursor.getString(1)),
+                            RSAUtil.decryptData(cursor.getString(2)),
+                            RSAUtil.decryptData(cursor.getString(3)),
                             cursor.getBlob(4),
-                            cursor.getString(5),
-                            cursor.getString(6),
-                            cursor.getString(7),
-                            cursor.getString(8),
-                            cursor.getString(9),
-                            cursor.getString(10),
-                            cursor.getString(11),
-                            cursor.getString(12));
+                            RSAUtil.decryptData(cursor.getString(5)),
+                            RSAUtil.decryptData(cursor.getString(6)),
+                            RSAUtil.decryptData(cursor.getString(7)),
+                            RSAUtil.decryptData(cursor.getString(8)),
+                            RSAUtil.decryptData(cursor.getString(9)),
+                            RSAUtil.decryptData(cursor.getString(10)),
+                            RSAUtil.decryptData(cursor.getString(11)),
+                            RSAUtil.decryptData(cursor.getString(12)));
                     // Adding contact to list
                     list.add(user);
                 } while (cursor.moveToNext());
@@ -293,18 +315,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             if (cursor.moveToFirst()) {
                 do {
                     User user = new User(cursor.getString(0),
-                            cursor.getString(1),
-                            cursor.getString(2),
-                            cursor.getString(3),
+                            RSAUtil.decryptData(cursor.getString(1)),
+                            RSAUtil.decryptData(cursor.getString(2)),
+                            RSAUtil.decryptData(cursor.getString(3)),
                             cursor.getBlob(4),
-                            cursor.getString(5),
-                            cursor.getString(6),
-                            cursor.getString(7),
-                            cursor.getString(8),
-                            cursor.getString(9),
-                            cursor.getString(10),
-                            cursor.getString(11),
-                            cursor.getString(12));
+                            RSAUtil.decryptData(cursor.getString(5)),
+                            RSAUtil.decryptData(cursor.getString(6)),
+                            RSAUtil.decryptData(cursor.getString(7)),
+                            RSAUtil.decryptData(cursor.getString(8)),
+                            RSAUtil.decryptData(cursor.getString(9)),
+                            RSAUtil.decryptData(cursor.getString(10)),
+                            RSAUtil.decryptData(cursor.getString(11)),
+                            RSAUtil.decryptData(cursor.getString(12)));
                     // Adding contact to list
                     list.add(user);
                 } while (cursor.moveToNext());
@@ -320,18 +342,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             if (cursor.moveToFirst()) {
                 do {
                     User user = new User(cursor.getString(0),
-                            cursor.getString(1),
-                            cursor.getString(2),
-                            cursor.getString(3),
+                            RSAUtil.decryptData(cursor.getString(1)),
+                            RSAUtil.decryptData(cursor.getString(2)),
+                            RSAUtil.decryptData(cursor.getString(3)),
                             cursor.getBlob(4),
-                            cursor.getString(5),
-                            cursor.getString(6),
-                            cursor.getString(7),
-                            cursor.getString(8),
-                            cursor.getString(9),
-                            cursor.getString(10),
-                            cursor.getString(11),
-                            cursor.getString(12));
+                            RSAUtil.decryptData(cursor.getString(5)),
+                            RSAUtil.decryptData(cursor.getString(6)),
+                            RSAUtil.decryptData(cursor.getString(7)),
+                            RSAUtil.decryptData(cursor.getString(8)),
+                            RSAUtil.decryptData(cursor.getString(9)),
+                            RSAUtil.decryptData(cursor.getString(10)),
+                            RSAUtil.decryptData(cursor.getString(11)),
+                            RSAUtil.decryptData(cursor.getString(12)));
                     // Adding contact to list
                     list.add(user);
                 } while (cursor.moveToNext());
@@ -341,6 +363,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public Boolean registerAppointment(String date, String time, String type, String doctorId, String patientId) {
+        date = RSAUtil.encryptData(date);
+        time = RSAUtil.encryptData(time);
+        type = RSAUtil.encryptData(type);
         if (!appointmentExist(date,
                 time, doctorId)) {
             SQLiteDatabase db = this.getWritableDatabase();
@@ -363,6 +388,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public List<Appointment> getPatientAppointments(User user, String date) {
+        date = RSAUtil.encryptData(date);
         List<Appointment> list = new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();
         try (Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_APPOINTMENTS + " WHERE " + KEY_APPOINTMENT_DATE + " = '" + date + "' AND " + KEY_APPOINTMENT_PATIENT_ID + " =  '" + user.getId() + "' ;", null)) {
@@ -370,13 +396,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 do {
                     Appointment appointment = new Appointment();
                     appointment.setId(cursor.getString(0));
-                    appointment.setType(cursor.getString(1));
-                    appointment.setDate(cursor.getString(2));
-                    appointment.setTime(cursor.getString(3));
+                    appointment.setType(RSAUtil.decryptData(cursor.getString(1)));
+                    appointment.setDate(RSAUtil.decryptData(cursor.getString(2)));
+                    appointment.setTime(RSAUtil.decryptData(cursor.getString(3)));
                     appointment.setDoctorId(cursor.getString(4));
                     appointment.setPatientId(cursor.getString(5));
-                    appointment.setPatientName(getUserName(cursor.getString(5)));
-                    appointment.setDoctorName(cursor.getString(4));
+                    appointment.setPatientName(RSAUtil.decryptData(getUserName(cursor.getString(5))));
+                    appointment.setDoctorName(RSAUtil.decryptData(getUserName(cursor.getString(4))));
                     // Adding contact to list
                     list.add(appointment);
                 } while (cursor.moveToNext());
@@ -386,6 +412,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public List<Appointment> getDoctorAppointments(User user, String date) {
+        date = RSAUtil.encryptData(date);
         List<Appointment> list = new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();
         try (Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_APPOINTMENTS + " WHERE " + KEY_APPOINTMENT_DATE + " = '" + date + "' AND " + KEY_APPOINTMENT_DOCTOR_ID + " =  '" + user.getId() + "' ;", null)) {
@@ -393,13 +420,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 do {
                     Appointment appointment = new Appointment();
                     appointment.setId(cursor.getString(0));
-                    appointment.setType(cursor.getString(1));
-                    appointment.setDate(cursor.getString(2));
-                    appointment.setTime(cursor.getString(3));
+                    appointment.setType(RSAUtil.decryptData(cursor.getString(1)));
+                    appointment.setDate(RSAUtil.decryptData(cursor.getString(2)));
+                    appointment.setTime(RSAUtil.decryptData(cursor.getString(3)));
                     appointment.setDoctorId(cursor.getString(4));
                     appointment.setPatientId(cursor.getString(5));
-                    appointment.setPatientName(getUserName(cursor.getString(5)));
-                    appointment.setDoctorName(cursor.getString(4));
+                    appointment.setPatientName(RSAUtil.decryptData(getUserName(cursor.getString(5))));
+                    appointment.setDoctorName(RSAUtil.decryptData(getUserName(cursor.getString(4))));
                     // Adding contact to list
                     list.add(appointment);
                 } while (cursor.moveToNext());
@@ -409,6 +436,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public Boolean registerDiagnoses(String diagnoses, String prescription, String doctorId, String patientId) {
+        diagnoses = RSAUtil.encryptData(diagnoses);
+        prescription = RSAUtil.encryptData(prescription);
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -432,10 +461,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 do {
                     pdRecycler dia = new pdRecycler();
                     dia.setId(cursor.getString(0));
-                    dia.setDiagnose(cursor.getString(1));
-                    dia.setPrescription(cursor.getString(2));
-                    dia.setdName(cursor.getString(3));
-                    dia.setpName(cursor.getString(4));
+                    dia.setDiagnose(RSAUtil.decryptData(cursor.getString(1)));
+                    dia.setPrescription(RSAUtil.decryptData(cursor.getString(2)));
+                    dia.setdName(RSAUtil.decryptData(getUserName(cursor.getString(3))));
+                    dia.setpName(RSAUtil.decryptData(getUserName(cursor.getString(4))));
                     list.add(dia);
                 } while (cursor.moveToNext());
             }
@@ -451,10 +480,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 do {
                     pdRecycler dia = new pdRecycler();
                     dia.setId(cursor.getString(0));
-                    dia.setDiagnose(cursor.getString(1));
-                    dia.setPrescription(cursor.getString(2));
-                    dia.setdName(cursor.getString(3));
-                    dia.setpName(cursor.getString(4));
+                    dia.setDiagnose(RSAUtil.decryptData(cursor.getString(1)));
+                    dia.setPrescription(RSAUtil.decryptData(cursor.getString(2)));
+                    dia.setdName(RSAUtil.decryptData(getUserName(cursor.getString(3))));
+                    dia.setpName(RSAUtil.decryptData(getUserName(cursor.getString(4))));
                     list.add(dia);
                 } while (cursor.moveToNext());
             }
