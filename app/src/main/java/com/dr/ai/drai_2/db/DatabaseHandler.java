@@ -505,6 +505,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USERS + ";", null);
+        // means no users with same email exist
         if (cursor.moveToFirst()) {
             do {
                 if (RSAUtil.decryptData(cursor.getString(2)).equals(email)){
@@ -512,12 +513,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 }
             }while (cursor.moveToNext());
             cursor.close();
-            db.close();
-            return true; // means already registered
-        } else {
-            db.close();
-            return false; // means no users with same email exist
         }
+        db.close();
+        return false; // means already registered
     }
 
     private String getUserName(String id) {
